@@ -104,7 +104,7 @@ $(‘selecter’).function(参数)
 $符号代表jQuery,是jQuery的缩写
 隐式迭代：获取一组标签，不需要遍历循环，即可直接操作
 链式操作：不需要重复获取">
-<meta property="og:updated_time" content="2017-01-06T13:49:11.932Z">
+<meta property="og:updated_time" content="2017-01-06T14:44:59.342Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery常用语法">
 <meta name="twitter:description" content="首先附上jQuery官网http://jquery.com/2.0版本开始放弃了对IE7/8及其之前版本的兼容性
@@ -373,7 +373,68 @@ $符号代表jQuery,是jQuery的缩写
 <li>jQuery对象可以理解为由DOM元素组成的一个数组</li>
 <li>get(i)<br>jQuery对象.get(i)</li>
 <li>jQuery对象[i]<br>因为通过jQuery获取的对象类似于一个数组<h2 id="DOM对象转化成jQuery对象"><a href="#DOM对象转化成jQuery对象" class="headerlink" title="DOM对象转化成jQuery对象"></a>DOM对象转化成jQuery对象</h2></li>
-<li>将DOM获取到的对象变量用小括号包起来，前面加$<br>$(DOM对象)<h1 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h1></li>
+<li>将DOM获取到的对象变量用小括号包起来，前面加$<br>$(DOM对象)<h1 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h1><h2 id="jQuery常用事件"><a href="#jQuery常用事件" class="headerlink" title="jQuery常用事件"></a>jQuery常用事件</h2><h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="鼠标事件"></a>鼠标事件</h3></li>
+<li>点击事件<ul>
+<li>click</li>
+<li>dblclick  双击</li>
+<li>mousedown</li>
+<li>mouseup  </li>
+</ul>
+</li>
+<li>移动事件<ul>
+<li>mouseover 移入该元素和对应的子元素</li>
+<li>mouseout  移出该元素和对应的子元素</li>
+<li>mouseenter    移入该元素，不对其子元素生效</li>
+<li>mouseleave    移出该元素，不对其子元素生效</li>
+<li>mousemove 鼠标每移动一个像素就会触发一次</li>
+</ul>
+</li>
+<li>组合事件<ul>
+<li>hover<br>mouseenter+mouseleave<br>jQuery1.8版本之后改为mouseover+mouseout<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h3></li>
+</ul>
+</li>
+<li>keydown</li>
+<li>keyup</li>
+<li>keypress  产生可打印的字符时触发，不包括中文<h3 id="表单事件"><a href="#表单事件" class="headerlink" title="表单事件"></a>表单事件</h3></li>
+<li>focus 获得焦点</li>
+<li>submit</li>
+<li>blur  失去焦点</li>
+<li>change<h2 id="事件绑定与移除"><a href="#事件绑定与移除" class="headerlink" title="事件绑定与移除"></a>事件绑定与移除</h2><h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="事件绑定"></a>事件绑定</h3></li>
+<li>直接通过事件名绑定<br>$(selector).事件名()</li>
+<li>bind()  <ul>
+<li>绑定一个事件：bind(‘事件类型’,function(){});同直接绑定</li>
+<li>绑定多个事件：<br>$(selector).bind({事件类型1:function(){},事件类型2:function(){},…})<br><strong>绑定一个事件：每用一次事件查找一次</strong><br><strong>绑定多个事件：只需要查找一遍元素</strong></li>
+</ul>
+</li>
+<li>one()<br>绑定一次性事件，比如按钮点击后自动不再具有点击效果，写法同bind绑定</li>
+<li>on()<br>类似于bind绑定，比bind多一个参数(selector)，可实现动态更新事件（页面加载完后新增加的元素也可实现此事件方法，而bind无法响应页面加载后新增的元素）  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&apos;ul&apos;).on(&apos;click&apos;,&apos;li&apos;,function()&#123;</div><div class="line">    alert($(this).text);</div><div class="line">&#125;);                         动态绑定</div><div class="line">$(&apos;ul li&apos;).bind(&apos;click&apos;,function()&#123;</div><div class="line">    alert($(this).text);    静态绑定</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="事件移除"><a href="#事件移除" class="headerlink" title="事件移除"></a>事件移除</h3><ul>
+<li>unbind()<br>不传参数，则默认移除所有事件<br>unbind([type],[function])<ul>
+<li>一个参数：可以指定移除事件类型</li>
+<li>两个参数：可以指定移除某个事件其中的某个响应方法</li>
+</ul>
+</li>
+<li>off()<br>同on()相对应  <h3 id="事件的命名空间"><a href="#事件的命名空间" class="headerlink" title="事件的命名空间"></a>事件的命名空间</h3></li>
+<li>在bind绑定事件中，在事件类型中，使用事件类型命名来创建同一个事件的多个名字，如click.a,click.b…<br><strong>命名空间后要加引号，如’click.a’,’click.b’</strong><h2 id="模拟事件"><a href="#模拟事件" class="headerlink" title="模拟事件"></a>模拟事件</h2></li>
+<li>trigger()<br>自动触发事件，传入参数为事件类型<br>链式写法：$(selector).trigger(‘事件类型’)</li>
+<li>triggerHandler()<br>同上，区别为：<ul>
+<li>不会执行事件的默认行为，比如表单的功能按钮和链接标签</li>
+<li>只触发jQuery对象集合中的第一个元素的事件处理函数，比如无序列表下的li集合，只触发第一个li</li>
+<li>返回值为undefined，trigger返回jQuery对象，无法继续在其后增加链式操作</li>
+<li>阻止了事件冒泡<br>使用传入事件event参数<br>event.stopPropagation()也可以达到阻止事件冒泡功能<h2 id="event对象"><a href="#event对象" class="headerlink" title="event对象"></a>event对象</h2><strong>event只有事件处理函数能够访问，当事件处理完毕后，event就会自动销毁</strong><h3 id="event常用属性"><a href="#event常用属性" class="headerlink" title="event常用属性"></a>event常用属性</h3></li>
+</ul>
+</li>
+<li>type</li>
+<li>clientX|clientY<br>窗口可视化区域x和y坐标</li>
+<li>pageX|pageY<br>相对于文档的x和y坐标，y坐标算上滚动条坐标</li>
+<li>offsetX|offsetY<br>相对于事件源的坐标，在哪个标签内就获取这个标签内的x，y坐标</li>
+<li>screenX|screenY<br>屏幕的x，y坐标</li>
+<li>keyCode<br>检测键盘事件相对应的内码</li>
+<li>target<br>返回触发该事件的DOM元素<br>比如标签h、p、div…元素<h3 id="event常用方法"><a href="#event常用方法" class="headerlink" title="event常用方法"></a>event常用方法</h3></li>
+<li>preventDefault()<br>阻止默认行为</li>
+<li>stopPropagation()<br>阻止事件冒泡行为</li>
 </ul>
 
       
@@ -518,7 +579,7 @@ $符号代表jQuery,是jQuery的缩写
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件引入"><span class="nav-number">1.1.</span> <span class="nav-text">文件引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery基本语法"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery基本语法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文档就绪"><span class="nav-number">2.</span> <span class="nav-text">文档就绪</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery文档就绪"><span class="nav-number">2.1.</span> <span class="nav-text">jQuery文档就绪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与原生JS文档就绪比较"><span class="nav-number">2.2.</span> <span class="nav-text">与原生JS文档就绪比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-选择器"><span class="nav-number">3.</span> <span class="nav-text">jQuery 选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本选择器"><span class="nav-number">3.1.</span> <span class="nav-text">基本选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊情况"><span class="nav-number">3.1.1.</span> <span class="nav-text">特殊情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层次选择器"><span class="nav-number">3.2.</span> <span class="nav-text">层次选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器"><span class="nav-number">3.3.</span> <span class="nav-text">属性选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤选择器"><span class="nav-number">3.4.</span> <span class="nav-text">过滤选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的过滤方法（function）"><span class="nav-number">3.4.1.</span> <span class="nav-text">常用的过滤方法（function）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单选择器"><span class="nav-number">3.5.</span> <span class="nav-text">表单选择器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM对象和jQuery对象"><span class="nav-number">4.</span> <span class="nav-text">DOM对象和jQuery对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery对象转化成-DOM对象"><span class="nav-number">4.1.</span> <span class="nav-text">jQuery对象转化成 DOM对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM对象转化成jQuery对象"><span class="nav-number">4.2.</span> <span class="nav-text">DOM对象转化成jQuery对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery事件"><span class="nav-number">5.</span> <span class="nav-text">jQuery事件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件引入"><span class="nav-number">1.1.</span> <span class="nav-text">文件引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery基本语法"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery基本语法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文档就绪"><span class="nav-number">2.</span> <span class="nav-text">文档就绪</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery文档就绪"><span class="nav-number">2.1.</span> <span class="nav-text">jQuery文档就绪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与原生JS文档就绪比较"><span class="nav-number">2.2.</span> <span class="nav-text">与原生JS文档就绪比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-选择器"><span class="nav-number">3.</span> <span class="nav-text">jQuery 选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本选择器"><span class="nav-number">3.1.</span> <span class="nav-text">基本选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊情况"><span class="nav-number">3.1.1.</span> <span class="nav-text">特殊情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层次选择器"><span class="nav-number">3.2.</span> <span class="nav-text">层次选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器"><span class="nav-number">3.3.</span> <span class="nav-text">属性选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤选择器"><span class="nav-number">3.4.</span> <span class="nav-text">过滤选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的过滤方法（function）"><span class="nav-number">3.4.1.</span> <span class="nav-text">常用的过滤方法（function）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单选择器"><span class="nav-number">3.5.</span> <span class="nav-text">表单选择器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM对象和jQuery对象"><span class="nav-number">4.</span> <span class="nav-text">DOM对象和jQuery对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery对象转化成-DOM对象"><span class="nav-number">4.1.</span> <span class="nav-text">jQuery对象转化成 DOM对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM对象转化成jQuery对象"><span class="nav-number">4.2.</span> <span class="nav-text">DOM对象转化成jQuery对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery事件"><span class="nav-number">5.</span> <span class="nav-text">jQuery事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery常用事件"><span class="nav-number">5.1.</span> <span class="nav-text">jQuery常用事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#鼠标事件"><span class="nav-number">5.1.1.</span> <span class="nav-text">鼠标事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#键盘事件"><span class="nav-number">5.1.2.</span> <span class="nav-text">键盘事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单事件"><span class="nav-number">5.1.3.</span> <span class="nav-text">表单事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件绑定与移除"><span class="nav-number">5.2.</span> <span class="nav-text">事件绑定与移除</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事件绑定"><span class="nav-number">5.2.1.</span> <span class="nav-text">事件绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件移除"><span class="nav-number">5.2.2.</span> <span class="nav-text">事件移除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件的命名空间"><span class="nav-number">5.2.3.</span> <span class="nav-text">事件的命名空间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模拟事件"><span class="nav-number">5.3.</span> <span class="nav-text">模拟事件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#event对象"><span class="nav-number">5.4.</span> <span class="nav-text">event对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#event常用属性"><span class="nav-number">5.4.1.</span> <span class="nav-text">event常用属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#event常用方法"><span class="nav-number">5.4.2.</span> <span class="nav-text">event常用方法</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>
