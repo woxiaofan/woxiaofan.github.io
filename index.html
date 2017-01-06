@@ -275,9 +275,29 @@
         
           
             <h1 id="搭建个人博客"><a href="#搭建个人博客" class="headerlink" title="搭建个人博客"></a>搭建个人博客</h1><ul>
-<li>第一步</li>
-<li>第二步</li>
-<li>第三步</li>
+<li>npm install hexo-cli -g <em>安装工具</em></li>
+<li>mkdir dirname <em>创建blog目录(不创建的话默认为创建日期命名文件名)</em></li>
+<li>cd dirname <em>进入目录</em></li>
+<li>hexo init <em>初始化hexo</em></li>
+<li>npm install <em>安装依赖</em></li>
+<li>npm install hexo-deployer-git –save <em>安装git发布插件</em></li>
+<li>创建github仓库，用户名.github.io<ul>
+<li>配置 _config.yml，添加如下：<ul>
+<li>deploy:<ul>
+<li>type: git</li>
+<li>repo: github地址（ssh地址）</li>
+<li>branch: master</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>hexo g 生成页面</li>
+<li>hexo s 启动本地预览服务器</li>
+<li>hexo d 发布到github</li>
+<li>hexo n ‘name’ 新建blog</li>
+<li>访问路径 用户名.github.io</li>
 </ul>
 
           
