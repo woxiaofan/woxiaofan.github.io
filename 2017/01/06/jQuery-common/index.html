@@ -84,40 +84,37 @@
 
 
 
-<meta name="description" content="首先附上jQuery官网http://jquery.com/ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性   
-准备工作
-必须引入jQuery库文件，引入方法与普通js文件一样  
-jQuery基本语法：
+<meta name="description" content="首先附上jQuery官网http://jquery.com/ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性
+准备工作文件引入
+必须引入jQuery库文件，引入方法与普通js文件一样jQuery基本语法
 单双引号通用
 $(‘selecter’).function(参数)
 [$]代表jQuery,是jQuery的缩写
-隐式迭代：获取一组标签，不需要遍历循环，即可直接操作  
-链式操作">
+隐式迭代：获取一组标签，不需要遍历循环，即可直接操作
+链式操作：不需要重">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jQuery常用语法">
 <meta property="og:url" content="http://yoursite.com/2017/01/06/jQuery-common/index.html">
 <meta property="og:site_name" content="MyBlog">
-<meta property="og:description" content="首先附上jQuery官网http://jquery.com/ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性   
-准备工作
-必须引入jQuery库文件，引入方法与普通js文件一样  
-jQuery基本语法：
+<meta property="og:description" content="首先附上jQuery官网http://jquery.com/ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性
+准备工作文件引入
+必须引入jQuery库文件，引入方法与普通js文件一样jQuery基本语法
 单双引号通用
 $(‘selecter’).function(参数)
 [$]代表jQuery,是jQuery的缩写
-隐式迭代：获取一组标签，不需要遍历循环，即可直接操作  
-链式操作">
-<meta property="og:updated_time" content="2017-01-06T13:08:14.293Z">
+隐式迭代：获取一组标签，不需要遍历循环，即可直接操作
+链式操作：不需要重">
+<meta property="og:updated_time" content="2017-01-06T13:35:07.336Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery常用语法">
-<meta name="twitter:description" content="首先附上jQuery官网http://jquery.com/ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性   
-准备工作
-必须引入jQuery库文件，引入方法与普通js文件一样  
-jQuery基本语法：
+<meta name="twitter:description" content="首先附上jQuery官网http://jquery.com/ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性
+准备工作文件引入
+必须引入jQuery库文件，引入方法与普通js文件一样jQuery基本语法
 单双引号通用
 $(‘selecter’).function(参数)
 [$]代表jQuery,是jQuery的缩写
-隐式迭代：获取一组标签，不需要遍历循环，即可直接操作  
-链式操作">
+隐式迭代：获取一组标签，不需要遍历循环，即可直接操作
+链式操作：不需要重">
 
 
 
@@ -295,73 +292,75 @@ $(‘selecter’).function(参数)
       
 
       
-        <p><strong>首先附上jQuery官网</strong><br><a href="http://jquery.com/" target="_blank" rel="external">http://jquery.com/</a><br><strong>ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性</strong>   </p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
-<li>必须引入jQuery库文件，引入方法与普通js文件一样  </li>
-<li>jQuery基本语法：<ul>
+        <p><strong>首先附上jQuery官网</strong><br><a href="http://jquery.com/" target="_blank" rel="external">http://jquery.com/</a><br><strong>ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性</strong></p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="文件引入"><a href="#文件引入" class="headerlink" title="文件引入"></a>文件引入</h2><ul>
+<li>必须引入jQuery库文件，引入方法与普通js文件一样<h2 id="jQuery基本语法"><a href="#jQuery基本语法" class="headerlink" title="jQuery基本语法"></a>jQuery基本语法</h2></li>
 <li>单双引号通用</li>
 <li>$(‘selecter’).function(参数)</li>
 <li>[$]代表jQuery,是jQuery的缩写</li>
-<li>隐式迭代：获取一组标签，不需要遍历循环，即可直接操作  </li>
-<li>链式操作：不需要重复获取标签元素，在一个操作后面直接跟另一条命令<br>ps：jQuery每一个操作函数返回值均为object，所以才可以使用链式操作  <h1 id="文档就绪"><a href="#文档就绪" class="headerlink" title="文档就绪"></a>文档就绪</h1></li>
-</ul>
-</li>
-<li>jQuery文档就绪：<br>  $(document).ready()或者简写为：$(function{})        </li>
-<li>window.onload vs $(function{})  <ul>
-<li>前者必须等网页中所有的元素（包含图片、flash、视频等）全部加载完毕后执行，而后者等所有的DOM文档结构绘制完毕后即刻执行，不需要等待图片、flash等<br>ps：DOM大标签加载完毕就执行，如p、h、body、div等加载完就执行  </li>
-<li>一个页面只允许存在一个window.onload，而可以存在多个$(function{})  <h1 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器  "></a>jQuery 选择器  <a id="more"></a></h1><h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2></li>
-</ul>
-</li>
+<li>隐式迭代：获取一组标签，不需要遍历循环，即可直接操作</li>
+<li>链式操作：不需要重复获取标签元素，在一个操作后面直接跟另一条命令<br><strong>jQuery每一个操作函数返回值均为object，所以才可以使用链式操作</strong><h1 id="文档就绪"><a href="#文档就绪" class="headerlink" title="文档就绪"></a>文档就绪</h1><h2 id="jQuery文档就绪"><a href="#jQuery文档就绪" class="headerlink" title="jQuery文档就绪"></a>jQuery文档就绪</h2></li>
+<li>$(document).ready()或者简写为：$(function{})<h2 id="与原生JS文档就绪比较"><a href="#与原生JS文档就绪比较" class="headerlink" title="与原生JS文档就绪比较"></a>与原生JS文档就绪比较</h2></li>
+<li>window.onload vs $(function{})</li>
+<li>前者必须等网页中所有的元素（包含图片、flash、视频等）全部加载完毕后执行，而后者等所有的DOM文档结构绘制完毕后即刻执行，不需要等待图片、flash等<br><strong>DOM大标签加载完毕就执行，如p、h、body、div等加载完就执行</strong></li>
+<li>一个页面只允许存在一个window.onload，而可以存在多个$(function{})<h1 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器<a id="more"></a></h1><h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="基本选择器"></a>基本选择器</h2></li>
 <li>标签选择器 $(‘p’) or $(‘div’)</li>
 <li>类选择器  $(‘.class’)</li>
 <li>ID选择器 $(‘#id’)</li>
 <li>群组选择器 $(‘div,span,p’)</li>
-<li>交集选择器 $(‘p.top’)<br>ps：选取类名为top的p标签</li>
-<li>全局选择器 $(‘<em>‘)<br>  <em>*特殊情况：</em></em>  <ol>
-<li>$(document)  </li>
-<li>$(window)  </li>
-<li>$(‘body’)  </li>
-<li>$(this)<br>ps:页面中的标签需要加引号或者双引号</li>
-</ol>
-</li>
+<li>交集选择器 $(‘p.top’)<br><strong>选取类名为top的p标签</strong></li>
+<li>全局选择器 $(‘*’)<h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="特殊情况"></a>特殊情况</h3></li>
 </ul>
-<h2 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h2><ul>
+<ol>
+<li>$(document)</li>
+<li>$(window)</li>
+<li>$(‘body’)</li>
+<li>$(this)<br><strong>页面中的标签需要加引号或者双引号</strong><h2 id="层次选择器"><a href="#层次选择器" class="headerlink" title="层次选择器"></a>层次选择器</h2></li>
+</ol>
+<ul>
 <li>后代选择器  $(‘#box span’)</li>
 <li>子级选择器  $(‘#box&gt;span’)</li>
-<li>紧邻同辈选择器  $(‘#box+p’)<br>ps:id名为box的后面一个p标签</li>
-<li>相邻同辈选择器  $(‘#box~p’)<br>ps：id名为box的后面所有p标签<h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2></li>
+<li>紧邻同辈选择器  $(‘#box+p’)<br><strong>id名为box的后面一个p标签</strong></li>
+<li>相邻同辈选择器  $(‘#box~p’)<br><strong>id名为box的后面所有p标签</strong><h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="属性选择器"></a>属性选择器</h2></li>
 <li>$(‘[name]’)  选择所有具有name属性的标签元素</li>
 <li>$(‘[name=user]’)  所有name=user的标签</li>
 <li>$(‘[name!=user]’)  name不等于user</li>
 <li>$(‘[name^=user]’)  以user开头</li>
 <li>$(‘[name$=user]’)  以user结尾</li>
-<li>$(‘[name][id]’)  选择同时具有name和id的元素<br>  <strong>ps：class、type、id等均为属性</strong><h2 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h2></li>
+<li>$(‘[name][id]’)  选择同时具有name和id的元素<br><strong>class、type、id等均为属性</strong><h2 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="过滤选择器"></a>过滤选择器</h2></li>
 <li>:first  $(‘ul li:first’)</li>
 <li>:last  $(‘ul li:last’)</li>
 <li>:even  从0开始，选择集合中的偶数行</li>
 <li>:odd  同上，选择奇数行</li>
 <li>:eq(n)  n从0开始计数</li>
 <li>gt(n)  集合中第n个后的元素/大于n的元素，从0开始计数</li>
-<li>lt(n)  同上反  </li>
+<li>lt(n)  同上反</li>
 <li>:not(selector)  $(‘ul li:not(:eq(3))’)  选择不包含selector中的元素</li>
-<li>:header  选择所有h1~h6的标题元素  </li>
+<li>:header  选择所有h1~h6的标题元素</li>
 <li>:visible  可见元素</li>
 <li>:hidden  不可见元素</li>
-<li>:first-child  列表中的第一个元素，相对于本  身父元素  </li>
+<li>:first-child  列表中的第一个元素，相对于本  身父元素</li>
 <li>:first-of-type  列表中同类型元素</li>
 <li>:nth-c  hild(n)  列表中第n个元素，从1开始计数</li>
 <li>:nth-last-child(n)  倒序计数第n个元素</li>
 <li>:nth-of-type(n)  列表中同类型的第n个子元素，从1开始计数</li>
-<li>:empty  空元素  </li>
-<li>:parent  含有子元  素或文本的元素  </li>
+<li>:empty  空元素</li>
+<li>:parent  含有子元  素或文本的元素</li>
 <li>:has(selector)  $(‘div:has(h  2  )’)    匹配包含h2的div</li>
-<li>:contains(text)  $(‘:contains(hello)’)  匹配包含hello的元素  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">常用的过滤方法（function）：  </div><div class="line">1. get(i)  选择第i个元素，返回DOM对象  </div><div class="line">   ps：不能采用jQuery写法 $(&apos;h2&apos;).get(2) </div><div class="line">   正确写法：$(&apos;h2&apos;).get(2).style.color = &apos;red&apos; </div><div class="line">2. eq(i)  选择第i个元素，返回jQuery对象  </div><div class="line">   ps：可以采用jQuery写法 $(&apos;h2&apos;).eq(2)  </div><div class="line">   正确写法：$(&apos;h2&apos;).eq(2).css(&apos;color&apos;,&apos;red&apos;)  </div><div class="line">3. first()|last()  选择第一个|最后一个元素</div><div class="line">4. not(selector)  同not选择器</div><div class="line">   $(&apos;h2&apos;).not(&apos;:contains(hello)&apos;)</div><div class="line">5. has()  同has选择器  </div><div class="line">6. find(selector)  获取当前匹配元素集合中每一个元素的后代，同has选择器，但返回的是find中的标签，而不是像has的父级元素</div></pre></td></tr></table></figure>
-</li>
+<li>:contains(text)  $(‘:contains(hello)’)  匹配包含hello的元素<h3 id="常用的过滤方法（function）"><a href="#常用的过滤方法（function）" class="headerlink" title="常用的过滤方法（function）"></a>常用的过滤方法（function）</h3></li>
 </ul>
-<h2 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h2><ul>
+<ol>
+<li>get(i)  选择第i个元素，返回DOM对象<br><strong>不能采用jQuery写法 $(‘h2’).get(2)</strong><br><strong>正确写法：$(‘h2’).get(2).style.color = ‘red’</strong></li>
+<li>eq(i)  选择第i个元素，返回jQuery对象<br><strong>可以采用jQuery写法 $(‘h2’).eq(2)</strong><br><strong>正确写法：$(‘h2’).eq(2).css(‘color’,’red’)</strong></li>
+<li>first()|last()  选择第一个|最后一个元素</li>
+<li>not(selector)  同not选择器<br>$(‘h2’).not(‘:contains(hello)’)</li>
+<li>has()  同has选择器</li>
+<li>find(selector)  获取当前匹配元素集合中每一个元素的后代，同has选择器，但返回的是find中的标签，而不是像has的父级元素<h2 id="表单选择器"><a href="#表单选择器" class="headerlink" title="表单选择器"></a>表单选择器</h2></li>
+</ol>
+<ul>
 <li>:input  表单元素，包括input、textarea、select、button</li>
 <li>:text  单行文本框元素，只能匹配type=text的文本框</li>
-<li>:password  </li>
+<li>:password</li>
 <li>:radio  单选按钮</li>
 <li>:checkbox  复选框</li>
 <li>:submit  type=submit和button标签</li>
@@ -370,14 +369,13 @@ $(‘selecter’).function(参数)
 <li>:button</li>
 <li>:file</li>
 <li>:checked</li>
-<li>:focus  焦点所在元素  </li>
+<li>:focus  焦点所在元素<h1 id="DOM对象和jQuery对象"><a href="#DOM对象和jQuery对象" class="headerlink" title="DOM对象和jQuery对象"></a>DOM对象和jQuery对象</h1></li>
+<li>jQuery对象可以理解为由DOM元素组成的一个数组<h2 id="jQuery-对象转化成-DOM对象"><a href="#jQuery-对象转化成-DOM对象" class="headerlink" title="jQuery 对象转化成 DOM对象"></a>jQuery 对象转化成 DOM对象</h2></li>
+<li>get(i)  jQuery对象.get(i)</li>
+<li>jQuery对象[i]  因为通过jQuery获取的对象类似于一个数组<h2 id="DOM-对象转化成-jQuery对象"><a href="#DOM-对象转化成-jQuery对象" class="headerlink" title="DOM 对象转化成 jQuery对象"></a>DOM 对象转化成 jQuery对象</h2></li>
+<li>将DOM获取到的对象变量用小括号包起来，前面加$<br>$(DOM对象)<h1 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h1></li>
 </ul>
-<h1 id="DOM对象和jQuery对象"><a href="#DOM对象和jQuery对象" class="headerlink" title="DOM对象和jQuery对象"></a>DOM对象和jQuery对象</h1><p><strong>jQuery对象可以理解为由DOM元素组成的一个数组</strong>  </p>
-<h2 id="jQuery-对象转化成-DOM对象"><a href="#jQuery-对象转化成-DOM对象" class="headerlink" title="jQuery 对象转化成 DOM对象"></a>jQuery 对象转化成 DOM对象</h2><pre><code>- get(i)  jQuery对象.get(i)
-- jQuery对象[i]  因为通过jQuery获取的对象类似于一个数组
-</code></pre><h2 id="DOM-对象转化成-jQuery对象"><a href="#DOM-对象转化成-jQuery对象" class="headerlink" title="DOM 对象转化成 jQuery对象"></a>DOM 对象转化成 jQuery对象</h2><pre><code>- 将DOM获取到的对象变量用小括号包起来，前面加$  
-$(DOM对象)  
-</code></pre><h1 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h1>
+
       
     </div>
 
@@ -520,7 +518,7 @@ $(DOM对象)
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文档就绪"><span class="nav-number">2.</span> <span class="nav-text">文档就绪</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-选择器"><span class="nav-number">3.</span> <span class="nav-text">jQuery 选择器  </span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本选择器"><span class="nav-number">3.1.</span> <span class="nav-text">基本选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层次选择器"><span class="nav-number">3.2.</span> <span class="nav-text">层次选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器"><span class="nav-number">3.3.</span> <span class="nav-text">属性选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤选择器"><span class="nav-number">3.4.</span> <span class="nav-text">过滤选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单选择器"><span class="nav-number">3.5.</span> <span class="nav-text">表单选择器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM对象和jQuery对象"><span class="nav-number">4.</span> <span class="nav-text">DOM对象和jQuery对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-对象转化成-DOM对象"><span class="nav-number">4.1.</span> <span class="nav-text">jQuery 对象转化成 DOM对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM-对象转化成-jQuery对象"><span class="nav-number">4.2.</span> <span class="nav-text">DOM 对象转化成 jQuery对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery事件"><span class="nav-number">5.</span> <span class="nav-text">jQuery事件</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件引入"><span class="nav-number">1.1.</span> <span class="nav-text">文件引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery基本语法"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery基本语法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文档就绪"><span class="nav-number">2.</span> <span class="nav-text">文档就绪</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery文档就绪"><span class="nav-number">2.1.</span> <span class="nav-text">jQuery文档就绪</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#与原生JS文档就绪比较"><span class="nav-number">2.2.</span> <span class="nav-text">与原生JS文档就绪比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-选择器"><span class="nav-number">3.</span> <span class="nav-text">jQuery 选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本选择器"><span class="nav-number">3.1.</span> <span class="nav-text">基本选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊情况"><span class="nav-number">3.1.1.</span> <span class="nav-text">特殊情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#层次选择器"><span class="nav-number">3.2.</span> <span class="nav-text">层次选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性选择器"><span class="nav-number">3.3.</span> <span class="nav-text">属性选择器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#过滤选择器"><span class="nav-number">3.4.</span> <span class="nav-text">过滤选择器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用的过滤方法（function）"><span class="nav-number">3.4.1.</span> <span class="nav-text">常用的过滤方法（function）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单选择器"><span class="nav-number">3.5.</span> <span class="nav-text">表单选择器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DOM对象和jQuery对象"><span class="nav-number">4.</span> <span class="nav-text">DOM对象和jQuery对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-对象转化成-DOM对象"><span class="nav-number">4.1.</span> <span class="nav-text">jQuery 对象转化成 DOM对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DOM-对象转化成-jQuery对象"><span class="nav-number">4.2.</span> <span class="nav-text">DOM 对象转化成 jQuery对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery事件"><span class="nav-number">5.</span> <span class="nav-text">jQuery事件</span></a></li></ol></div>
             
           </div>
         </section>

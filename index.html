@@ -273,21 +273,18 @@
 
       
         
-          <p><strong>首先附上jQuery官网</strong><br><a href="http://jquery.com/">http://jquery.com/</a><br><strong>ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性</strong>   </p>
-<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><ul>
-<li>必须引入jQuery库文件，引入方法与普通js文件一样  </li>
-<li>jQuery基本语法：<ul>
+          <p><strong>首先附上jQuery官网</strong><br><a href="http://jquery.com/">http://jquery.com/</a><br><strong>ps:2.0版本开始放弃了对IE7/8及其之前版本的兼容性</strong></p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="文件引入"><a href="#文件引入" class="headerlink" title="文件引入"></a>文件引入</h2><ul>
+<li>必须引入jQuery库文件，引入方法与普通js文件一样<h2 id="jQuery基本语法"><a href="#jQuery基本语法" class="headerlink" title="jQuery基本语法"></a>jQuery基本语法</h2></li>
 <li>单双引号通用</li>
 <li>$(‘selecter’).function(参数)</li>
 <li>[$]代表jQuery,是jQuery的缩写</li>
-<li>隐式迭代：获取一组标签，不需要遍历循环，即可直接操作  </li>
-<li>链式操作：不需要重复获取标签元素，在一个操作后面直接跟另一条命令<br>ps：jQuery每一个操作函数返回值均为object，所以才可以使用链式操作  <h1 id="文档就绪"><a href="#文档就绪" class="headerlink" title="文档就绪"></a>文档就绪</h1></li>
-</ul>
-</li>
-<li>jQuery文档就绪：<br>  $(document).ready()或者简写为：$(function{})        </li>
-<li>window.onload vs $(function{})  <ul>
-<li>前者必须等网页中所有的元素（包含图片、flash、视频等）全部加载完毕后执行，而后者等所有的DOM文档结构绘制完毕后即刻执行，不需要等待图片、flash等<br>ps：DOM大标签加载完毕就执行，如p、h、body、div等加载完就执行  </li>
-<li>一个页面只允许存在一个window.onload，而可以存在多个$(function{})  <h1 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器  "></a>jQuery 选择器
+<li>隐式迭代：获取一组标签，不需要遍历循环，即可直接操作</li>
+<li>链式操作：不需要重复获取标签元素，在一个操作后面直接跟另一条命令<br><strong>jQuery每一个操作函数返回值均为object，所以才可以使用链式操作</strong><h1 id="文档就绪"><a href="#文档就绪" class="headerlink" title="文档就绪"></a>文档就绪</h1><h2 id="jQuery文档就绪"><a href="#jQuery文档就绪" class="headerlink" title="jQuery文档就绪"></a>jQuery文档就绪</h2></li>
+<li>$(document).ready()或者简写为：$(function{})<h2 id="与原生JS文档就绪比较"><a href="#与原生JS文档就绪比较" class="headerlink" title="与原生JS文档就绪比较"></a>与原生JS文档就绪比较</h2></li>
+<li>window.onload vs $(function{})</li>
+<li>前者必须等网页中所有的元素（包含图片、flash、视频等）全部加载完毕后执行，而后者等所有的DOM文档结构绘制完毕后即刻执行，不需要等待图片、flash等<br><strong>DOM大标签加载完毕就执行，如p、h、body、div等加载完就执行</strong></li>
+<li>一个页面只允许存在一个window.onload，而可以存在多个$(function{})<h1 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器
           <div class="post-more-link text-center">
             <a class="btn" href="/2017/01/06/jQuery-common/#more" rel="contents">
               阅读全文 &raquo;
