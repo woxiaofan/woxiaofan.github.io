@@ -104,7 +104,7 @@ $(‘selecter’).function(参数)
 $符号代表jQuery,是jQuery的缩写
 隐式迭代：获取一组标签，不需要遍历循环，即可直接操作
 链式操作：不需要重复获取">
-<meta property="og:updated_time" content="2017-01-06T14:44:59.342Z">
+<meta property="og:updated_time" content="2017-01-07T03:02:02.725Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jQuery常用语法">
 <meta name="twitter:description" content="首先附上jQuery官网http://jquery.com/2.0版本开始放弃了对IE7/8及其之前版本的兼容性
@@ -407,7 +407,7 @@ $符号代表jQuery,是jQuery的缩写
 </ul>
 </li>
 <li>one()<br>绑定一次性事件，比如按钮点击后自动不再具有点击效果，写法同bind绑定</li>
-<li>on()<br>类似于bind绑定，比bind多一个参数(selector)，可实现动态更新事件（页面加载完后新增加的元素也可实现此事件方法，而bind无法响应页面加载后新增的元素）  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(&apos;ul&apos;).on(&apos;click&apos;,&apos;li&apos;,function()&#123;</div><div class="line">    alert($(this).text);</div><div class="line">&#125;);                         动态绑定</div><div class="line">$(&apos;ul li&apos;).bind(&apos;click&apos;,function()&#123;</div><div class="line">    alert($(this).text);    静态绑定</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<li>on()<br>类似于bind绑定，比bind多一个参数(selector)，可实现动态更新事件（页面加载完后新增加的元素也可实现此事件方法，而bind无法响应页面加载后新增的元素）  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'ul'</span>).on(<span class="string">'click'</span>,<span class="string">'li'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert($(<span class="keyword">this</span>).text);</div><div class="line">&#125;);                         <span class="comment">//动态绑定</span></div><div class="line">$(<span class="string">'ul li'</span>).bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert($(<span class="keyword">this</span>).text);    <span class="comment">//静态绑定</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <h3 id="事件移除"><a href="#事件移除" class="headerlink" title="事件移除"></a>事件移除</h3><ul>
