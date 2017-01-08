@@ -102,8 +102,10 @@ npm install hexo-cli -g 安装工具
 mkdir dirname 创建blog目录(不创建的话默认为source中的_posts文件夹)
 cd dirname 进入目录
 hexo new &amp;#39;file name&amp;#39; 新建md文件">
-<meta property="og:image" content="http://yoursite.com/../../../../../source/image/yuming01.png">
-<meta property="og:updated_time" content="2017-01-08T05:15:36.649Z">
+<meta property="og:image" content="http://yoursite.com/../../../../image/yuming01.png">
+<meta property="og:image" content="http://yoursite.com/../../../../image/yuming02.png">
+<meta property="og:image" content="http://yoursite.com/../../../../image/yuming04.png">
+<meta property="og:updated_time" content="2017-01-08T05:55:46.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+github博客搭建简易步骤">
 <meta name="twitter:description" content="1.首先你得有一个自己的github账户教学点击这里2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了
@@ -113,7 +115,7 @@ npm install hexo-cli -g 安装工具
 mkdir dirname 创建blog目录(不创建的话默认为source中的_posts文件夹)
 cd dirname 进入目录
 hexo new &amp;#39;file name&amp;#39; 新建md文件">
-<meta name="twitter:image" content="http://yoursite.com/../../../../../source/image/yuming01.png">
+<meta name="twitter:image" content="http://yoursite.com/../../../../image/yuming01.png">
 
 
 
@@ -324,8 +326,22 @@ hexo new &amp;#39;file name&amp;#39; 新建md文件">
 <h1 id="打造博客专属域名"><a href="#打造博客专属域名" class="headerlink" title="打造博客专属域名"></a>打造博客专属域名</h1><hr>
 <p>首先你要有个域名，那么就要去申请域名了，这里我们可以通过<strong><a href="https://wanwang.aliyun.com/" target="_blank" rel="external">万网申请</a></strong>查找你想申请域名，如果可以买，购买就可以了</p>
 <hr>
-<h2 id="域名购买与解析"><a href="#域名购买与解析" class="headerlink" title="　　域名购买与解析"></a>　　域名购买与解析</h2><ul>
-<li>购买域名完成，进入万网的管理控制台<br><img src="../../../../../source/image/yuming01.png" alt=""></li>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="　　域名解析"></a>　　域名解析</h2><ul>
+<li>购买域名完成，进入万网的管理控制台<br><img src="../../../../image/yuming01.png" alt="别走开-图片加载中"></li>
+<li>找到你已经购买的域名，点击如上箭头解析，进入如下页面<br><img src="../../../../image/yuming02.png" alt="别走开-图片加载中"></li>
+<li>然后点击添加解析，ip可以跟我填写的一致，当然以防发生变化，你可以ping你的url<br><code>ping www.你的github用户名.github.io</code>在cmd控制台拿到ip值  <ul>
+<li>主机记录www对应www.ityyf.com</li>
+<li>主机记录@对应ityyf.com</li>
+</ul>
+</li>
+</ul>
+<h2 id="域名修改"><a href="#域名修改" class="headerlink" title="　　域名修改"></a>　　域名修改</h2><blockquote>
+<p>我们通过简易手段DNSpod自动修改工具</p>
+</blockquote>
+<ul>
+<li>注册DNSpod，添加域名，添加记录，如下图设置<br><img src="../../../../image/yuming04.png" alt="别走开-图片加载中"></li>
+<li>在source文件夹里创建CNAME文件，不带任何后缀，里面添加你的域名信息，如：ityyf.com（注意前面不添加http://）</li>
+<li>hexo d发布blog试试效果吧！</li>
 </ul>
 
       
@@ -470,7 +486,7 @@ hexo new &amp;#39;file name&amp;#39; 新建md文件">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo配置"><span class="nav-number">1.</span> <span class="nav-text">Hexo配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github二级域名访问页面"><span class="nav-number">2.</span> <span class="nav-text">github二级域名访问页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打造博客专属域名"><span class="nav-number">3.</span> <span class="nav-text">打造博客专属域名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#域名购买与解析"><span class="nav-number">3.1.</span> <span class="nav-text">　　域名购买与解析</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo配置"><span class="nav-number">1.</span> <span class="nav-text">Hexo配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github二级域名访问页面"><span class="nav-number">2.</span> <span class="nav-text">github二级域名访问页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打造博客专属域名"><span class="nav-number">3.</span> <span class="nav-text">打造博客专属域名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#域名解析"><span class="nav-number">3.1.</span> <span class="nav-text">　　域名解析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#域名修改"><span class="nav-number">3.2.</span> <span class="nav-text">　　域名修改</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
