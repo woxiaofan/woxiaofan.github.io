@@ -273,9 +273,34 @@
 
       
         
-          
-            <h1 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h1>
-          
+          <h1 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h1><ul>
+<li>需要使用HTML5文档结构 <code>&lt;!DocType html&gt;</code></li>
+<li>移动设备优先    需要在头部增加<code>&lt;meta&gt;</code>标签</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>引入BootStrap</p>
+<ul>
+<li>引入css，当有自己的css文档，应引入bootstrap.css后再引入自己编写额css文件</li>
+<li>引入jQuery.js再引入bootstrap.js</li>
+<li><p>若要兼容IE浏览器，再引入两个js文件，使用IE的条件注释</p>
+<pre><code>&lt;!--[if lt IE 9]&gt;&lt;script&gt;...&lt;/script&gt;&lt;script&gt;...&lt;/script&gt;&lt;![endif]--&gt;  
+[两个js文件自己google]
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap表单样式"><a href="#bootstrap表单样式" class="headerlink" title="bootstrap表单样式"></a>bootstrap表单样式</h1><pre><code>创建表单步骤：
+1.创建form标签并添加role=&quot;form&quot;(语义化，给浏览器和搜索引擎看)
+2.控制分组，把标签和控件放在一个class为formgroup的div中
+3.给表单控件(input,textarea,select)添加类名form-control
+</code></pre><h2 id="内联表单"><a href="#内联表单" class="headerlink" title="内联表单"></a>内联表单</h2><ul>
+<li>给form添加类名form-inline
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/08/bootstrap-common/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -800,7 +825,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

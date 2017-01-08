@@ -84,16 +84,34 @@
 
 
 
-<meta name="description" content="文档结构">
+<meta name="description" content="文档结构
+需要使用HTML5文档结构 &amp;lt;!DocType html&amp;gt;
+移动设备优先    需要在头部增加&amp;lt;meta&amp;gt;标签
+
+1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0&quot;/&amp;gt;
+
+引入BootStrap">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BootStrap框架常用语法">
 <meta property="og:url" content="http://yoursite.com/2017/01/08/bootstrap-common/index.html">
 <meta property="og:site_name" content="MyBlog">
-<meta property="og:description" content="文档结构">
-<meta property="og:updated_time" content="2017-01-08T13:18:35.680Z">
+<meta property="og:description" content="文档结构
+需要使用HTML5文档结构 &amp;lt;!DocType html&amp;gt;
+移动设备优先    需要在头部增加&amp;lt;meta&amp;gt;标签
+
+1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0&quot;/&amp;gt;
+
+引入BootStrap">
+<meta property="og:updated_time" content="2017-01-08T14:28:57.595Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BootStrap框架常用语法">
-<meta name="twitter:description" content="文档结构">
+<meta name="twitter:description" content="文档结构
+需要使用HTML5文档结构 &amp;lt;!DocType html&amp;gt;
+移动设备优先    需要在头部增加&amp;lt;meta&amp;gt;标签
+
+1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0&quot;/&amp;gt;
+
+引入BootStrap">
 
 
 
@@ -271,7 +289,123 @@
       
 
       
-        <h1 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h1>
+        <h1 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h1><ul>
+<li>需要使用HTML5文档结构 <code>&lt;!DocType html&gt;</code></li>
+<li>移动设备优先    需要在头部增加<code>&lt;meta&gt;</code>标签</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>引入BootStrap</p>
+<ul>
+<li>引入css，当有自己的css文档，应引入bootstrap.css后再引入自己编写额css文件</li>
+<li>引入jQuery.js再引入bootstrap.js</li>
+<li><p>若要兼容IE浏览器，再引入两个js文件，使用IE的条件注释</p>
+<pre><code>&lt;!--[if lt IE 9]&gt;&lt;script&gt;...&lt;/script&gt;&lt;script&gt;...&lt;/script&gt;&lt;![endif]--&gt;  
+[两个js文件自己google]
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap表单样式"><a href="#bootstrap表单样式" class="headerlink" title="bootstrap表单样式"></a>bootstrap表单样式</h1><pre><code>创建表单步骤：
+1.创建form标签并添加role=&quot;form&quot;(语义化，给浏览器和搜索引擎看)
+2.控制分组，把标签和控件放在一个class为formgroup的div中
+3.给表单控件(input,textarea,select)添加类名form-control
+</code></pre><h2 id="内联表单"><a href="#内联表单" class="headerlink" title="内联表单"></a>内联表单</h2><ul>
+<li>给form添加类名form-inline<a id="more"></a>
+<h2 id="水平表单"><a href="#水平表单" class="headerlink" title="水平表单"></a>水平表单</h2></li>
+<li>给form添加类名form-horizontal</li>
+<li>给标签label添加类名control-label</li>
+<li>配合bootstrap网格系统加入类名col-sm-1</li>
+</ul>
+<h2 id="其它表单控件"><a href="#其它表单控件" class="headerlink" title="其它表单控件"></a>其它表单控件</h2><ul>
+<li>form-control-static：静态表单控件，添加标签和类名，不必用input特定标签</li>
+<li>help-block：表单提示，添加标签和类名（同上）</li>
+<li>提示图标：glyphicon glyphicon-ok（参照API文档） form-control-feedback</li>
+<li><p>按钮：在使用其它类名前均加上基础类名btn</p>
+<pre><code>基础类名：btn
+默认按钮样式：btn-default
+原始按钮样式：btn-primary
+成功按钮样式：btn-success
+链接式按钮：btn-link
+-----------------------
+设置按钮大小
+超大：btn-lg
+默认大小：btn-md
+小号：btn-xs
+btn-block：块级按钮，宽度取决于它父级的宽度的100%
+-----------------------
+设置按钮状态
+激活：active
+禁用：disable
+</code></pre></li>
+</ul>
+<h1 id="bootstrap图片样式"><a href="#bootstrap图片样式" class="headerlink" title="bootstrap图片样式"></a>bootstrap图片样式</h1><h2 id="响应式图片"><a href="#响应式图片" class="headerlink" title="响应式图片"></a>响应式图片</h2><ul>
+<li>img-responsive（max-width:100%）</li>
+</ul>
+<h2 id="圆角图片"><a href="#圆角图片" class="headerlink" title="圆角图片"></a>圆角图片</h2><ul>
+<li>img-rounded</li>
+<li>img-circle 圆形</li>
+</ul>
+<h2 id="缩略图"><a href="#缩略图" class="headerlink" title="缩略图"></a>缩略图</h2><ul>
+<li>img-thumbnail：添加一个内边距padding和边框</li>
+</ul>
+<h1 id="bootstrap辅助类"><a href="#bootstrap辅助类" class="headerlink" title="bootstrap辅助类"></a>bootstrap辅助类</h1><ul>
+<li>左浮动：pull-left</li>
+<li>右浮动：pull-right</li>
+<li>块级并居中：center-block 需要设置宽度，不能设浮动</li>
+<li>强制元素显示/隐藏：show/hide</li>
+<li>隐藏文字：text-hide</li>
+</ul>
+<h1 id="bootstrap表格样式"><a href="#bootstrap表格样式" class="headerlink" title="bootstrap表格样式"></a>bootstrap表格样式</h1><ul>
+<li><p>基础类名：table</p>
+<pre><code>table-striped：斑马线表格
+table-bordered：带边框表格（给td加边框）
+table-hover：鼠标悬停高亮效果
+table-condensed：紧凑型表格（减少单元格padding值）
+table-responsive：响应式表格
+</code></pre></li>
+</ul>
+<h1 id="bootstrap网格系统"><a href="#bootstrap网格系统" class="headerlink" title="bootstrap网格系统"></a>bootstrap网格系统</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ul>
+<li>将容器平分为12份（12列）<br>结合媒体查询做出响应式布局效果</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><ul>
+<li><p>定义一个.row的容器作为行<br>定义一个.col的容器作为列<br>只有col才能作为row的直接子元素</p>
+<pre><code>            屏幕   屏幕尺寸
+.col-lg-*   超大   &gt;1200px
+.col-md-*   中屏   &gt;992px
+.col-sm-*   小屏   &gt;768px 
+.col-xs-*   超小   &lt;768px
+
+*代表1~12，每一个所占空间大小
+</code></pre></li>
+</ul>
+<h2 id="列偏移-amp-列排序"><a href="#列偏移-amp-列排序" class="headerlink" title="列偏移&amp;列排序"></a>列偏移&amp;列排序</h2><ul>
+<li>列偏移：不希望两列靠在一起，使用类名.col-*-offset-*</li>
+<li><p>列排序：设置网格的排列顺序</p>
+<ul>
+<li>.col-*-push-* 往右排</li>
+<li><p>.col-*-pull-* 往左排</p>
+<pre><code>通俗点就是往左移动和往右移动几个网格空间大小
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap下拉菜单"><a href="#bootstrap下拉菜单" class="headerlink" title="bootstrap下拉菜单"></a>bootstrap下拉菜单</h1><ul>
+<li>创建一个类名为dropdown的div容器，用它来包裹整个下拉菜单</li>
+<li><p>在dropdown容器内添加一个按钮button，作为父菜单</p>
+<pre><code>定义类名为dropdown-toggle和自定义属性data-toggle=&quot;dropdown&quot;
+</code></pre></li>
+<li><p>添加按钮里的小三角</p>
+<pre><code>button添加类名为caret的span标签
+</code></pre></li>
+<li><p>创建下拉菜单</p>
+<pre><code>添加一个ul无序列表，定义类名为dropdown-menu
+</code></pre></li>
+<li><p>菜单分割线</p>
+<pre><code>添加一个空列表项li，类名为divider
+</code></pre></li>
+</ul>
+
       
     </div>
 
@@ -385,7 +519,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -414,7 +548,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文档结构"><span class="nav-number">1.</span> <span class="nav-text">文档结构</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文档结构"><span class="nav-number">1.</span> <span class="nav-text">文档结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap表单样式"><span class="nav-number">2.</span> <span class="nav-text">bootstrap表单样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内联表单"><span class="nav-number">2.1.</span> <span class="nav-text">内联表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平表单"><span class="nav-number">2.2.</span> <span class="nav-text">水平表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它表单控件"><span class="nav-number">2.3.</span> <span class="nav-text">其它表单控件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap图片样式"><span class="nav-number">3.</span> <span class="nav-text">bootstrap图片样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式图片"><span class="nav-number">3.1.</span> <span class="nav-text">响应式图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆角图片"><span class="nav-number">3.2.</span> <span class="nav-text">圆角图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略图"><span class="nav-number">3.3.</span> <span class="nav-text">缩略图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap辅助类"><span class="nav-number">4.</span> <span class="nav-text">bootstrap辅助类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap表格样式"><span class="nav-number">5.</span> <span class="nav-text">bootstrap表格样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap网格系统"><span class="nav-number">6.</span> <span class="nav-text">bootstrap网格系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">6.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">6.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列偏移-amp-列排序"><span class="nav-number">6.3.</span> <span class="nav-text">列偏移&列排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap下拉菜单"><span class="nav-number">7.</span> <span class="nav-text">bootstrap下拉菜单</span></a></li></ol></div>
             
           </div>
         </section>
