@@ -604,40 +604,34 @@
 
       
         
-          
-            <h1 id="搭建个人博客"><a href="#搭建个人博客" class="headerlink" title="搭建个人博客"></a>搭建个人博客</h1><ul>
-<li>npm install hexo-cli -g <em>安装工具</em></li>
-<li>mkdir dirname <em>创建blog目录(不创建的话默认为创建日期命名文件名)</em></li>
-<li>cd dirname <em>进入目录</em></li>
-<li>hexo new ‘file name’ <em>新建md文件</em></li>
-<li>hexo init <em>初始化hexo</em></li>
-<li>npm install <em>安装依赖</em></li>
-<li>npm install hexo-deployer-git –save <em>安装git发布插件</em></li>
-<li>创建github仓库，用户名.github.io<ul>
-<li>配置 _config.yml，添加如下：<ul>
-<li>deploy:<ul>
-<li>type: git</li>
-<li>repo: github地址（ssh地址）</li>
-<li>branch: master</li>
-</ul>
+          <blockquote>
+<p>1.首先你得有一个自己的github账户<a href="http://wiki.jikexueyuan.com/project/github-basics/sign-up.html">教学点击这里</a><br>2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了</p>
+</blockquote>
+<h1 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h1><ul>
+<li><code>npm install hexo-cli -g</code> <em>安装工具</em></li>
+<li><code>mkdir dirname</code> <em>创建blog目录(不创建的话默认为source中的_posts文件夹)</em></li>
+<li><code>cd dirname</code> <em>进入目录</em></li>
+<li><code>hexo new &#39;file name&#39;</code> <em>新建md文件</em></li>
+<li><code>hexo init</code> <em>初始化hexo</em></li>
+<li><code>npm install</code> <em>安装依赖</em></li>
+<li><code>npm install hexo-deployer-git –save</code> <em>安装git发布插件</em></li>
+<li>创建github仓库，用户名.github.io</li>
+<li><p>配置 _config.yml，添加如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">    type:</span> git</div><div class="line"><span class="attr">    repo:</span> github地址（ssh地址）</div><div class="line"><span class="attr">    branch:</span> master</div></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>hexo g 生成页面</p>
 </li>
-</ul>
-</li>
-<li>hexo g 生成页面</li>
 <li>hexo s 启动本地预览服务器</li>
 <li>hexo d 发布到github</li>
 <li>hexo n ‘name’ 新建blog</li>
 <li>访问路径 用户名.github.io</li>
 </ul>
-<h1 id="通过github访问静态页面步骤"><a href="#通过github访问静态页面步骤" class="headerlink" title="通过github访问静态页面步骤"></a>通过github访问静态页面步骤</h1><ul>
-<li>修改github项目结构，确保主目录下有一个index.html文件（非必要）</li>
-<li>在github里创建一个名叫gh-pages的特定分支</li>
-<li>直接在浏览器中输入&lt;用户名.github.io/项目文件名[/index.html]&gt; </li>
-</ul>
-
-          
+<h1 id="github二级域名访问页面"><a href="#github二级域名访问页面" class="headerlink" title="github二级域名访问页面"></a>github二级域名访问页面
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/01/06/hexo+github+blog/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>

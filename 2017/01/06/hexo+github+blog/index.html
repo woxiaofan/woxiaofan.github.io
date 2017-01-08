@@ -84,37 +84,36 @@
 
 
 
-<meta name="description" content="搭建个人博客
+<meta name="description" content="1.首先你得有一个自己的github账户教学点击这里2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了
+
+Hexo配置
 npm install hexo-cli -g 安装工具
-mkdir dirname 创建blog目录(不创建的话默认为创建日期命名文件名)
+mkdir dirname 创建blog目录(不创建的话默认为source中的_posts文件夹)
 cd dirname 进入目录
-hexo new ‘file name’ 新建md文件
-hexo init 初始化hexo
-npm install 安装依赖
-npm install hexo-deployer-git –save 安装git发布">
+hexo new &amp;#39;file name&amp;#39; 新建md文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo+github博客搭建简易步骤">
 <meta property="og:url" content="http://yoursite.com/2017/01/06/hexo+github+blog/index.html">
 <meta property="og:site_name" content="MyBlog">
-<meta property="og:description" content="搭建个人博客
+<meta property="og:description" content="1.首先你得有一个自己的github账户教学点击这里2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了
+
+Hexo配置
 npm install hexo-cli -g 安装工具
-mkdir dirname 创建blog目录(不创建的话默认为创建日期命名文件名)
+mkdir dirname 创建blog目录(不创建的话默认为source中的_posts文件夹)
 cd dirname 进入目录
-hexo new ‘file name’ 新建md文件
-hexo init 初始化hexo
-npm install 安装依赖
-npm install hexo-deployer-git –save 安装git发布">
-<meta property="og:updated_time" content="2017-01-07T15:40:59.097Z">
+hexo new &amp;#39;file name&amp;#39; 新建md文件">
+<meta property="og:image" content="http://yoursite.com/../../../../../source/image/yuming01.png">
+<meta property="og:updated_time" content="2017-01-08T05:15:36.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+github博客搭建简易步骤">
-<meta name="twitter:description" content="搭建个人博客
+<meta name="twitter:description" content="1.首先你得有一个自己的github账户教学点击这里2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了
+
+Hexo配置
 npm install hexo-cli -g 安装工具
-mkdir dirname 创建blog目录(不创建的话默认为创建日期命名文件名)
+mkdir dirname 创建blog目录(不创建的话默认为source中的_posts文件夹)
 cd dirname 进入目录
-hexo new ‘file name’ 新建md文件
-hexo init 初始化hexo
-npm install 安装依赖
-npm install hexo-deployer-git –save 安装git发布">
+hexo new &amp;#39;file name&amp;#39; 新建md文件">
+<meta name="twitter:image" content="http://yoursite.com/../../../../../source/image/yuming01.png">
 
 
 
@@ -292,36 +291,41 @@ npm install hexo-deployer-git –save 安装git发布">
       
 
       
-        <h1 id="搭建个人博客"><a href="#搭建个人博客" class="headerlink" title="搭建个人博客"></a>搭建个人博客</h1><ul>
-<li>npm install hexo-cli -g <em>安装工具</em></li>
-<li>mkdir dirname <em>创建blog目录(不创建的话默认为创建日期命名文件名)</em></li>
-<li>cd dirname <em>进入目录</em></li>
-<li>hexo new ‘file name’ <em>新建md文件</em></li>
-<li>hexo init <em>初始化hexo</em></li>
-<li>npm install <em>安装依赖</em></li>
-<li>npm install hexo-deployer-git –save <em>安装git发布插件</em></li>
-<li>创建github仓库，用户名.github.io<ul>
-<li>配置 _config.yml，添加如下：<ul>
-<li>deploy:<ul>
-<li>type: git</li>
-<li>repo: github地址（ssh地址）</li>
-<li>branch: master</li>
-</ul>
+        <blockquote>
+<p>1.首先你得有一个自己的github账户<a href="http://wiki.jikexueyuan.com/project/github-basics/sign-up.html" target="_blank" rel="external">教学点击这里</a><br>2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了</p>
+</blockquote>
+<h1 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h1><ul>
+<li><code>npm install hexo-cli -g</code> <em>安装工具</em></li>
+<li><code>mkdir dirname</code> <em>创建blog目录(不创建的话默认为source中的_posts文件夹)</em></li>
+<li><code>cd dirname</code> <em>进入目录</em></li>
+<li><code>hexo new &#39;file name&#39;</code> <em>新建md文件</em></li>
+<li><code>hexo init</code> <em>初始化hexo</em></li>
+<li><code>npm install</code> <em>安装依赖</em></li>
+<li><code>npm install hexo-deployer-git –save</code> <em>安装git发布插件</em></li>
+<li>创建github仓库，用户名.github.io</li>
+<li><p>配置 _config.yml，添加如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">    type:</span> git</div><div class="line"><span class="attr">    repo:</span> github地址（ssh地址）</div><div class="line"><span class="attr">    branch:</span> master</div></pre></td></tr></table></figure>
 </li>
-</ul>
+<li><p>hexo g 生成页面</p>
 </li>
-</ul>
-</li>
-<li>hexo g 生成页面</li>
 <li>hexo s 启动本地预览服务器</li>
 <li>hexo d 发布到github</li>
 <li>hexo n ‘name’ 新建blog</li>
 <li>访问路径 用户名.github.io</li>
 </ul>
-<h1 id="通过github访问静态页面步骤"><a href="#通过github访问静态页面步骤" class="headerlink" title="通过github访问静态页面步骤"></a>通过github访问静态页面步骤</h1><ul>
+<h1 id="github二级域名访问页面"><a href="#github二级域名访问页面" class="headerlink" title="github二级域名访问页面"></a>github二级域名访问页面<a id="more"></a></h1><ul>
 <li>修改github项目结构，确保主目录下有一个index.html文件（非必要）</li>
 <li>在github里创建一个名叫gh-pages的特定分支</li>
-<li>直接在浏览器中输入&lt;用户名.github.io/项目文件名[/index.html]&gt; </li>
+<li>直接在浏览器中输入&lt;用户名.github.io/项目文件名[/index.html]&gt;</li>
+</ul>
+<blockquote>
+<p>不过通过github访问，怎么看都不是自己想要的结果，试想，要是有一个属于自己的一个域名，www.域名.com直接访问你的博客，那多cool！</p>
+</blockquote>
+<h1 id="打造博客专属域名"><a href="#打造博客专属域名" class="headerlink" title="打造博客专属域名"></a>打造博客专属域名</h1><hr>
+<p>首先你要有个域名，那么就要去申请域名了，这里我们可以通过<strong><a href="https://wanwang.aliyun.com/" target="_blank" rel="external">万网申请</a></strong>查找你想申请域名，如果可以买，购买就可以了</p>
+<hr>
+<h2 id="域名购买与解析"><a href="#域名购买与解析" class="headerlink" title="　　域名购买与解析"></a>　　域名购买与解析</h2><ul>
+<li>购买域名完成，进入万网的管理控制台<br><img src="../../../../../source/image/yuming01.png" alt=""></li>
 </ul>
 
       
@@ -466,7 +470,7 @@ npm install hexo-deployer-git –save 安装git发布">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#搭建个人博客"><span class="nav-number">1.</span> <span class="nav-text">搭建个人博客</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通过github访问静态页面步骤"><span class="nav-number">2.</span> <span class="nav-text">通过github访问静态页面步骤</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo配置"><span class="nav-number">1.</span> <span class="nav-text">Hexo配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#github二级域名访问页面"><span class="nav-number">2.</span> <span class="nav-text">github二级域名访问页面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打造博客专属域名"><span class="nav-number">3.</span> <span class="nav-text">打造博客专属域名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#域名购买与解析"><span class="nav-number">3.1.</span> <span class="nav-text">　　域名购买与解析</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
