@@ -102,7 +102,7 @@
 1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0&quot;/&amp;gt;
 
 引入BootStrap">
-<meta property="og:updated_time" content="2017-01-08T14:28:57.595Z">
+<meta property="og:updated_time" content="2017-01-09T05:49:08.442Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BootStrap框架常用语法">
 <meta name="twitter:description" content="文档结构
@@ -405,6 +405,102 @@ table-responsive：响应式表格
 <pre><code>添加一个空列表项li，类名为divider
 </code></pre></li>
 </ul>
+<h1 id="bootstrap按钮组"><a href="#bootstrap按钮组" class="headerlink" title="bootstrap按钮组"></a>bootstrap按钮组</h1><pre><code>将几个按钮放入一个类名为btn-group的div中
+btn-group-vertical ☞ 垂直按钮组
+按钮组大 ☞ 给组别加类名btn-group-lg|md|sm|xs
+</code></pre><ul>
+<li><p>嵌套按钮组</p>
+<pre><code>在按钮组里面嵌套下拉列表
+</code></pre><ul>
+<li>在btn-group里面嵌套一个btn-group，将下拉菜单的父菜单按钮放置在嵌套的btn-group里</li>
+<li>给父菜单按钮添加类名dropdown-toggle和自定义属性data-toggle=”dropdown”</li>
+<li>增加小三角图标<code>&lt;span class=&#39;caret&#39;&gt;&lt;/span&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap导航"><a href="#bootstrap导航" class="headerlink" title="bootstrap导航"></a>bootstrap导航</h1><ul>
+<li>添加无序列表，用来作为导航</li>
+<li><p>给列表添加类名 .nav ☞ 基础类名</p>
+<pre><code>nav-tabs ☞ 表格式导航
+nav-pills ☞ 鼓囊式导航
+</code></pre></li>
+<li><p>给导航菜单项添加样式</p>
+<pre><code>active ☞ 当前选中项
+disabled ☞ 禁用状态  
+</code></pre></li>
+</ul>
+<pre><code>☞ 垂直式导航：给导航添加类名nav-stacked
+    一般用于鼓囊式导航
+
+☞ 导航二级菜单：在导航里添加下拉列表
+    1. 给父级菜单添加类名dropdown
+    2. 在此列表项里添加一个二级菜单列表项 .dropdown-menu
+    3. 给此列表里面的a标签添加类名dropdown-toggle和自定义属性data-toggle=&quot;dropdown&quot;
+
+☞ tab标签页导航（选项卡功能）
+    1. 添加一个表格式导航
+    2. 给导航里面的a标签添加属性data-toggle=&quot;tab&quot;的锚点链接地址
+    3. 添加一个tab-content的div，在里面包含每一个要切换的tab标签页
+    4. 给每一个标签页添加类名tab-pane和fade
+    5. 默认显示项
+        - 给导航列表项添加类名active
+        - 给默认显示标签页添加类名active和in
+
+☞ 导航条
+    导航条头部里面可以放置导航，表单等
+    1. 添加类名为navbar的div，用来制作导航条
+        navbar-default ☞ 默认
+        navbar-inverse ☞ 反色
+    2. 在navbar里面添加页面标题
+        添加一个类名为navbar-head的div，包含navbar-brand的a标签
+    3. 在navbar里添加导航
+        在普通导航基础上添加类名navbar-nav
+    4. 导航里添加表单（搜索框）
+        添加类名navbar-form
+        PS：将搜索框和按钮用类名为input-group的div包起来，将搜索按钮放入类名为input-group-btn的span中，可实现搜索框和按钮连在一起的视觉效果
+    5. 导航条里的浮动
+        navbar-left ☞ 左浮动
+        navbar-right ☞ 右浮动
+    6. 导航条里面单独的按钮和链接
+        按钮 ☞ navbar-btn
+        链接 ☞ navbar-link和navbar-text
+        普通文字 ☞ navbar-text
+    7. 固定导航条
+        navbar-fixed-top|navbar-fixed-bottom
+
+☞ 响应式导航条
+    1. 将nav导航用一个类名为collapse和navbar-collapse的div包起来
+    2. 在navbar-header里添加类名为navbar-toggle和自定义属性为data-toggle=&quot;collapse&quot;与data-target=&quot;#myNav（自己取名）&quot;的按钮，在按标签里再加入汉堡按钮
+        汉堡按钮：三个span标签，每个类名为icon-bar
+</code></pre><h1 id="bootstrap标签-徽章"><a href="#bootstrap标签-徽章" class="headerlink" title="bootstrap标签/徽章"></a>bootstrap标签/徽章</h1><ul>
+<li><p>通过span标签，添加类名label ☞ 基础类名</p>
+<pre><code>label-default
+label-primary
+label-success
+...
+</code></pre></li>
+<li>通过span标签，添加类名bodge</li>
+</ul>
+<h1 id="bootstrap内置组件"><a href="#bootstrap内置组件" class="headerlink" title="bootstrap内置组件"></a>bootstrap内置组件</h1><h2 id="缩略图-1"><a href="#缩略图-1" class="headerlink" title="缩略图"></a>缩略图</h2><ul>
+<li>使用网格系统实现</li>
+</ul>
+<h2 id="警示框"><a href="#警示框" class="headerlink" title="警示框"></a>警示框</h2><pre><code>若在警告框里的文字加链接，则会覆盖原有警示框颜色，应该在a标签里加类名alert-link
+</code></pre><ul>
+<li>给警示框加类名alert-dismissable</li>
+<li>给警示框加类名为close的button标签</li>
+<li>按钮上加自定义属性data-dismiss=”alert”</li>
+</ul>
+<h2 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h2><ul>
+<li><p>外层div用来写灰色背景，类名progress</p>
+<pre><code>加类名progress-striped为条纹进度条
+再加active类名为动态进度条
+</code></pre></li>
+<li><p>里层div显示进度，类名progress-bar ☞ 基础类名</p>
+<pre><code>progress-bar-success
+...
+</code></pre></li>
+<li>给progress-bar加行内样式width=百分比</li>
+</ul>
 
       
     </div>
@@ -548,7 +644,7 @@ table-responsive：响应式表格
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文档结构"><span class="nav-number">1.</span> <span class="nav-text">文档结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap表单样式"><span class="nav-number">2.</span> <span class="nav-text">bootstrap表单样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内联表单"><span class="nav-number">2.1.</span> <span class="nav-text">内联表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平表单"><span class="nav-number">2.2.</span> <span class="nav-text">水平表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它表单控件"><span class="nav-number">2.3.</span> <span class="nav-text">其它表单控件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap图片样式"><span class="nav-number">3.</span> <span class="nav-text">bootstrap图片样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式图片"><span class="nav-number">3.1.</span> <span class="nav-text">响应式图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆角图片"><span class="nav-number">3.2.</span> <span class="nav-text">圆角图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略图"><span class="nav-number">3.3.</span> <span class="nav-text">缩略图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap辅助类"><span class="nav-number">4.</span> <span class="nav-text">bootstrap辅助类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap表格样式"><span class="nav-number">5.</span> <span class="nav-text">bootstrap表格样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap网格系统"><span class="nav-number">6.</span> <span class="nav-text">bootstrap网格系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">6.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">6.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列偏移-amp-列排序"><span class="nav-number">6.3.</span> <span class="nav-text">列偏移&列排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap下拉菜单"><span class="nav-number">7.</span> <span class="nav-text">bootstrap下拉菜单</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文档结构"><span class="nav-number">1.</span> <span class="nav-text">文档结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap表单样式"><span class="nav-number">2.</span> <span class="nav-text">bootstrap表单样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内联表单"><span class="nav-number">2.1.</span> <span class="nav-text">内联表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平表单"><span class="nav-number">2.2.</span> <span class="nav-text">水平表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它表单控件"><span class="nav-number">2.3.</span> <span class="nav-text">其它表单控件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap图片样式"><span class="nav-number">3.</span> <span class="nav-text">bootstrap图片样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式图片"><span class="nav-number">3.1.</span> <span class="nav-text">响应式图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆角图片"><span class="nav-number">3.2.</span> <span class="nav-text">圆角图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略图"><span class="nav-number">3.3.</span> <span class="nav-text">缩略图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap辅助类"><span class="nav-number">4.</span> <span class="nav-text">bootstrap辅助类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap表格样式"><span class="nav-number">5.</span> <span class="nav-text">bootstrap表格样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap网格系统"><span class="nav-number">6.</span> <span class="nav-text">bootstrap网格系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">6.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">6.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列偏移-amp-列排序"><span class="nav-number">6.3.</span> <span class="nav-text">列偏移&列排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap下拉菜单"><span class="nav-number">7.</span> <span class="nav-text">bootstrap下拉菜单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap按钮组"><span class="nav-number">8.</span> <span class="nav-text">bootstrap按钮组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap导航"><span class="nav-number">9.</span> <span class="nav-text">bootstrap导航</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap标签-徽章"><span class="nav-number">10.</span> <span class="nav-text">bootstrap标签/徽章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap内置组件"><span class="nav-number">11.</span> <span class="nav-text">bootstrap内置组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略图-1"><span class="nav-number">11.1.</span> <span class="nav-text">缩略图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#警示框"><span class="nav-number">11.2.</span> <span class="nav-text">警示框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进度条"><span class="nav-number">11.3.</span> <span class="nav-text">进度条</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
