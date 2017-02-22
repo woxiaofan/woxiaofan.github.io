@@ -101,7 +101,7 @@ ps:以上条件不满足者从头老老实实搭建项目结构+安装各种插�
 npm init按默认要求敲击enter键
 -">
 <meta property="og:image" content="http://yoursite.com/../../../../image/project.png">
-<meta property="og:updated_time" content="2017-02-22T03:48:05.065Z">
+<meta property="og:updated_time" content="2017-02-22T04:28:34.669Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git+nodejs搭建web静态服务器">
 <meta name="twitter:description" content="搭建web静态服务器创建项目根目录（或者从github仓库clone）并创建node项目初始化执行此步骤前提条件为：①有过项目，但是使用环境更改的，比如更换电脑等②没有项目，但是有package.json文件的 
@@ -373,13 +373,12 @@ npm init按默认要求敲击enter键
 </blockquote>
 <h2 id="手动编译"><a href="#手动编译" class="headerlink" title="手动编译"></a>手动编译</h2><ul>
 <li>通过cmd控制台进入到项目文件夹（不想吐槽win系统自带的控制台，推荐使用Git）</li>
-<li><p>执行命令<br><code>stylus --compress styl所在文件夹目录</code><br>compress：生成压缩版的css文件<br><code>stylus --compress styl所在文件夹目录/ --out css文件夹目录</code><br>输出到另一个css目录文件夹下</p>
+<li>执行命令<br><code>stylus --compress styl所在文件夹目录</code><br>compress：生成压缩版的css文件<br><code>stylus --compress styl所在文件夹目录/ --out css文件夹目录</code><br>输出到另一个css目录文件夹下</li>
+</ul>
 <pre><code>css转换成styl文件：
 stylus --css css所在目录/css文佳全称 styl文件目录/styl文件全称
 ps:若输出到同一目录下的相同名称的styl文件，则不需要styl文件目录/styl文件全称
-</code></pre></li>
-</ul>
-<h2 id="自动编译"><a href="#自动编译" class="headerlink" title="自动编译"></a>自动编译</h2><blockquote>
+</code></pre><h2 id="自动编译"><a href="#自动编译" class="headerlink" title="自动编译"></a>自动编译</h2><blockquote>
 <p>以下步骤当项目静态服务器搭建好后应该已经执行完，不用去管</p>
 </blockquote>
 <ul>
@@ -400,12 +399,14 @@ ps:若输出到同一目录下的相同名称的styl文件，则不需要styl文
 <li>当使用css3兼容性样式时，前缀样式可以用一个方法封装起来  <pre><code>border-radius(val)
 使用时，调用border-radius(10px)
 </code></pre></li>
-<li><p>迭代(循环遍历)<br>for in      </p>
-<pre><code>包含边界：1..5 &gt;&gt;&gt; 1 2 3 4 5
+<li>迭代(循环遍历)<br>for in      <pre><code>包含边界：1..5 &gt;&gt;&gt; 1 2 3 4 5  
 不包含边界：1...5 &gt;&gt;&gt; 1 2 3 4
-</code></pre>  <figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> row <span class="keyword">in</span> <span class="number">1</span>..<span class="number">5</span></div><div class="line">    <span class="selector-tag">tr</span>:nth-child(&#123;row&#125;)</div><div class="line">      <span class="attribute">height</span> <span class="number">10px</span>*row</div></pre></td></tr></table></figure>
-</li>
-<li><p>@import 引入外部文件<br>@import’demo.css’写在.styl文档最顶端<br>@import’demo’不加后缀默认为引入.styl文件</p>
+</code></pre></li>
+</ul>
+<pre><code><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> row <span class="keyword">in</span> <span class="number">1</span>..<span class="number">5</span></div><div class="line">    <span class="selector-tag">tr</span>:nth-child(&#123;row&#125;)</div><div class="line">      <span class="attribute">height</span> <span class="number">10px</span>*row</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li>@import 引入外部文件<br>@import’demo.css’写在.styl文档最顶端<br>@import’demo’不加后缀默认为引入.styl文件</li>
+</ul>
 <pre><code>@font-face 引入字体文件
 
 @font-face
@@ -441,9 +442,7 @@ and/only 限定关键词/not
         ...
     0%
         ...
-</code></pre></li>
-</ul>
-<hr>
+</code></pre><hr>
 <hr>
 <h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><blockquote>
 <p>若你使用的项目和我不同，为了实现自动编译和自动刷新效果，请在两个js文件里做更改</p>
