@@ -273,8 +273,7 @@
 
       
         
-          
-            <blockquote>
+          <blockquote>
 <p>JavaScript是运行在客户端的脚本，因此一般是不能够设置Session的，因为Session是运行在服务器端的。而cookie是运行在客户端的，所以可以用JS来设置cookie。</p>
 </blockquote>
 <p>假设有这样一种情况，在某个用例流程中，由A页面跳至B页面，若在A页面中采用JS用变量temp保存了某一变量的值，在B页面的时候，同样需要使用JS来引用temp的变量值，对于JS中的全局变量或者静态变量的生命周期是有限的，当发生页面跳转或者页面关闭的时候，这些变量的值会重新载入，即没有达到保存的效果。解决这个问题的最好的方案是采用cookie来保存该变量的值，那么如何来设置和读取cookie呢？</p>
@@ -284,54 +283,11 @@
 <p>假设需要加上过期时间，方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name,value</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> Days = <span class="number">30</span>;</div><div class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">    exp.setTime(exp.getTime() + Days*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);<span class="comment">//时间戳以毫秒为单位</span></div><div class="line">    <span class="built_in">document</span>.cookie = name + <span class="string">"="</span>+ <span class="built_in">escape</span> (value) + <span class="string">";expires="</span> + exp.toGMTString();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h1 id="JS读取cookie"><a href="#JS读取cookie" class="headerlink" title="JS读取cookie"></a>JS读取cookie</h1><p>假设cookie中存储的内容为：username=yyf;password=123</p>
 <p>则在B页面中获取变量username的值的JS代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> username=<span class="built_in">document</span>.cookie.split(<span class="string">";"</span>)[<span class="number">0</span>].split(<span class="string">"="</span>)[<span class="number">1</span>];</div><div class="line"><span class="comment">//则该username获取结果为yyf</span></div></pre></td></tr></table></figure></p>
-<pre><code>注意：上述方法仅指明确cookie的数据数目和顺序的情况下才可使用，比如自己设置的或者通过浏览器查看后的页面。若是一个陌生页面，则应该通过如下万能法
-</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">cName</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> cookieArr = <span class="built_in">document</span>.cookie.split(<span class="string">";"</span>);<span class="comment">//将cookie通过分号分割，存为一个名为cookieArr的数组</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; cookieArr.length; i++)&#123;</div><div class="line">        <span class="keyword">var</span> cookieVal = cookieArr[i].split(<span class="string">"="</span>);<span class="comment">//遍历数组，将每一个cookie的key和value通过等于号分割，存为一个名为cookieVal的数组</span></div><div class="line">        <span class="keyword">if</span> (cName == cookieVal[<span class="number">0</span>])</div><div class="line">        <span class="keyword">return</span> <span class="built_in">unescape</span>(cookieVal[<span class="number">1</span>]);<span class="comment">//将value值解密后拿出</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h1 id="删除cookies"><a href="#删除cookies" class="headerlink" title="删除cookies"></a>删除cookies</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delCookie</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">    exp.setTime(exp.getTime() - <span class="number">1</span>);<span class="comment">//将本地时间戳设置为不存在的一个时间即可</span></div><div class="line">    <span class="keyword">var</span> cval=getCookie(name);</div><div class="line">    <span class="keyword">if</span>(cval!=<span class="literal">null</span>)</div><div class="line">    <span class="built_in">document</span>.cookie= name + <span class="string">"="</span>+cval+<span class="string">";expires="</span>+exp.toGMTString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<hr>
-<h1 id="jQuery-Cookie插件"><a href="#jQuery-Cookie插件" class="headerlink" title="jQuery-Cookie插件"></a>jQuery-Cookie插件</h1><blockquote>
-<p>jQuery.cookie.js是个很好的cookie插件，包括设置、删除、获取等一系列完整的cookie操作</p>
-</blockquote>
-<ul>
-<li>创建会话cookie（Session cookie，既浏览器内存cookie，浏览器关闭后自动删除）</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie(<span class="string">'the_cookie'</span>, <span class="string">'the_value'</span>);</div></pre></td></tr></table></figure>
-<ul>
-<li>创建一个生生存周期为7天的cookie</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie(<span class="string">'the_cookie'</span>, <span class="string">'the_value'</span>, &#123; <span class="attr">expires</span>: <span class="number">7</span> &#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>创建一个有期限的cookie，整个站点可以读取</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie(<span class="string">'the_cookie'</span>, <span class="string">'the_value'</span>, &#123; <span class="attr">expires</span>: <span class="number">7</span>, <span class="attr">path</span>: <span class="string">'/'</span> &#125;);</div></pre></td></tr></table></figure>
-<ul>
-<li>读取cookie</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$.cookie(<span class="string">'the_cookie'</span>); <span class="comment">// =&gt; "the_value"</span></div><div class="line">$.cookie(<span class="string">'not_existing'</span>); <span class="comment">// =&gt; undefined</span></div></pre></td></tr></table></figure>
-<ul>
-<li>读取所有可用cookie</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie(); <span class="comment">// =&gt; &#123; "the_cookie": "the_value", "...remaining": "cookies" &#125;</span></div></pre></td></tr></table></figure>
-<ul>
-<li>删除cookie</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 找到指定的cookie返回true，否则返回false</span></div><div class="line">$.removeCookie(<span class="string">'the_cookie'</span>);</div><div class="line"><span class="comment">// 删除指定过path的cookie</span></div><div class="line">$.removeCookie(<span class="string">'the_cookie'</span>, &#123; <span class="attr">path</span>: <span class="string">'/'</span> &#125;);</div></pre></td></tr></table></figure>
-<pre><code>$.cookie(’name’, ‘value’, {expires: 7, path: ‘/’, domain: ‘jquery.com’, secure: true});
-
-(1)读取cookie值
-　　　$.cookie(cookieName)  cookieName:要读取的cookie名称。
-     示例：$.cookie(&quot;username&quot;); 读取保存在cookie中名为的username的值。
-(2)写入设置Cookie值：
-　　　$.cookie(cookieName,cookieValue);  cookieName:要设置的cookie名称，cookieValue表示相对应的值。
-　　　示例:$.cookie(&quot;username&quot;,&quot;admin&quot;); 将值&quot;admin&quot;写入cookie名为username的cookie中。
-　　　　　 $.cookie(&quot;username&quot;,NULL);　　　销毁名称为username的cookie
-(3)[option]参数说明：
-　　  expires:　　有限日期，可以是一个整数或一个日期(单位：天)。　　这个地方也要注意，如果不设置这个东西，浏览器关闭之后此cookie就失效了
-　　　 path:　　　 cookie值保存的路径，默认与创建页路径一致。
-      domin: cookie域名属性，默认与创建页域名一样。　　这个地方要相当注意，跨域的概念，如果要主域名二级域名有效则要设置　　&quot;.xxx.com&quot;
-      secrue:　　 一个布尔值，表示传输cookie值时，是否需要一个安全协议。
-</code></pre><p><a href="https://github.com/carhartl/jquery-cookie#readme" target="_blank" rel="external">另外更多操作详情点击API文档</a></p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2017/02/27/cookie/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
