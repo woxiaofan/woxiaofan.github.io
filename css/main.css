@@ -1549,7 +1549,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e37779;
+  background: #d5ebff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2120,6 +2120,9 @@ a.search-result {
   border-radius: 5px;
   box-shadow: 0 1px 2px #fff inset, 0 -1px 0 #a8abae inset;
   background: -webkit-linear-gradient(top, #f2f3f7, #e4e8ec);
+}
+.category-all-page .category-list-link {
+  text-decoration: none;
 }
 .category-all-page .category-list-count {
   color: #bbb;
