@@ -1035,6 +1035,9 @@ pre .javascript .function {
 .posts-expand {
   padding-top: 40px;
 }
+.posts-expand p {
+  display: inline-flex;
+}
 .posts-expend p a {
   padding: 4px;
   margin: 10px 5px;
@@ -1558,7 +1561,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #6afaff;
+  background: #b52970;
 }
 .links-of-blogroll {
   font-size: 13px;
