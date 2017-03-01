@@ -1549,7 +1549,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffffa1;
+  background: #e37779;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2111,7 +2111,15 @@ a.search-result {
   list-style: none;
 }
 .category-all-page .category-list-item {
+/*margin: 5px 10px;*/
+  display: inline-block;
+  text-shadow: 1px 1px 1px #fff;
+  border: 1px solid #dce1e6;
+  padding: 5px;
   margin: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px #fff inset, 0 -1px 0 #a8abae inset;
+  background: -webkit-linear-gradient(top, #f2f3f7, #e4e8ec);
 }
 .category-all-page .category-list-count {
   color: #bbb;
