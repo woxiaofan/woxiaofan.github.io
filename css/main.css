@@ -1032,13 +1032,13 @@ pre .javascript .function {
   -o-transform: rotate(30deg);
   transform: rotate(30deg);
 }
-.posts-expand {
+.content {
   padding-top: 40px;
 }
-.posts-expand p {
+.content p {
   display: inline-flex;
 }
-.posts-expend p a {
+.content p a {
   padding: 4px;
   margin: 10px 5px;
   display: inline-block;
@@ -1561,7 +1561,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b52970;
+  background: #ffd99c;
 }
 .links-of-blogroll {
   font-size: 13px;
