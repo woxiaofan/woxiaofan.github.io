@@ -1033,6 +1033,8 @@ pre .javascript .function {
   transform: rotate(30deg);
 }
 .content {
+  position: relative;
+  z-index: 1;
   padding-top: 40px;
 }
 @media (max-width: 767px) {
@@ -1549,7 +1551,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffc6ff;
+  background: #ffc373;
 }
 .links-of-blogroll {
   font-size: 13px;
