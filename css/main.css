@@ -1035,18 +1035,7 @@ pre .javascript .function {
 .content {
   padding-top: 40px;
 }
-.content p {
-  display: inline-flex;
-}
-.content p a {
-  padding: 4px;
-  margin: 10px 5px;
-  display: inline-block;
-  border-radius: 5px;
-  border: 1px solid #64c878;
-  box-shadow: 0 1px 2px #b9ecc4 inset, 0 -1px 0 #6c9f76 inset, 0 -2px 3px #b9ecc4 inset;
-  background: -webkit-linear-gradient(top, #90dfa2, #84d494);
-}
+
 @media (max-width: 767px) {
   .posts-expand {
     margin: 0 20px;
