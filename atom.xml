@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ityyf.me/"/>
-  <updated>2017-03-02T08:40:25.237Z</updated>
+  <updated>2017-03-02T11:11:23.865Z</updated>
   <id>http://www.ityyf.me/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.ityyf.me/2017/02/27/cookie/"/>
     <id>http://www.ityyf.me/2017/02/27/cookie/</id>
     <published>2017-02-27T03:58:54.000Z</published>
-    <updated>2017-03-02T08:40:25.237Z</updated>
+    <updated>2017-03-02T11:11:23.865Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>JavaScript是运行在客户端的脚本，因此一般是不能够设置Session的，因为Session是运行在服务器端的。而cookie是运行在客户端的，所以可以用JS来设置cookie。</p>
