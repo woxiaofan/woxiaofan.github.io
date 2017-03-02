@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://www.ityyf.me/2017/01/16/music/</loc>
+    
+    <lastmod>2017-03-02T08:53:58.730Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://www.ityyf.me/categories/index.html</loc>
     
     <lastmod>2017-03-02T05:57:53.086Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>http://www.ityyf.me/2017/01/06/user/</loc>
     
     <lastmod>2017-02-28T08:05:39.340Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://www.ityyf.me/2017/01/16/music/</loc>
-    
-    <lastmod>2017-02-28T08:05:39.319Z</lastmod>
     
   </url>
   
