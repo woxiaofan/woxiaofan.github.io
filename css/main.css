@@ -1035,7 +1035,6 @@ pre .javascript .function {
 .content {
   padding-top: 40px;
 }
-
 @media (max-width: 767px) {
   .posts-expand {
     margin: 0 20px;
@@ -1550,7 +1549,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffd99c;
+  background: #6c881d;
 }
 .links-of-blogroll {
   font-size: 13px;
