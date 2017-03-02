@@ -1,0 +1,1384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>︶ㄣ真︵</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.ityyf.me/"/>
+  <updated>2017-03-02T03:49:26.209Z</updated>
+  <id>http://www.ityyf.me/</id>
+  
+  <author>
+    <name>Ronnie Fan</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>cookie的常用操作</title>
+    <link href="http://www.ityyf.me/2017/02/27/cookie/"/>
+    <id>http://www.ityyf.me/2017/02/27/cookie/</id>
+    <published>2017-02-27T03:58:54.000Z</published>
+    <updated>2017-03-02T03:49:26.209Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>JavaScript是运行在客户端的脚本，因此一般是不能够设置Session的，因为Session是运行在服务器端的。而cookie是运行在客户端的，所以可以用JS来设置cookie。</p>
+</blockquote>
+<p>假设有这样一种情况，在某个用例流程中，由A页面跳至B页面，若在A页面中采用JS用变量temp保存了某一变量的值，在B页面的时候，同样需要使用JS来引用temp的变量值，对于JS中的全局变量或者静态变量的生命周期是有限的，当发生页面跳转或者页面关闭的时候，这些变量的值会重新载入，即没有达到保存的效果。解决这个问题的最好的方案是采用cookie来保存该变量的值，那么如何来设置和读取cookie呢？</p>
+<p>首先需要稍微了解一下cookie的结构，简单地说：cookie是以键值对的形式保存的，即key=value的格式。各个cookie之间一般是以“;”分隔。</p>
+<h1 id="JS设置cookie"><a href="#JS设置cookie" class="headerlink" title="JS设置cookie"></a>JS设置cookie</h1><p>假设在A页面中要保存变量username的值(“yyf”)到cookie中,key值为name，则相应的JS代码为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.cookie = <span class="string">"name="</span> + yyf;</div></pre></td></tr></table></figure>
+<p>假设需要加上过期时间，方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">setCookie</span>(<span class="params">name,value</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> Days = <span class="number">30</span>;</div><div class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">    exp.setTime(exp.getTime() + Days*<span class="number">24</span>*<span class="number">60</span>*<span class="number">60</span>*<span class="number">1000</span>);<span class="comment">//时间戳以毫秒为单位</span></div><div class="line">    <span class="built_in">document</span>.cookie = name + <span class="string">"="</span>+ <span class="built_in">escape</span> (value) + <span class="string">";expires="</span> + exp.toGMTString();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="JS读取cookie"><a href="#JS读取cookie" class="headerlink" title="JS读取cookie"></a>JS读取cookie<a id="more"></a></h1><p>假设cookie中存储的内容为：username=yyf;password=123</p>
+<p>则在B页面中获取变量username的值的JS代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> username=<span class="built_in">document</span>.cookie.split(<span class="string">";"</span>)[<span class="number">0</span>].split(<span class="string">"="</span>)[<span class="number">1</span>];</div><div class="line"><span class="comment">//则该username获取结果为yyf</span></div></pre></td></tr></table></figure></p>
+<pre><code>注意：上述方法仅指明确cookie的数据数目和顺序的情况下才可使用，比如自己设置的或者通过浏览器查看后的页面。若是一个陌生页面，则应该通过如下万能法
+</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getCookie</span>(<span class="params">cName</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> cookieArr = <span class="built_in">document</span>.cookie.split(<span class="string">";"</span>);<span class="comment">//将cookie通过分号分割，存为一个名为cookieArr的数组</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i &lt; cookieArr.length; i++)&#123;</div><div class="line">        <span class="keyword">var</span> cookieVal = cookieArr[i].split(<span class="string">"="</span>);<span class="comment">//遍历数组，将每一个cookie的key和value通过等于号分割，存为一个名为cookieVal的数组</span></div><div class="line">        <span class="keyword">if</span> (cName == cookieVal[<span class="number">0</span>])</div><div class="line">        <span class="keyword">return</span> <span class="built_in">unescape</span>(cookieVal[<span class="number">1</span>]);<span class="comment">//将value值解密后拿出</span></div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="删除cookies"><a href="#删除cookies" class="headerlink" title="删除cookies"></a>删除cookies</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">delCookie</span>(<span class="params">name</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> exp = <span class="keyword">new</span> <span class="built_in">Date</span>();</div><div class="line">    exp.setTime(exp.getTime() - <span class="number">1</span>);<span class="comment">//将本地时间戳设置为不存在的一个时间即可</span></div><div class="line">    <span class="keyword">var</span> cval=getCookie(name);</div><div class="line">    <span class="keyword">if</span>(cval!=<span class="literal">null</span>)</div><div class="line">    <span class="built_in">document</span>.cookie= name + <span class="string">"="</span>+cval+<span class="string">";expires="</span>+exp.toGMTString();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h1 id="jQuery-Cookie插件"><a href="#jQuery-Cookie插件" class="headerlink" title="jQuery-Cookie插件"></a>jQuery-Cookie插件</h1><blockquote>
+<p>jQuery.cookie.js是个很好的cookie插件，包括设置、删除、获取等一系列完整的cookie操作</p>
+</blockquote>
+<ul>
+<li>创建会话cookie（Session cookie，既浏览器内存cookie，浏览器关闭后自动删除）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie(<span class="string">'the_cookie'</span>, <span class="string">'the_value'</span>);</div></pre></td></tr></table></figure>
+<ul>
+<li>创建一个生生存周期为7天的cookie</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie(<span class="string">'the_cookie'</span>, <span class="string">'the_value'</span>, &#123; <span class="attr">expires</span>: <span class="number">7</span> &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>创建一个有期限的cookie，整个站点可以读取</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie(<span class="string">'the_cookie'</span>, <span class="string">'the_value'</span>, &#123; <span class="attr">expires</span>: <span class="number">7</span>, <span class="attr">path</span>: <span class="string">'/'</span> &#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>读取cookie</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$.cookie(<span class="string">'the_cookie'</span>); <span class="comment">// =&gt; "the_value"</span></div><div class="line">$.cookie(<span class="string">'not_existing'</span>); <span class="comment">// =&gt; undefined</span></div></pre></td></tr></table></figure>
+<ul>
+<li>读取所有可用cookie</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$.cookie(); <span class="comment">// =&gt; &#123; "the_cookie": "the_value", "...remaining": "cookies" &#125;</span></div></pre></td></tr></table></figure>
+<ul>
+<li>删除cookie</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 找到指定的cookie返回true，否则返回false</span></div><div class="line">$.removeCookie(<span class="string">'the_cookie'</span>);</div><div class="line"><span class="comment">// 删除指定过path的cookie</span></div><div class="line">$.removeCookie(<span class="string">'the_cookie'</span>, &#123; <span class="attr">path</span>: <span class="string">'/'</span> &#125;);</div></pre></td></tr></table></figure>
+<pre><code>$.cookie(’name’, ‘value’, {expires: 7, path: ‘/’, domain: ‘jquery.com’, secure: true});
+
+(1)读取cookie值
+　　　$.cookie(cookieName)  cookieName:要读取的cookie名称。
+     示例：$.cookie(&quot;username&quot;); 读取保存在cookie中名为的username的值。
+(2)写入设置Cookie值：
+　　　$.cookie(cookieName,cookieValue);  cookieName:要设置的cookie名称，cookieValue表示相对应的值。
+　　　示例:$.cookie(&quot;username&quot;,&quot;admin&quot;); 将值&quot;admin&quot;写入cookie名为username的cookie中。
+　　　　　 $.cookie(&quot;username&quot;,NULL);　　　销毁名称为username的cookie
+(3)[option]参数说明：
+　　  expires:　　有限日期，可以是一个整数或一个日期(单位：天)。　　这个地方也要注意，如果不设置这个东西，浏览器关闭之后此cookie就失效了
+　　　 path:　　　 cookie值保存的路径，默认与创建页路径一致。
+      domin: cookie域名属性，默认与创建页域名一样。　　这个地方要相当注意，跨域的概念，如果要主域名二级域名有效则要设置　　&quot;.xxx.com&quot;
+      secrue:　　 一个布尔值，表示传输cookie值时，是否需要一个安全协议。
+</code></pre><p><a href="https://github.com/carhartl/jquery-cookie#readme" target="_blank" rel="external">另外更多操作详情点击API文档</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;JavaScript是运行在客户端的脚本，因此一般是不能够设置Session的，因为Session是运行在服务器端的。而cookie是运行在客户端的，所以可以用JS来设置cookie。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;假设有这样一种情况，在某个用例流程中，由A页面跳至B页面，若在A页面中采用JS用变量temp保存了某一变量的值，在B页面的时候，同样需要使用JS来引用temp的变量值，对于JS中的全局变量或者静态变量的生命周期是有限的，当发生页面跳转或者页面关闭的时候，这些变量的值会重新载入，即没有达到保存的效果。解决这个问题的最好的方案是采用cookie来保存该变量的值，那么如何来设置和读取cookie呢？&lt;/p&gt;
+&lt;p&gt;首先需要稍微了解一下cookie的结构，简单地说：cookie是以键值对的形式保存的，即key=value的格式。各个cookie之间一般是以“;”分隔。&lt;/p&gt;
+&lt;h1 id=&quot;JS设置cookie&quot;&gt;&lt;a href=&quot;#JS设置cookie&quot; class=&quot;headerlink&quot; title=&quot;JS设置cookie&quot;&gt;&lt;/a&gt;JS设置cookie&lt;/h1&gt;&lt;p&gt;假设在A页面中要保存变量username的值(“yyf”)到cookie中,key值为name，则相应的JS代码为：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.cookie = &lt;span class=&quot;string&quot;&gt;&quot;name=&quot;&lt;/span&gt; + yyf;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;假设需要加上过期时间，方法如下：&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;setCookie&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;name,value&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; Days = &lt;span class=&quot;number&quot;&gt;30&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; exp = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;built_in&quot;&gt;Date&lt;/span&gt;();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    exp.setTime(exp.getTime() + Days*&lt;span class=&quot;number&quot;&gt;24&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;60&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;60&lt;/span&gt;*&lt;span class=&quot;number&quot;&gt;1000&lt;/span&gt;);&lt;span class=&quot;comment&quot;&gt;//时间戳以毫秒为单位&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.cookie = name + &lt;span class=&quot;string&quot;&gt;&quot;=&quot;&lt;/span&gt;+ &lt;span class=&quot;built_in&quot;&gt;escape&lt;/span&gt; (value) + &lt;span class=&quot;string&quot;&gt;&quot;;expires=&quot;&lt;/span&gt; + exp.toGMTString();&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&quot;JS读取cookie&quot;&gt;&lt;a href=&quot;#JS读取cookie&quot; class=&quot;headerlink&quot; title=&quot;JS读取cookie&quot;&gt;&lt;/a&gt;JS读取cookie
+    
+    </summary>
+    
+      <category term="浏览器缓存机制" scheme="http://www.ityyf.me/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/"/>
+    
+    
+      <category term="web前端" scheme="http://www.ityyf.me/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>百听不厌的经典歌曲</title>
+    <link href="http://www.ityyf.me/2017/01/16/music/"/>
+    <id>http://www.ityyf.me/2017/01/16/music/</id>
+    <published>2017-01-16T05:39:08.000Z</published>
+    <updated>2017-02-28T08:05:39.319Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<blockquote>
+<p>柔和抒情：❤<br>激情澎湃：❤❤</p>
+</blockquote>
+<hr>
+<h1 id="外文歌"><a href="#外文歌" class="headerlink" title="外文歌"></a>外文歌</h1><h2 id="英文"><a href="#英文" class="headerlink" title="英文"></a>英文</h2><ul>
+<li><em>Pixie Paris</em> - <strong>Es Rappelt lm Karton</strong> ❤</li>
+<li><em>Tonya Mitchell</em> - <strong>stay</strong> ❤</li>
+<li><em>Madonna</em> - <strong>La Isla Bonita</strong> ❤</li>
+<li><em>Carly Rae Jepsen、Owl City</em> - <strong>Good Time</strong></li>
+<li><em>Leo Sayer</em> - <strong>More Than I Can Say</strong></li>
+<li><em>Lenka</em> - <strong>Troble Is A Friend</strong></li>
+<li><em>Maxwell</em> - <strong>It’s Ok</strong>  ❤❤</li>
+<li><em>Jessie J</em> - <strong>Flashlight</strong></li>
+<li><em>Maria Arredondo</em> - <strong>Buring</strong>  ❤❤</li>
+<li><em>Atomic Kitten</em> - <strong>If You Come To Me</strong></li>
+<li><em>A-Teens</em> - <strong>Firefly</strong></li>
+<li><em>Backstreet Boys</em> - <strong>As Long As You Love Me</strong></li>
+<li><em>Lene Marlin</em> - <strong>A Place Nearby</strong> ❤</li>
+<li><em>Tata Young</em> - <strong>I Think Of You</strong></li>
+<li><em>Lenka</em> - <strong>The Show</strong> ❤</li>
+<li><em>Groove Coverage</em> - <strong>Far Away From Home</strong></li>
+<li><em>Lenka</em> - <strong>Blue Skies</strong> ❤</li>
+<li><em>Westlife</em> - <strong>Season In The Sun</strong> ❤</li>
+<li><em>M2M</em> - <strong>The Day You Went Away</strong> ❤</li>
+<li><em>Westlife</em> - <strong>Nothing’s Gonna Change My Love For You</strong></li>
+<li><em>Mark Ronson、bruno Mars</em> - <strong>Uptown Funk</strong> ❤❤</li>
+<li><em>Westlife</em> - <strong>My Love</strong></li>
+<li><em>Michael Learns to Rock</em> - <strong>Take Me To Your Heart</strong> ❤❤</li>
+<li><em>Gareth Gates</em> - <strong>Anyone Of Us(stupid Mistake)</strong><a id="more"></a></li>
+<li><em>Deutschland Sucht Den Superstar</em> - <strong>Cry On My Shoulder</strong></li>
+<li><em>Groove Coverage</em> - <strong>She</strong> ❤</li>
+<li><em>曲婉婷</em> - <strong>Drenched</strong></li>
+<li><em>Darin</em> - <strong>B What U Wanna B</strong></li>
+</ul>
+<h2 id="韩文"><a href="#韩文" class="headerlink" title="韩文"></a>韩文</h2><ul>
+<li><em>淑熙</em> - <strong>啦啦啦</strong></li>
+<li><em>Cnblue</em> - <strong>ひとりぼっち(孤独的人)</strong> ❤❤</li>
+<li><em>星</em> - <strong>Sha La La</strong> ❤</li>
+<li><em>T Ara</em> - <strong>Cry Cry</strong></li>
+<li><em>T-Ara</em> - <strong>Day By Day</strong></li>
+</ul>
+<h2 id="日文"><a href="#日文" class="headerlink" title="日文"></a>日文</h2><ul>
+<li><em>GARNET CROW</em> - <strong>Mysterious Eyes</strong> ❤</li>
+<li><em>GARNET CROW</em> - <strong>Misty Mystery</strong> ❤❤</li>
+<li><em>rikki</em> - <strong>素敵だね</strong> ❤</li>
+<li><em>いきものがかり</em> - <strong>ブルーバード(青鸟)</strong> ❤❤</li>
+<li><em>宇多田ヒカル</em> - <strong>First Love</strong> ❤</li>
+</ul>
+<h1 id="中文歌"><a href="#中文歌" class="headerlink" title="中文歌"></a>中文歌</h1><h2 id="国语"><a href="#国语" class="headerlink" title="国语"></a>国语</h2><ul>
+<li>蔡依林 - <strong>海盗</strong></li>
+<li>单小源、本兮 - <strong>你在看孤独的风景</strong>❤</li>
+<li>周二珂 - <strong>告白气球</strong> ❤<br>原唱：周杰伦</li>
+<li>周杰伦 - <strong>晴天</strong></li>
+<li>F4 - <strong>流星雨</strong></li>
+<li>李健 - <strong>贝加尔湖畔</strong> ❤</li>
+<li>至上励合 - <strong>棉花糖</strong></li>
+<li>薛之谦 - <strong>丑八怪</strong></li>
+<li>吉克隽逸 - <strong>爱情发的光</strong></li>
+<li>毛泽少 - <strong>没有眼泪的鱼</strong></li>
+<li>简弘亦 - <strong>情义盖过天</strong></li>
+<li>游鸿明 - <strong>诗人的眼泪</strong></li>
+<li>游鸿明 - <strong>白色恋人</strong> ❤</li>
+<li>王心凌 - <strong>还是好朋友</strong></li>
+<li>张杰 - <strong>我们都一样</strong></li>
+<li>牛奶咖啡 - <strong>明天,你好</strong> ❤</li>
+<li>韩红 - <strong>那片海</strong></li>
+<li>周杰伦 - <strong>米兰的小铁匠</strong></li>
+<li>杜雯媞、王艺翔 - <strong>雪</strong></li>
+<li>陈奕迅 - <strong>不要说话</strong></li>
+<li>梁静茹 - <strong>给未来的自己</strong></li>
+<li>刘涛 - <strong>红颜旧</strong></li>
+<li>吴雨霏 - <strong>生生世世爱</strong> ❤❤</li>
+<li>王力宏 - <strong>我们的歌</strong></li>
+<li>李荣浩 - <strong>不将就</strong></li>
+<li>筷子兄弟 - <strong>父亲</strong></li>
+<li>王力宏 - <strong>需要人陪</strong> ❤</li>
+<li>萧亚轩 - <strong>类似爱情</strong></li>
+<li>丁浩然 - <strong>离开以后</strong></li>
+<li>毛阿敏 - <strong>相思</strong> ❤</li>
+<li>张靓颖 - <strong>我们说好的</strong></li>
+<li>东来东往 - <strong>多一个人陪伴</strong> ❤</li>
+<li>青鸟飞鱼 - <strong>此生不换</strong></li>
+</ul>
+<h2 id="粤语"><a href="#粤语" class="headerlink" title="粤语"></a>粤语</h2><ul>
+<li>陈奕迅 - <strong>浮夸</strong> ❤❤</li>
+<li>Twins - <strong>下一站天后</strong> ❤</li>
+</ul>
+<hr>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;柔和抒情：❤&lt;br&gt;激情澎湃：❤❤&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;外文歌&quot;&gt;&lt;a href=&quot;#外文歌&quot; class=&quot;headerlink&quot; title=&quot;外文歌&quot;&gt;&lt;/a&gt;外文歌&lt;/h1&gt;&lt;h2 id=&quot;英文&quot;&gt;&lt;a href=&quot;#英文&quot; class=&quot;headerlink&quot; title=&quot;英文&quot;&gt;&lt;/a&gt;英文&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;Pixie Paris&lt;/em&gt; - &lt;strong&gt;Es Rappelt lm Karton&lt;/strong&gt; ❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Tonya Mitchell&lt;/em&gt; - &lt;strong&gt;stay&lt;/strong&gt; ❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Madonna&lt;/em&gt; - &lt;strong&gt;La Isla Bonita&lt;/strong&gt; ❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Carly Rae Jepsen、Owl City&lt;/em&gt; - &lt;strong&gt;Good Time&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Leo Sayer&lt;/em&gt; - &lt;strong&gt;More Than I Can Say&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lenka&lt;/em&gt; - &lt;strong&gt;Troble Is A Friend&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Maxwell&lt;/em&gt; - &lt;strong&gt;It’s Ok&lt;/strong&gt;  ❤❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Jessie J&lt;/em&gt; - &lt;strong&gt;Flashlight&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Maria Arredondo&lt;/em&gt; - &lt;strong&gt;Buring&lt;/strong&gt;  ❤❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Atomic Kitten&lt;/em&gt; - &lt;strong&gt;If You Come To Me&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;A-Teens&lt;/em&gt; - &lt;strong&gt;Firefly&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Backstreet Boys&lt;/em&gt; - &lt;strong&gt;As Long As You Love Me&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lene Marlin&lt;/em&gt; - &lt;strong&gt;A Place Nearby&lt;/strong&gt; ❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Tata Young&lt;/em&gt; - &lt;strong&gt;I Think Of You&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lenka&lt;/em&gt; - &lt;strong&gt;The Show&lt;/strong&gt; ❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Groove Coverage&lt;/em&gt; - &lt;strong&gt;Far Away From Home&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Lenka&lt;/em&gt; - &lt;strong&gt;Blue Skies&lt;/strong&gt; ❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Westlife&lt;/em&gt; - &lt;strong&gt;Season In The Sun&lt;/strong&gt; ❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;M2M&lt;/em&gt; - &lt;strong&gt;The Day You Went Away&lt;/strong&gt; ❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Westlife&lt;/em&gt; - &lt;strong&gt;Nothing’s Gonna Change My Love For You&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Mark Ronson、bruno Mars&lt;/em&gt; - &lt;strong&gt;Uptown Funk&lt;/strong&gt; ❤❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Westlife&lt;/em&gt; - &lt;strong&gt;My Love&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Michael Learns to Rock&lt;/em&gt; - &lt;strong&gt;Take Me To Your Heart&lt;/strong&gt; ❤❤&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Gareth Gates&lt;/em&gt; - &lt;strong&gt;Anyone Of Us(stupid Mistake)&lt;/strong&gt;
+    
+    </summary>
+    
+      <category term="音乐" scheme="http://www.ityyf.me/categories/%E9%9F%B3%E4%B9%90/"/>
+    
+    
+      <category term="音乐" scheme="http://www.ityyf.me/tags/%E9%9F%B3%E4%B9%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BootStrap框架常用语法</title>
+    <link href="http://www.ityyf.me/2017/01/08/bootstrap-common/"/>
+    <id>http://www.ityyf.me/2017/01/08/bootstrap-common/</id>
+    <published>2017-01-08T13:09:54.000Z</published>
+    <updated>2017-03-02T03:46:06.343Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h1><ul>
+<li>需要使用HTML5文档结构 <code>&lt;!DocType html&gt;</code></li>
+<li>移动设备优先    需要在头部增加<code>&lt;meta&gt;</code>标签</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<ul>
+<li><p>引入BootStrap</p>
+<ul>
+<li>引入css，当有自己的css文档，应引入bootstrap.css后再引入自己编写额css文件</li>
+<li>引入jQuery.js再引入bootstrap.js</li>
+<li><p>若要兼容IE浏览器，再引入两个js文件，使用IE的条件注释</p>
+<pre><code>&lt;!--[if lt IE 9]&gt;&lt;script&gt;...&lt;/script&gt;&lt;script&gt;...&lt;/script&gt;&lt;![endif]--&gt;  
+[两个js文件自己google]
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap表单样式"><a href="#bootstrap表单样式" class="headerlink" title="bootstrap表单样式"></a>bootstrap表单样式</h1><pre><code>创建表单步骤：
+1.创建form标签并添加role=&quot;form&quot;(语义化，给浏览器和搜索引擎看)
+2.控制分组，把标签和控件放在一个class为formgroup的div中
+3.给表单控件(input,textarea,select)添加类名form-control
+</code></pre><h2 id="内联表单"><a href="#内联表单" class="headerlink" title="内联表单"></a>内联表单</h2><ul>
+<li>给form添加类名form-inline<a id="more"></a>
+<h2 id="水平表单"><a href="#水平表单" class="headerlink" title="水平表单"></a>水平表单</h2></li>
+<li>给form添加类名form-horizontal</li>
+<li>给标签label添加类名control-label</li>
+<li>配合bootstrap网格系统加入类名col-sm-1</li>
+</ul>
+<h2 id="其它表单控件"><a href="#其它表单控件" class="headerlink" title="其它表单控件"></a>其它表单控件</h2><ul>
+<li>form-control-static：静态表单控件，添加标签和类名，不必用input特定标签</li>
+<li>help-block：表单提示，添加标签和类名（同上）</li>
+<li>提示图标：glyphicon glyphicon-ok（参照API文档） form-control-feedback</li>
+<li><p>按钮：在使用其它类名前均加上基础类名btn</p>
+<pre><code>基础类名：btn
+默认按钮样式：btn-default
+原始按钮样式：btn-primary
+成功按钮样式：btn-success
+链接式按钮：btn-link
+-----------------------
+设置按钮大小
+超大：btn-lg
+默认大小：btn-md
+小号：btn-xs
+btn-block：块级按钮，宽度取决于它父级的宽度的100%
+-----------------------
+设置按钮状态
+激活：active
+禁用：disable
+</code></pre></li>
+</ul>
+<h1 id="bootstrap图片样式"><a href="#bootstrap图片样式" class="headerlink" title="bootstrap图片样式"></a>bootstrap图片样式</h1><h2 id="响应式图片"><a href="#响应式图片" class="headerlink" title="响应式图片"></a>响应式图片</h2><ul>
+<li>img-responsive（max-width:100%）</li>
+</ul>
+<h2 id="圆角图片"><a href="#圆角图片" class="headerlink" title="圆角图片"></a>圆角图片</h2><ul>
+<li>img-rounded</li>
+<li>img-circle 圆形</li>
+</ul>
+<h2 id="缩略图"><a href="#缩略图" class="headerlink" title="缩略图"></a>缩略图</h2><ul>
+<li>img-thumbnail：添加一个内边距padding和边框</li>
+</ul>
+<h1 id="bootstrap辅助类"><a href="#bootstrap辅助类" class="headerlink" title="bootstrap辅助类"></a>bootstrap辅助类</h1><ul>
+<li>左浮动：pull-left</li>
+<li>右浮动：pull-right</li>
+<li>块级并居中：center-block 需要设置宽度，不能设浮动</li>
+<li>强制元素显示/隐藏：show/hide</li>
+<li>隐藏文字：text-hide</li>
+</ul>
+<h1 id="bootstrap表格样式"><a href="#bootstrap表格样式" class="headerlink" title="bootstrap表格样式"></a>bootstrap表格样式</h1><ul>
+<li><p>基础类名：table</p>
+<pre><code>table-striped：斑马线表格
+table-bordered：带边框表格（给td加边框）
+table-hover：鼠标悬停高亮效果
+table-condensed：紧凑型表格（减少单元格padding值）
+table-responsive：响应式表格
+</code></pre></li>
+</ul>
+<h1 id="bootstrap网格系统"><a href="#bootstrap网格系统" class="headerlink" title="bootstrap网格系统"></a>bootstrap网格系统</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ul>
+<li>将容器平分为12份（12列）<br>结合媒体查询做出响应式布局效果</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><ul>
+<li><p>定义一个.row的容器作为行<br>定义一个.col的容器作为列<br>只有col才能作为row的直接子元素</p>
+<pre><code>            屏幕   屏幕尺寸
+.col-lg-*   超大   &gt;1200px
+.col-md-*   中屏   &gt;992px
+.col-sm-*   小屏   &gt;768px 
+.col-xs-*   超小   &lt;768px
+
+*代表1~12，每一个所占空间大小
+</code></pre></li>
+</ul>
+<h2 id="列偏移-amp-列排序"><a href="#列偏移-amp-列排序" class="headerlink" title="列偏移&amp;列排序"></a>列偏移&amp;列排序</h2><ul>
+<li>列偏移：不希望两列靠在一起，使用类名.col-*-offset-*</li>
+<li><p>列排序：设置网格的排列顺序</p>
+<ul>
+<li>.col-*-push-* 往右排</li>
+<li><p>.col-*-pull-* 往左排</p>
+<pre><code>通俗点就是往左移动和往右移动几个网格空间大小
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap下拉菜单"><a href="#bootstrap下拉菜单" class="headerlink" title="bootstrap下拉菜单"></a>bootstrap下拉菜单</h1><ul>
+<li>创建一个类名为dropdown的div容器，用它来包裹整个下拉菜单</li>
+<li><p>在dropdown容器内添加一个按钮button，作为父菜单</p>
+<pre><code>定义类名为dropdown-toggle和自定义属性data-toggle=&quot;dropdown&quot;
+</code></pre></li>
+<li><p>添加按钮里的小三角</p>
+<pre><code>button添加类名为caret的span标签
+</code></pre></li>
+<li><p>创建下拉菜单</p>
+<pre><code>添加一个ul无序列表，定义类名为dropdown-menu
+</code></pre></li>
+<li><p>菜单分割线</p>
+<pre><code>添加一个空列表项li，类名为divider
+</code></pre></li>
+</ul>
+<h1 id="bootstrap按钮组"><a href="#bootstrap按钮组" class="headerlink" title="bootstrap按钮组"></a>bootstrap按钮组</h1><pre><code>将几个按钮放入一个类名为btn-group的div中
+btn-group-vertical ☞ 垂直按钮组
+按钮组大 ☞ 给组别加类名btn-group-lg|md|sm|xs
+</code></pre><ul>
+<li><p>嵌套按钮组</p>
+<pre><code>在按钮组里面嵌套下拉列表
+</code></pre><ul>
+<li>在btn-group里面嵌套一个btn-group，将下拉菜单的父菜单按钮放置在嵌套的btn-group里</li>
+<li>给父菜单按钮添加类名dropdown-toggle和自定义属性data-toggle=”dropdown”</li>
+<li>增加小三角图标<code>&lt;span class=&#39;caret&#39;&gt;&lt;/span&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap导航"><a href="#bootstrap导航" class="headerlink" title="bootstrap导航"></a>bootstrap导航</h1><ul>
+<li>添加无序列表，用来作为导航</li>
+<li><p>给列表添加类名 .nav ☞ 基础类名</p>
+<pre><code>nav-tabs ☞ 表格式导航
+nav-pills ☞ 鼓囊式导航
+</code></pre></li>
+<li><p>给导航菜单项添加样式</p>
+<pre><code>active ☞ 当前选中项
+disabled ☞ 禁用状态  
+</code></pre></li>
+</ul>
+<pre><code>☞ 垂直式导航：给导航添加类名nav-stacked
+    一般用于鼓囊式导航
+
+☞ 导航二级菜单：在导航里添加下拉列表
+    1. 给父级菜单添加类名dropdown
+    2. 在此列表项里添加一个二级菜单列表项 .dropdown-menu
+    3. 给此列表里面的a标签添加类名dropdown-toggle和自定义属性data-toggle=&quot;dropdown&quot;
+
+☞ tab标签页导航（选项卡功能）
+    1. 添加一个表格式导航
+    2. 给导航里面的a标签添加属性data-toggle=&quot;tab&quot;的锚点链接地址
+    3. 添加一个tab-content的div，在里面包含每一个要切换的tab标签页
+    4. 给每一个标签页添加类名tab-pane和fade
+    5. 默认显示项
+        - 给导航列表项添加类名active
+        - 给默认显示标签页添加类名active和in
+
+☞ 导航条
+    导航条头部里面可以放置导航，表单等
+    1. 添加类名为navbar的div，用来制作导航条
+        navbar-default ☞ 默认
+        navbar-inverse ☞ 反色
+    2. 在navbar里面添加页面标题
+        添加一个类名为navbar-head的div，包含navbar-brand的a标签
+    3. 在navbar里添加导航
+        在普通导航基础上添加类名navbar-nav
+    4. 导航里添加表单（搜索框）
+        添加类名navbar-form
+        PS：将搜索框和按钮用类名为input-group的div包起来，将搜索按钮放入类名为input-group-btn的span中，可实现搜索框和按钮连在一起的视觉效果
+    5. 导航条里的浮动
+        navbar-left ☞ 左浮动
+        navbar-right ☞ 右浮动
+    6. 导航条里面单独的按钮和链接
+        按钮 ☞ navbar-btn
+        链接 ☞ navbar-link和navbar-text
+        普通文字 ☞ navbar-text
+    7. 固定导航条
+        navbar-fixed-top|navbar-fixed-bottom
+
+☞ 响应式导航条
+    1. 将nav导航用一个类名为collapse和navbar-collapse的div包起来
+    2. 在navbar-header里添加类名为navbar-toggle和自定义属性为data-toggle=&quot;collapse&quot;与data-target=&quot;#myNav（自己取名）&quot;的按钮，在按标签里再加入汉堡按钮
+        汉堡按钮：三个span标签，每个类名为icon-bar
+</code></pre><h1 id="bootstrap标签-徽章"><a href="#bootstrap标签-徽章" class="headerlink" title="bootstrap标签/徽章"></a>bootstrap标签/徽章</h1><ul>
+<li><p>通过span标签，添加类名label ☞ 基础类名</p>
+<pre><code>label-default
+label-primary
+label-success
+...
+</code></pre></li>
+<li>通过span标签，添加类名bodge</li>
+</ul>
+<h1 id="bootstrap内置组件"><a href="#bootstrap内置组件" class="headerlink" title="bootstrap内置组件"></a>bootstrap内置组件</h1><h2 id="缩略图-1"><a href="#缩略图-1" class="headerlink" title="缩略图"></a>缩略图</h2><ul>
+<li>使用网格系统实现</li>
+</ul>
+<h2 id="警示框"><a href="#警示框" class="headerlink" title="警示框"></a>警示框</h2><pre><code>若在警告框里的文字加链接，则会覆盖原有警示框颜色，应该在a标签里加类名alert-link
+</code></pre><ul>
+<li>给警示框加类名alert-dismissable</li>
+<li>给警示框加类名为close的button标签</li>
+<li>按钮上加自定义属性data-dismiss=”alert”</li>
+</ul>
+<h2 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h2><ul>
+<li><p>外层div用来写灰色背景，类名progress</p>
+<pre><code>加类名progress-striped为条纹进度条
+再加active类名为动态进度条
+</code></pre></li>
+<li><p>里层div显示进度，类名progress-bar ☞ 基础类名</p>
+<pre><code>progress-bar-success
+...
+</code></pre></li>
+<li>给progress-bar加行内样式width=百分比</li>
+</ul>
+<h1 id="bootstrap多媒体对象"><a href="#bootstrap多媒体对象" class="headerlink" title="bootstrap多媒体对象"></a>bootstrap多媒体对象</h1><ul>
+<li>加一个类名为media的div容器</li>
+<li>在media的div中加一个类名为pull-left的a标签</li>
+<li>在media的div中添加媒体描述，使用类名为media-body的div</li>
+<li>给媒体body中的标题加media-heading类名</li>
+</ul>
+<pre><code>要放置多个媒体列表，则在所有列表外套一个类名为media-list的div
+在media-dody中再写入media的div则为媒体嵌套
+</code></pre><h1 id="bootstrap列表组"><a href="#bootstrap列表组" class="headerlink" title="bootstrap列表组"></a>bootstrap列表组</h1><ul>
+<li><p>基础列表组</p>
+<pre><code>给无序列表或div加类名list-group，给li列表项加类名list-group-item
+</code></pre></li>
+<li>在列表组里加徽章，bodge，自动的右浮动</li>
+<li><p>自定义列表</p>
+<pre><code>li添加标题元素类名为list-group-item-heading放置标题和h标签
+再加入类名为list-group-item-text的p标签来放内容
+</code></pre></li>
+</ul>
+<h1 id="bootstrap面板"><a href="#bootstrap面板" class="headerlink" title="bootstrap面板"></a>bootstrap面板</h1><h2 id="基础面板"><a href="#基础面板" class="headerlink" title="基础面板"></a>基础面板</h2><ul>
+<li>添加类名为panel的div容器，其中panel为基础类名</li>
+<li>在panel里添加类名为panel-heading的div，在其中添加类名为panel-title的标题h1~h6</li>
+<li>在panel里添加一个类名为panel-body的div放主内容，表格，表单等</li>
+<li>在panel-body后添加类名为panel-footer的div，在其中添加普通文字</li>
+</ul>
+<hr>
+<h1 id="bootstrap插件"><a href="#bootstrap插件" class="headerlink" title="bootstrap插件"></a>bootstrap插件</h1><blockquote>
+<p><strong>以下插件若通过js调用的话，均不必添加任何自定义属性</strong></p>
+</blockquote>
+<h2 id="模态弹出框"><a href="#模态弹出框" class="headerlink" title="模态弹出框"></a>模态弹出框</h2><blockquote>
+<p>通俗点就是alert弹出框，只不过样式花哨点</p>
+</blockquote>
+<h3 id="结构分析"><a href="#结构分析" class="headerlink" title="结构分析"></a>结构分析</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.modal</div><div class="line">    .modal-dialog</div><div class="line">        .modal-content</div><div class="line">            .modal-header</div><div class="line">            .modal-body</div><div class="line">            .modal-footer</div></pre></td></tr></table></figure>
+<blockquote>
+<p>模态框默认为隐藏状态</p>
+</blockquote>
+<h3 id="触发方式"><a href="#触发方式" class="headerlink" title="触发方式"></a>触发方式</h3><ul>
+<li>给触发元素（按钮）添加属性data-toggle=”modal”和data-target=”#myModal（自己取名）”</li>
+<li>a标签加href=”#myModal”和data-toggle=”modal”</li>
+<li><p>js触发</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#myModal'</span>).modal();</div></pre></td></tr></table></figure>
+<pre><code>给模态框添加动画效果：在modal类名上的div中再增加fade类
+当data-backdrop=&quot;static&quot;时，点击modal之外的地方不会使其消失
+</code></pre></li>
+<li><p>其他参数</p>
+<pre><code>通过标签属性和js参数传递，通过js，则去掉data-*属性，只传入后面的名称$(&apos;#myModal&apos;).modal();只传入modal括号内就好
+</code></pre><ul>
+<li>data-backdrop ☞ true|false ☞ 弹出框是否有大背景，默认true</li>
+<li>data-keyboard ☞ true|false ☞ 按下Esc键是否可以关闭模态框<br><strong>需要同时设置属性tabindex=”-1”</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="滚动监听"><a href="#滚动监听" class="headerlink" title="滚动监听"></a>滚动监听</h2><ul>
+<li>创建一个导航，添加id属性</li>
+<li>给导航中的li中的a标签添加href值对应到每一个模块</li>
+<li><p>给body添加属性data-spy=”scroll”和data-target=”#myNavbar（自己取名）”</p>
+<pre><code>固定定位：在需要固定的元素加属性data-spy=&quot;affix&quot;和data-offset-top=&quot;数值&quot;
+</code></pre></li>
+</ul>
+<h2 id="提示框"><a href="#提示框" class="headerlink" title="提示框"></a>提示框</h2><ul>
+<li>给需要提示的标签添加属性data-toggle=”tooltip”，title=”提示”</li>
+<li><p>通过js调用提示框插件  </p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tooltip();</div></pre></td></tr></table></figure>
+</li>
+<li><p>控制提示框的方向：添加属性data-placement=”top|bottom|left|right”</p>
+</li>
+</ul>
+<h2 id="弹出框"><a href="#弹出框" class="headerlink" title="弹出框"></a>弹出框</h2><ul>
+<li>给需要弹出框的元素加属性data-toggle=”popover”和data-content=”弹出框内容”，title=”标题内容”</li>
+</ul>
+<h2 id="警示框-1"><a href="#警示框-1" class="headerlink" title="警示框"></a>警示框</h2><ul>
+<li>创建一个警示框alert</li>
+<li>在其中加入关闭按钮</li>
+<li>用警示框外的按钮来关闭它<ul>
+<li>在外部元素添加属性data-dismiss=”alert”和data-target=”#自己取名”</li>
+</ul>
+</li>
+</ul>
+<h2 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h2><ul>
+<li>模拟单选按钮<ul>
+<li>在btn-group中添加data-toggle=”buttons”</li>
+</ul>
+</li>
+<li>模拟复选框<ul>
+<li>同上，把input的type类型换成checkbox即可</li>
+</ul>
+</li>
+<li><p>按钮状态切换</p>
+<ul>
+<li>给button添加属性data-toggle=”button”</li>
+<li>通过js调用  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'selector'</span>).button(<span class="string">'toggle'</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>加载状态按钮</p>
+<pre><code>当点击时，按钮状态变为加载中，文本变成data-toggle-text的内容
+</code></pre>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'selector'</span>).button(<span class="string">'toggle'</span>);</div><div class="line">$(<span class="string">'selector'</span>).button(<span class="string">'reset'</span>);<span class="comment">//写入setTimeout函数中去</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="手风琴插件使用"><a href="#手风琴插件使用" class="headerlink" title="手风琴插件使用"></a>手风琴插件使用</h2><ul>
+<li>添加一个类名为panel-group的div作为面板组的内容</li>
+<li>在面板组里面添加面板，并且为面板定义头部和主体内容</li>
+<li>在panel-title里添加一个a标签，加属性data-toggle=”collapse”和data-parent=”#面板组id”，href=”#面板内容id”</li>
+<li>将panel-body用类为panel-collapse和collapse的div包起来，并设置id</li>
+<li>给指定面板加类名in，则为默认展开状态</li>
+</ul>
+<h2 id="轮播图插件使用"><a href="#轮播图插件使用" class="headerlink" title="轮播图插件使用"></a>轮播图插件使用</h2><ul>
+<li>添加类名为carousel和slide的div，作为轮播图容器，设置id</li>
+<li>添加计数器，默认样式为圆点，可用无序列表实现，为其添加类名carousel-indicators，为每个li加属性data-target=”#容器id”和data-slide-to=”0~n”，对应每一张图</li>
+<li>添加一个类名为carousel-inner的div容器，用来存放图片，每张图放在类名为item的div中</li>
+<li>给对应的item项和对应的圆点加active为默认显示的状态</li>
+<li>添加两个类名为carousel-control的a链接，分别加类名left|right，在其中加属性data-slide=”prev”或next，并设置href=”#容器id”</li>
+<li><p>给carousel加data-ride=”carousel”使其自动轮播<br>data-interval=”毫秒数” ☞ 控制轮播图自动轮播切换间隔时间<br>data-wrap=”true|false” ☞ 是否循环轮播</p>
+<pre><code>js控制轮播：
+$(&apos;selector&apos;).carousel();参数同上一条的data属性
+$(&apos;selector).carousel(&apos;pause|prev|next&apos;);暂停|上一张|下一张
+
+轮播事件：
+$(&apos;selector&apos;).on({
+    &apos;slide.bs.carousel&apos;:function(){
+        ...     切换前事件
+    },
+    &apos;slid.bs.carousel&apos;:function(){
+        ...     切换后事件
+    }
+    })
+</code></pre></li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;文档结构&quot;&gt;&lt;a href=&quot;#文档结构&quot; class=&quot;headerlink&quot; title=&quot;文档结构&quot;&gt;&lt;/a&gt;文档结构&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;需要使用HTML5文档结构 &lt;code&gt;&amp;lt;!DocType html&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;移动设备优先    需要在头部增加&lt;code&gt;&amp;lt;meta&amp;gt;&lt;/code&gt;标签&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0&quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;引入BootStrap&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;引入css，当有自己的css文档，应引入bootstrap.css后再引入自己编写额css文件&lt;/li&gt;
+&lt;li&gt;引入jQuery.js再引入bootstrap.js&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;若要兼容IE浏览器，再引入两个js文件，使用IE的条件注释&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!--[if lt IE 9]&amp;gt;&amp;lt;script&amp;gt;...&amp;lt;/script&amp;gt;&amp;lt;script&amp;gt;...&amp;lt;/script&amp;gt;&amp;lt;![endif]--&amp;gt;  
+[两个js文件自己google]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;bootstrap表单样式&quot;&gt;&lt;a href=&quot;#bootstrap表单样式&quot; class=&quot;headerlink&quot; title=&quot;bootstrap表单样式&quot;&gt;&lt;/a&gt;bootstrap表单样式&lt;/h1&gt;&lt;pre&gt;&lt;code&gt;创建表单步骤：
+1.创建form标签并添加role=&amp;quot;form&amp;quot;(语义化，给浏览器和搜索引擎看)
+2.控制分组，把标签和控件放在一个class为formgroup的div中
+3.给表单控件(input,textarea,select)添加类名form-control
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;内联表单&quot;&gt;&lt;a href=&quot;#内联表单&quot; class=&quot;headerlink&quot; title=&quot;内联表单&quot;&gt;&lt;/a&gt;内联表单&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;给form添加类名form-inline
+    
+    </summary>
+    
+      <category term="bootstrap" scheme="http://www.ityyf.me/categories/bootstrap/"/>
+    
+    
+      <category term="web前端" scheme="http://www.ityyf.me/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>jQuery常用语法</title>
+    <link href="http://www.ityyf.me/2017/01/06/jQuery-common/"/>
+    <id>http://www.ityyf.me/2017/01/06/jQuery-common/</id>
+    <published>2017-01-06T10:32:56.000Z</published>
+    <updated>2017-02-28T08:05:39.276Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p><strong>首先附上jQuery官网</strong><br><strong><a href="http://jquery.com/" target="_blank" rel="external">http://jquery.com/</a></strong><br><strong>2.0版本开始放弃了对IE7/8及其之前版本的兼容</strong></p>
+</blockquote>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><h2 id="文件引入"><a href="#文件引入" class="headerlink" title="　文件引入"></a>　文件引入</h2><ul>
+<li>必须引入jQuery库文件，引入方法与普通js文件一样</li>
+</ul>
+<h2 id="jQuery基本语法"><a href="#jQuery基本语法" class="headerlink" title="　jQuery基本语法"></a>　jQuery基本语法</h2><ul>
+<li>单双引号通用</li>
+<li><code>$(&#39;selecter&#39;).function(参数)</code></li>
+<li>$符号代表jQuery,是jQuery的缩写</li>
+<li>隐式迭代：获取一组标签，不需要遍历循环，即可直接操作</li>
+<li>链式操作：不需要重复获取标签元素，在一个操作后面直接跟另一条命令<br><strong>jQuery每一个操作函数返回值均为object，所以才可以使用链式操作</strong></li>
+</ul>
+<h1 id="文档就绪"><a href="#文档就绪" class="headerlink" title="文档就绪"></a>文档就绪</h1><h2 id="jQuery文档就绪"><a href="#jQuery文档就绪" class="headerlink" title="　jQuery文档就绪"></a>　jQuery文档就绪</h2><ul>
+<li><code>$(document).ready()</code>或者简写为：<code>$(function{})</code></li>
+</ul>
+<h2 id="与原生JS文档就绪比较"><a href="#与原生JS文档就绪比较" class="headerlink" title="　与原生JS文档就绪比较"></a>　与原生JS文档就绪比较</h2><ul>
+<li><code>window.onload</code> vs <code>$(function{})</code></li>
+<li>前者必须等网页中所有的元素（包含图片、flash、视频等）全部加载完毕后执行，而后者等所有的DOM文档结构绘制完毕后即刻执行，不需要等待图片、flash等<br><strong>DOM大标签加载完毕就执行，如p、h、body、div等加载完就执行</strong></li>
+<li>一个页面只允许存在一个<code>window.onload</code>，而可以存在多个<code>$(function{})</code></li>
+</ul>
+<h1 id="jQuery-选择器"><a href="#jQuery-选择器" class="headerlink" title="jQuery 选择器"></a>jQuery 选择器<a id="more"></a></h1><h2 id="基本选择器"><a href="#基本选择器" class="headerlink" title="　基本选择器"></a>　基本选择器</h2><ul>
+<li>标签选择器<code>$(&#39;p&#39;)</code> or <code>$(&#39;div&#39;)</code></li>
+<li>类选择器<code>$(&#39;.class&#39;)</code></li>
+<li>ID选择器<code>$(&#39;#id&#39;)</code></li>
+<li>群组选择器<code>$(&#39;div,span,p&#39;)</code></li>
+<li>交集选择器<code>$(&#39;p.top&#39;)</code><br><strong>选取类名为top的p标签</strong></li>
+<li>全局选择器<code>$(&#39;*&#39;)</code></li>
+</ul>
+<h3 id="特殊情况"><a href="#特殊情况" class="headerlink" title="　　特殊情况"></a>　　特殊情况</h3><ol>
+<li><code>$(document)</code></li>
+<li><code>$(window)</code></li>
+<li><code>$(&#39;body&#39;)</code></li>
+<li><code>$(this)</code><br><strong>页面中的标签需要加引号或者双引号</strong></li>
+</ol>
+<h2 id="层次选择器"><a href="#层次选择器" class="headerlink" title="　层次选择器"></a>　层次选择器</h2><ul>
+<li>后代选择器<code>$(&#39;#box span&#39;)</code></li>
+<li>子级选择器<code>$(&#39;#box&gt;span&#39;)</code></li>
+<li>紧邻同辈选择器<code>$(&#39;#box+p&#39;)</code><br><strong>id名为box的后面一个p标签</strong></li>
+<li>相邻同辈选择器<code>$(&#39;#box~p&#39;)</code><br><strong>id名为box的后面所有p标签</strong></li>
+</ul>
+<h2 id="属性选择器"><a href="#属性选择器" class="headerlink" title="　属性选择器"></a>　属性选择器</h2><ul>
+<li><code>$(&#39;[name]&#39;)</code>选择所有具有name属性的标签元素</li>
+<li><code>$(&#39;[name=user]&#39;)</code>所有name=user的标签</li>
+<li><code>$(&#39;[name!=user]&#39;)</code>name不等于user</li>
+<li><code>$(&#39;[name^=user]&#39;)</code>以user开头</li>
+<li><code>$(&#39;[name$=user]&#39;)</code>以user结尾</li>
+<li><code>$(&#39;[name][id]&#39;)</code>选择同时具有name和id的元素<br><strong>class、type、id等均为属性</strong></li>
+</ul>
+<h2 id="过滤选择器"><a href="#过滤选择器" class="headerlink" title="　过滤选择器"></a>　过滤选择器</h2><ul>
+<li>:first<code>$(&#39;ul li:first&#39;)</code></li>
+<li>:last<code>$(&#39;ul li:last&#39;)</code></li>
+<li>:even  从0开始，选择集合中的偶数行</li>
+<li>:odd  同上，选择奇数行</li>
+<li>:eq(n)  n从0开始计数</li>
+<li>gt(n)  集合中第n个后的元素/大于n的元素，从0开始计数</li>
+<li>lt(n)  同上反</li>
+<li>:not(selector)<code>$(&#39;ul li:not(:eq(3))&#39;)</code>选择不包含selector中的元素</li>
+<li>:header  选择所有h1~h6的标题元素</li>
+<li>:visible  可见元素</li>
+<li>:hidden  不可见元素</li>
+<li>:first-child  列表中的第一个元素，相对于本  身父元素</li>
+<li>:first-of-type  列表中同类型元素</li>
+<li>:nth-c  hild(n)  列表中第n个元素，从1开始计数</li>
+<li>:nth-last-child(n)  倒序计数第n个元素</li>
+<li>:nth-of-type(n)  列表中同类型的第n个子元素，从1开始计数</li>
+<li>:empty  空元素</li>
+<li>:parent  含有子元  素或文本的元素</li>
+<li>:has(selector)<code>$(&#39;div:has(h  2  )&#39;)</code>    匹配包含h2的div</li>
+<li>:contains(text)<code>$(&#39;:contains(hello)&#39;)</code>  匹配包含hello的元素</li>
+</ul>
+<h3 id="常用的过滤方法（function）"><a href="#常用的过滤方法（function）" class="headerlink" title="　　常用的过滤方法（function）"></a>　　常用的过滤方法（function）</h3><ol>
+<li>get(i)  选择第i个元素，返回DOM对象<br><strong>不能采用jQuery写法<code>$(&#39;h2&#39;).get(2)</code></strong><br><strong>正确写法：<code>$(&#39;h2&#39;).get(2).style.color = &#39;red&#39;</code></strong></li>
+<li>eq(i)  选择第i个元素，返回jQuery对象<br><strong>可以采用jQuery写法<code>$(&#39;h2&#39;).eq(2)</code></strong><br><strong>正确写法：<code>$(&#39;h2&#39;).eq(2).css(&#39;color&#39;</code>,’red’)</strong></li>
+<li>first()|last()  选择第一个|最后一个元素</li>
+<li>not(selector)  同not选择器<br><code>$(&#39;h2&#39;).not(&#39;:contains(hello)&#39;)</code></li>
+<li>has()  同has选择器</li>
+<li>find(selector)  获取当前匹配元素集合中每一个元素的后代，同has选择器，但返回的是find中的标签，而不是像has的父级元素</li>
+</ol>
+<h2 id="表单选择器"><a href="#表单选择器" class="headerlink" title="　表单选择器"></a>　表单选择器</h2><ul>
+<li>:input  表单元素，包括input、textarea、select、button</li>
+<li>:text  单行文本框元素，只能匹配type=text的文本框</li>
+<li>:password</li>
+<li>:radio  单选按钮</li>
+<li>:checkbox  复选框</li>
+<li>:submit  type=submit和button标签</li>
+<li>:image  type=’image’的input图像域</li>
+<li>:reset</li>
+<li>:button</li>
+<li>:file</li>
+<li>:checked</li>
+<li>:focus  焦点所在元素</li>
+</ul>
+<h1 id="DOM对象和jQuery对象"><a href="#DOM对象和jQuery对象" class="headerlink" title="DOM对象和jQuery对象"></a>DOM对象和jQuery对象</h1><h2 id="jQuery对象转化成-DOM对象"><a href="#jQuery对象转化成-DOM对象" class="headerlink" title="　jQuery对象转化成 DOM对象"></a>　jQuery对象转化成 DOM对象</h2><ul>
+<li>jQuery对象可以理解为由DOM元素组成的一个数组</li>
+<li>get(i)<br>jQuery对象.get(i)</li>
+<li>jQuery对象[i]<br>因为通过jQuery获取的对象类似于一个数组</li>
+</ul>
+<h2 id="DOM对象转化成jQuery对象"><a href="#DOM对象转化成jQuery对象" class="headerlink" title="　DOM对象转化成jQuery对象"></a>　DOM对象转化成jQuery对象</h2><ul>
+<li>将DOM获取到的对象变量用小括号包起来，前面加$<br>$(DOM对象)</li>
+</ul>
+<h1 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h1><h2 id="jQuery常用事件"><a href="#jQuery常用事件" class="headerlink" title="　jQuery常用事件"></a>　jQuery常用事件</h2><h3 id="鼠标事件"><a href="#鼠标事件" class="headerlink" title="　　鼠标事件"></a>　　鼠标事件</h3><ul>
+<li>点击事件<ul>
+<li>click</li>
+<li>dblclick  双击</li>
+<li>mousedown</li>
+<li>mouseup  </li>
+</ul>
+</li>
+<li>移动事件<ul>
+<li>mouseover 移入该元素和对应的子元素</li>
+<li>mouseout  移出该元素和对应的子元素</li>
+<li>mouseenter    移入该元素，不对其子元素生效</li>
+<li>mouseleave    移出该元素，不对其子元素生效</li>
+<li>mousemove 鼠标每移动一个像素就会触发一次</li>
+</ul>
+</li>
+<li>组合事件<ul>
+<li>hover<br>mouseenter+mouseleave<br>jQuery1.8版本之后改为mouseover+mouseout</li>
+</ul>
+</li>
+</ul>
+<h3 id="键盘事件"><a href="#键盘事件" class="headerlink" title="　　键盘事件"></a>　　键盘事件</h3><ul>
+<li>keydown</li>
+<li>keyup</li>
+<li>keypress  产生可打印的字符时触发，不包括中文</li>
+</ul>
+<h3 id="表单事件"><a href="#表单事件" class="headerlink" title="　　表单事件"></a>　　表单事件</h3><ul>
+<li>focus 获得焦点</li>
+<li>submit</li>
+<li>blur  失去焦点</li>
+<li>change</li>
+</ul>
+<h2 id="事件绑定与移除"><a href="#事件绑定与移除" class="headerlink" title="　事件绑定与移除"></a>　事件绑定与移除</h2><h3 id="事件绑定"><a href="#事件绑定" class="headerlink" title="　　事件绑定"></a>　　事件绑定</h3><ul>
+<li>直接通过事件名绑定<br><code>$(selector).事件名()</code></li>
+<li>bind()  <ul>
+<li>绑定一个事件：bind(‘事件类型’,function(){});同直接绑定</li>
+<li>绑定多个事件：<br>$(selector).bind({事件类型1:function(){},事件类型2:function(){},…})<br><strong>绑定一个事件：每用一次事件查找一次</strong><br><strong>绑定多个事件：只需要查找一遍元素</strong></li>
+</ul>
+</li>
+<li>one()<br>绑定一次性事件，比如按钮点击后自动不再具有点击效果，写法同bind绑定</li>
+<li>on()<br>类似于bind绑定，比bind多一个参数(selector)，可实现动态更新事件（页面加载完后新增加的元素也可实现此事件方法，而bind无法响应页面加载后新增的元素）  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'ul'</span>).on(<span class="string">'click'</span>,<span class="string">'li'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert($(<span class="keyword">this</span>).text);</div><div class="line">&#125;);                         <span class="comment">//动态绑定</span></div><div class="line">$(<span class="string">'ul li'</span>).bind(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    alert($(<span class="keyword">this</span>).text);    <span class="comment">//静态绑定</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="事件移除"><a href="#事件移除" class="headerlink" title="　　事件移除"></a>　　事件移除</h3><ul>
+<li>unbind()<br>不传参数，则默认移除所有事件<br>unbind([type],[function])<ul>
+<li>一个参数：可以指定移除事件类型</li>
+<li>两个参数：可以指定移除某个事件其中的某个响应方法</li>
+</ul>
+</li>
+<li>off()<br>同on()相对应</li>
+</ul>
+<h3 id="事件的命名空间"><a href="#事件的命名空间" class="headerlink" title="　　事件的命名空间"></a>　　事件的命名空间</h3><ul>
+<li>在bind绑定事件中，在事件类型中，使用事件类型命名来创建同一个事件的多个名字，如click.a,click.b…<br><strong>命名空间后要加引号，如’click.a’,’click.b’</strong></li>
+</ul>
+<h2 id="模拟事件"><a href="#模拟事件" class="headerlink" title="　模拟事件"></a>　模拟事件</h2><ul>
+<li>trigger()<br>自动触发事件，传入参数为事件类型<br>链式写法：<code>$(selector).trigger(&#39;事件类型&#39;)</code></li>
+<li>triggerHandler()<br>同上，区别为：<ul>
+<li>不会执行事件的默认行为，比如表单的功能按钮和链接标签</li>
+<li>只触发jQuery对象集合中的第一个元素的事件处理函数，比如无序列表下的li集合，只触发第一个li</li>
+<li>返回值为undefined，trigger返回jQuery对象，无法继续在其后增加链式操作</li>
+<li>阻止了事件冒泡<br>使用传入事件event参数<br><code>event.stopPropagation()</code>也可以达到阻止事件冒泡功能</li>
+</ul>
+</li>
+</ul>
+<h2 id="event对象"><a href="#event对象" class="headerlink" title="　event对象"></a>　event对象</h2><blockquote>
+<p>event只有事件处理函数能够访问，当事件处理完毕后，event就会自动销毁</p>
+</blockquote>
+<h3 id="event常用属性"><a href="#event常用属性" class="headerlink" title="　　event常用属性"></a>　　event常用属性</h3><ul>
+<li>type</li>
+<li>clientX|clientY<br>窗口可视化区域x和y坐标</li>
+<li>pageX|pageY<br>相对于文档的x和y坐标，y坐标算上滚动条坐标</li>
+<li>offsetX|offsetY<br>相对于事件源的坐标，在哪个标签内就获取这个标签内的x，y坐标</li>
+<li>screenX|screenY<br>屏幕的x，y坐标</li>
+<li>keyCode<br>检测键盘事件相对应的内码</li>
+<li>target<br>返回触发该事件的DOM元素<br>比如标签h、p、div…元素</li>
+</ul>
+<h3 id="event常用方法"><a href="#event常用方法" class="headerlink" title="　　event常用方法"></a>　　event常用方法</h3><ul>
+<li><code>preventDefault()</code><br>阻止默认行为</li>
+<li><code>stopPropagation()</code><br>阻止事件冒泡行为</li>
+</ul>
+<h1 id="jQuery动画"><a href="#jQuery动画" class="headerlink" title="jQuery动画"></a>jQuery动画</h1><ul>
+<li>显示/隐藏<ul>
+<li><code>show()</code>  <code>hide()</code><br>可传入参数：’slow’、’normal’、’fast’，或者毫秒数</li>
+<li><code>toggle()</code><br>一个按钮两种方式切换，再点击可隐藏</li>
+</ul>
+</li>
+<li>淡入/淡出<ul>
+<li><code>fadeIn()</code>    <code>fadeOut()</code><br>不传参数有默认动画，但速度很快</li>
+<li><code>fadeToggle</code><br>同<code>toggle()</code></li>
+</ul>
+</li>
+<li>改变元素高度<ul>
+<li><code>slideUp()</code>高度由大到小<br><code>slideDown()</code>高度由小到大</li>
+<li><code>slideToggle()</code><br>同<code>toggle()</code></li>
+</ul>
+</li>
+<li>自定义动画<ul>
+<li><code>animate(param,speed,easing,callback)</code><br>param：改变css一组样式属性名称和值得集合，只有数值型的属性可执行<br>speed：’slow’、’fast’，或者毫秒数<br>easing：’linear’匀速、’swing’由快到慢<br>  <strong>操作动画的方法：</strong>  <ul>
+<li><code>stop()</code>停止元素正在执行的动画<code>暂停</code></li>
+<li><code>finish()</code>立即结束动画立刻到达动画的终点<code>结束</code></li>
+<li><code>delay()</code>延迟执行动画效果</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="jQuery样式操作"><a href="#jQuery样式操作" class="headerlink" title="jQuery样式操作"></a>jQuery样式操作</h1><h2 id="样式设置与获取"><a href="#样式设置与获取" class="headerlink" title="　样式设置与获取"></a>　样式设置与获取</h2><ul>
+<li>获取样式<code>$(selector).css(属性名称)</code>传一个参数<br>返回的为字符串类型，带有属性自带的单位值</li>
+<li>设置样式<code>$(selector).css({&#39;color&#39;:&#39;red&#39;,&#39;font&#39;:&#39;16px&#39;,...})</code></li>
+</ul>
+<blockquote>
+<p><strong>在jQuery中设置数值类型样式可省略引号与单位,样式名称也可去掉引号，但遇到长单词需改用驼峰写法</strong></p>
+</blockquote>
+<h2 id="通过类名来控制样式"><a href="#通过类名来控制样式" class="headerlink" title="　通过类名来控制样式"></a>　通过类名来控制样式</h2><ul>
+<li><code>addClass(&#39;className&#39;)</code>添加样式，通过类名增加样式<br>多个类名：`addClass(‘className1’ ‘className2’ …)</li>
+<li><code>removeClass()</code>方法同上，移除类名</li>
+<li><code>toggleClass()</code>切换类名</li>
+</ul>
+<h2 id="快速获取和设置样式"><a href="#快速获取和设置样式" class="headerlink" title="　快速获取和设置样式"></a>　快速获取和设置样式</h2><ul>
+<li><code>.width()</code> <code>.height()</code><br>返回number类型，若传参，则为设置宽度和高度</li>
+<li><code>innerWidth()</code> <code>innerHeight()</code><br>设置和获取元素的内宽度和内高度，包含padding，不含margin和border</li>
+<li><code>outWidth()</code> <code>outHeight()</code><br>设置和获取元素的外高度和外宽度，包含padding和border<br>当传入参数为true，返回值包含margin</li>
+<li><code>offset()</code><br>设置或返回一个元素相对于文档的left和right，返回的是left和right的对象集合</li>
+<li><code>position()</code><br>相对于该元素的父元素的left和right</li>
+<li><code>scrollTop()</code> <code>scrollLeft()</code><br>设置于滚动条顶部和左部的偏移  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'html,body'</span>).scrollTop();<span class="comment">//设置,IE+FF为html，chrome为body</span></div><div class="line">$(<span class="built_in">window</span>).scrollTop();<span class="comment">//获取</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="jQuery内容和属性操作"><a href="#jQuery内容和属性操作" class="headerlink" title="jQuery内容和属性操作"></a>jQuery内容和属性操作</h1><ul>
+<li><code>html()</code>类似于原生js中的innerHtml  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">获取和设置元素的内容，包含HTML标签</div><div class="line">将HTML标签和里面的文字以字符串形式完全获取出来</div><div class="line">比如段落内为hello，获取到的返回值为&lt;p&gt;hello&lt;/p&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>传入参数，即改为设置新内容，会覆盖原先的内容</strong></p>
+<ul>
+<li><code>text()</code>类似于原生js里的innerText<br>获取和设置元素内的文本内容，不含html标签，内容为hello的段落，获取到的返回值为hello<br><strong>传入参数，即为设置新内容，会覆盖原先的内容</strong></li>
+<li><code>val()</code>同原生js中的<code>value()</code></li>
+<li><code>attr()</code>元素属性  <ul>
+<li>传入一个参数，获取属性</li>
+<li>两个参数，设置单个属性<code>attr(name,value)</code></li>
+<li>多个参数，设置多个属性</li>
+<li><code>removeAttr()</code>移除属性，传入属性名称即可</li>
+</ul>
+</li>
+<li><code>prop()</code>类似于<code>attr()</code><br>主要作用于select、radio、checkbox，选中则返回true<br><code>removeProp()</code>移除属性</li>
+</ul>
+<h1 id="jQuery对于节点的操作"><a href="#jQuery对于节点的操作" class="headerlink" title="jQuery对于节点的操作"></a>jQuery对于节点的操作</h1><h2 id="创建节点"><a href="#创建节点" class="headerlink" title="　创建节点"></a>　创建节点</h2><ul>
+<li><code>$(selector)</code>通过选择器获取节点</li>
+<li><code>$(element)</code>把dom节点转换成jQuery节点</li>
+<li><code>$(html代码)</code> <code>$(&#39;&lt;p&gt;hello&lt;/p&gt;&#39;)</code></li>
+</ul>
+<h2 id="在元素内部插入节点"><a href="#在元素内部插入节点" class="headerlink" title="　在元素内部插入节点"></a>　在元素内部插入节点</h2><ul>
+<li><code>append()</code> a.append(b) b元素插入到a元素中</li>
+<li><code>appendTo()</code></li>
+<li><code>prepend()</code></li>
+<li><code>prependTo</code></li>
+</ul>
+<h2 id="在元素外部插入节点"><a href="#在元素外部插入节点" class="headerlink" title="　在元素外部插入节点"></a>　在元素外部插入节点</h2><ul>
+<li><code>after()</code> a.after(b) b元素插入到a元素的后面</li>
+<li><code>insetAfter()</code></li>
+<li><code>before()</code></li>
+<li><code>insetBefore()</code></li>
+</ul>
+<h2 id="包裹节点"><a href="#包裹节点" class="headerlink" title="　包裹节点"></a>　包裹节点</h2><ul>
+<li><code>wrap()</code>将所匹配的元素用其他元素包裹起来</li>
+<li><code>unwrap()</code>移除一个元素的父元素</li>
+<li><code>wrapAll()</code>将所有元素用一个标签包裹起来</li>
+<li><code>wrapInner()</code>将匹配的元素的子元素（包含节点和文本）用其他元素包裹</li>
+</ul>
+<h2 id="替换节点"><a href="#替换节点" class="headerlink" title="　替换节点"></a>　替换节点</h2><ul>
+<li><code>a.replaceWith(b)</code>把a元素替换成b元素</li>
+<li><code>a.replaceAll(b)</code>同上反</li>
+</ul>
+<h2 id="克隆节点"><a href="#克隆节点" class="headerlink" title="　克隆节点"></a>　克隆节点</h2><ul>
+<li><code>clone()</code><br>用于复制节点，复制出的节点不带有原有元素的事件，当传入参数为true时，复制元素并复制原有的事件</li>
+</ul>
+<h2 id="删除节点"><a href="#删除节点" class="headerlink" title="　删除节点"></a>　删除节点</h2><ul>
+<li><code>remove()</code></li>
+<li><code>detach()</code>删除节点，保留原有数据和事件，同<code>clone(true)</code></li>
+<li><code>empty()</code>清空节点内的内容，不删除此节点</li>
+</ul>
+<h1 id="jQuery遍历元素"><a href="#jQuery遍历元素" class="headerlink" title="jQuery遍历元素"></a>jQuery遍历元素</h1><h2 id="获取同辈元素"><a href="#获取同辈元素" class="headerlink" title="　　获取同辈元素"></a>　　获取同辈元素</h2><ul>
+<li><code>next()</code>获取紧邻元素后面的元素</li>
+<li><code>nextAll()</code>获取元素后面所有同级元素</li>
+<li><code>prev()</code>紧邻前面一个元素</li>
+<li><code>prevAll()</code>元素前面所有元素</li>
+<li><code>siblings()</code>元素前后所有同级元素</li>
+</ul>
+<h2 id="获取前辈元素"><a href="#获取前辈元素" class="headerlink" title="　　获取前辈元素"></a>　　获取前辈元素</h2><ul>
+<li><code>parent()</code>获取元素的父级元素(从父级开始遍历)</li>
+<li><code>parents()</code>获取元素所有的祖先元素(从父级开始遍历)</li>
+<li><code>closest()</code>参数必传，获取匹配选择器的第一个祖先元素(从自身开始遍历)</li>
+</ul>
+<h2 id="获取子元素"><a href="#获取子元素" class="headerlink" title="　　获取子元素"></a>　　获取子元素</h2><ul>
+<li><code>children()</code>获取一个元素的所有子元素，但是不包含子元素的子元素</li>
+<li><code>find(selector)</code>获取所有匹配元素的子元素</li>
+<li><code>contents()</code>当前所有的子节点（文本节点+注释节点）一般用于获取iframe框架内容</li>
+</ul>
+<h2 id="遍历"><a href="#遍历" class="headerlink" title="　　遍历"></a>　　遍历</h2><ul>
+<li><p><code>each()</code>对jQuery对象进行迭代，为每一个元素执行函数  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">each(function(index,element) &#123;</div><div class="line">  ...</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>index()</code>获取元素的下标位置</p>
+</li>
+<li><code>is()</code>判断当前元素是否符合选择器的条件，必传参数selector，匹配成功则返回true</li>
+</ul>
+<h1 id="jQuery插件封装"><a href="#jQuery插件封装" class="headerlink" title="jQuery插件封装"></a>jQuery插件封装</h1><ul>
+<li><p><code>$.extend()</code></p>
+<ul>
+<li><p>一个参数：用于扩展jQuery类本身，为jQuery类添加新方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">  $.extend(&#123;</div><div class="line">     &apos;functionName1&apos;:function()&#123;</div><div class="line">         ...</div><div class="line">     &#125;,</div><div class="line">     &apos;functionName2&apos;:function()&#123;</div><div class="line">         ...</div><div class="line">     &#125;,</div><div class="line">     ...</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>多个参数：用于合并对象</p>
+<ul>
+<li>浅拷贝：第一个参数可以传入空对象，那么原来的值就不会被后面的对象覆盖<br><code>$.extend(obj1,obj2,obj3...)</code></li>
+<li>深拷贝：第一个参数传入true<br>对象内包含对象，则会进行合并，并不会覆盖值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>$.fn.extend()</code><br>用来扩展$元素的对象的方法</li>
+<li><p>jQuery命名冲突</p>
+<blockquote>
+<p>当另一个js插件库中也有$符号的存在，则会发生名字冲突</p>
+</blockquote>
+<p>  <code>jQuery.noConflict()</code>放弃jQuery对命名的使用权</p>
+<ul>
+<li>将$全部用全称jQuery代替</li>
+<li>用新的变量作为$符号使用<code>var $$=jQuery</code></li>
+<li>使用代码块，在代码块中仍可使用$符号<blockquote>
+<p>插件库命名规范：jQuery.插件名字.版本号.js</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="jQuery-ajax"><a href="#jQuery-ajax" class="headerlink" title="jQuery-ajax"></a>jQuery-ajax</h1><h2 id="ajax简易方法"><a href="#ajax简易方法" class="headerlink" title="　　ajax简易方法"></a>　　ajax简易方法</h2><ul>
+<li><code>$.get(url,data,callback,type)</code><br>dada：需要发送的参数{key:value}<br>callback：指定成功时的回调函数<br>type：指定返回内容的格式（xml，html，script，json，string）  </li>
+<li><code>$(selector).load(url)</code>加载html，不需要回调函数即可加载到所选元素中</li>
+<li><code>$.getScript()</code>加载脚本文件</li>
+<li><code>$.getJSON</code>加载json文件</li>
+<li><code>$.ajax()</code>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">  $.ajax(&#123;</div><div class="line">    &apos;type&apos;:&apos;get&apos;,</div><div class="line">     &apos;url&apos;:&apos;&apos;,</div><div class="line">     async:true,  //默认为true，可不写</div><div class="line">     data:&#123;&#125;,    //发送到服务器的数据</div><div class="line">     dataType: ,   //预期服务器返回的数据类型</div><div class="line">     success:callback,</div><div class="line">     error:callback,</div><div class="line">     ...</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="ajax参数详解"><a href="#ajax参数详解" class="headerlink" title="　　ajax参数详解"></a>　　ajax参数详解</h2><ul>
+<li>type 请求方式，默认为get</li>
+<li>url</li>
+<li>data key:value格式</li>
+<li>dataType 返回的数据类型，如：json，不指定则jQuery自动断定</li>
+<li>cache 是否缓存，默认为true，当dataType为script与jsonp【跨域用途】时cache默认false</li>
+<li>global 是否触发ajax全局事件，默认true</li>
+<li>jsonpCallback 为jsonp请求指定一个回调函数的名称</li>
+<li>context 用于指定<code>$(this)</code>所指向的对象</li>
+<li>success 请求成功时所执行的操作function</li>
+<li>error 失败时，同上</li>
+<li><p>complete function函数，请求完成后执行，不管成败<br>success:function(data,textStatus,xhr)<br>error:function(xhr,textStatus,errormsg)<br>complete:function(xhr,textStatus)  </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">data：请求地址返回的数据</div><div class="line">textStatus：请求状态的文字说明</div><div class="line">xhr：xmlHTTPRequest对象</div></pre></td></tr></table></figure>
+</li>
+<li><p>beforeSend function(xhr)发送请求之前调用</p>
+</li>
+<li>username|password 响应HTTP访问认证请求的用户名和密码</li>
+</ul>
+<h2 id="ajax全局设置"><a href="#ajax全局设置" class="headerlink" title="　　ajax全局设置"></a>　　ajax全局设置</h2><blockquote>
+<p>用于设置全局ajax默认选项（当需要多次使用ajax请求时，有些默认参数是一样的，可以通过全局一次性设置）<br>$.ajaxSetup({同ajax参数})<br>设置后不会发送请求，只是设置，所以<code>$.ajax()</code>还是要写一遍</p>
+</blockquote>
+<ul>
+<li>全局事件：<br><code>$(document).ajaxComplete(function(){});</code><br><code>$(document).ajaxSuccess(function(){});</code><br><code>$(document).ajaxError(function(){});</code><br><code>$(document).ajaxStart(function(){});</code><br><code>$(document).ajaxSend(function(){});</code><br><code>$(document).ajaxStop(function(){});</code><br><strong>function内参数为：event，xhr，options</strong></li>
+</ul>
+<h1 id="序列化数据"><a href="#序列化数据" class="headerlink" title="序列化数据"></a>序列化数据</h1><pre><code>使用序列化方法时表单必须加一个name属性  
+serialize() 序列化表单内容，将表单内容转化为字符串  
+serializeArray() 序列化表单内容，返回数据格式
+</code></pre><h1 id="jQuery-jsonp跨域"><a href="#jQuery-jsonp跨域" class="headerlink" title="jQuery-jsonp跨域"></a>jQuery-jsonp跨域</h1><blockquote>
+<p>同源策略：浏览器不能向不同域的地址提交请求</p>
+</blockquote>
+<h2 id="远程获取数据"><a href="#远程获取数据" class="headerlink" title="　　远程获取数据"></a>　　远程获取数据</h2><ul>
+<li>script的src属性</li>
+<li>img的src属性</li>
+<li>iframe的src属性</li>
+</ul>
+<h2 id="jsonp跨域"><a href="#jsonp跨域" class="headerlink" title="　　jsonp跨域"></a>　　jsonp跨域</h2><ul>
+<li>可以让网页从别的域名（网站）获取资料，只支持get请求<br>设置☞<br>dataType:’jsonp’,<br>jsonpCallback:’自己命名(服务器的function名称，不传参数，服务器会自动生成一个随机名)’</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;首先附上jQuery官网&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;&lt;a href=&quot;http://jquery.com/&quot;&gt;http://jquery.com/&lt;/a&gt;&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;2.0版本开始放弃了对IE7/8及其之前版本的兼容&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;准备工作&quot;&gt;&lt;a href=&quot;#准备工作&quot; class=&quot;headerlink&quot; title=&quot;准备工作&quot;&gt;&lt;/a&gt;准备工作&lt;/h1&gt;&lt;h2 id=&quot;文件引入&quot;&gt;&lt;a href=&quot;#文件引入&quot; class=&quot;headerlink&quot; title=&quot;　文件引入&quot;&gt;&lt;/a&gt;　文件引入&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;必须引入jQuery库文件，引入方法与普通js文件一样&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;jQuery基本语法&quot;&gt;&lt;a href=&quot;#jQuery基本语法&quot; class=&quot;headerlink&quot; title=&quot;　jQuery基本语法&quot;&gt;&lt;/a&gt;　jQuery基本语法&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;单双引号通用&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;$(&amp;#39;selecter&amp;#39;).function(参数)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;$符号代表jQuery,是jQuery的缩写&lt;/li&gt;
+&lt;li&gt;隐式迭代：获取一组标签，不需要遍历循环，即可直接操作&lt;/li&gt;
+&lt;li&gt;链式操作：不需要重复获取标签元素，在一个操作后面直接跟另一条命令&lt;br&gt;&lt;strong&gt;jQuery每一个操作函数返回值均为object，所以才可以使用链式操作&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;文档就绪&quot;&gt;&lt;a href=&quot;#文档就绪&quot; class=&quot;headerlink&quot; title=&quot;文档就绪&quot;&gt;&lt;/a&gt;文档就绪&lt;/h1&gt;&lt;h2 id=&quot;jQuery文档就绪&quot;&gt;&lt;a href=&quot;#jQuery文档就绪&quot; class=&quot;headerlink&quot; title=&quot;　jQuery文档就绪&quot;&gt;&lt;/a&gt;　jQuery文档就绪&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;$(document).ready()&lt;/code&gt;或者简写为：&lt;code&gt;$(function{})&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;与原生JS文档就绪比较&quot;&gt;&lt;a href=&quot;#与原生JS文档就绪比较&quot; class=&quot;headerlink&quot; title=&quot;　与原生JS文档就绪比较&quot;&gt;&lt;/a&gt;　与原生JS文档就绪比较&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;window.onload&lt;/code&gt; vs &lt;code&gt;$(function{})&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;前者必须等网页中所有的元素（包含图片、flash、视频等）全部加载完毕后执行，而后者等所有的DOM文档结构绘制完毕后即刻执行，不需要等待图片、flash等&lt;br&gt;&lt;strong&gt;DOM大标签加载完毕就执行，如p、h、body、div等加载完就执行&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;一个页面只允许存在一个&lt;code&gt;window.onload&lt;/code&gt;，而可以存在多个&lt;code&gt;$(function{})&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;jQuery-选择器&quot;&gt;&lt;a href=&quot;#jQuery-选择器&quot; class=&quot;headerlink&quot; title=&quot;jQuery 选择器&quot;&gt;&lt;/a&gt;jQuery 选择器
+    
+    </summary>
+    
+      <category term="jQuery" scheme="http://www.ityyf.me/categories/jQuery/"/>
+    
+    
+      <category term="web前端" scheme="http://www.ityyf.me/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>user</title>
+    <link href="http://www.ityyf.me/2017/01/06/user/"/>
+    <id>http://www.ityyf.me/2017/01/06/user/</id>
+    <published>2017-01-06T07:59:56.000Z</published>
+    <updated>2017-02-28T08:05:39.340Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="CodeAliyun"><a href="#CodeAliyun" class="headerlink" title="CodeAliyun"></a>CodeAliyun</h2><ul>
+<li>username:wo_xiaofan </li>
+</ul>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a>GitHub</h2><ul>
+<li>username:woxiaofan  </li>
+<li>email:wo_xiaofan165@163.com  </li>
+</ul>
+<h2 id="Gmail"><a href="#Gmail" class="headerlink" title="Gmail"></a>Gmail</h2><ul>
+<li>username:woxiaofan165@gmail.com</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;CodeAliyun&quot;&gt;&lt;a href=&quot;#CodeAliyun&quot; class=&quot;headerlink&quot; title=&quot;CodeAliyun&quot;&gt;&lt;/a&gt;CodeAliyun&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;username:wo_xiaofan &lt;/li&gt;
+&lt;/ul&gt;
+
+    
+    </summary>
+    
+      <category term="用户" scheme="http://www.ityyf.me/categories/%E7%94%A8%E6%88%B7/"/>
+    
+    
+      <category term="个人账号" scheme="http://www.ityyf.me/tags/%E4%B8%AA%E4%BA%BA%E8%B4%A6%E5%8F%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git+nodejs搭建web静态服务器</title>
+    <link href="http://www.ityyf.me/2017/01/06/git+nodejs+web/"/>
+    <id>http://www.ityyf.me/2017/01/06/git+nodejs+web/</id>
+    <published>2017-01-06T06:41:21.000Z</published>
+    <updated>2017-02-28T08:05:39.372Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="搭建web静态服务器"><a href="#搭建web静态服务器" class="headerlink" title="搭建web静态服务器"></a>搭建web静态服务器</h1><h2 id="创建项目根目录（或者从github仓库clone）并创建node项目"><a href="#创建项目根目录（或者从github仓库clone）并创建node项目" class="headerlink" title="创建项目根目录（或者从github仓库clone）并创建node项目"></a>创建项目根目录（或者从github仓库clone）并创建node项目</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p><strong>执行此步骤前提条件为：</strong><br>①有过项目，但是使用环境更改的，比如更换电脑等<br>②没有项目，但是有package.json文件的 </p>
+<pre><code>ps:以上条件不满足者从头老老实实搭建项目结构+安装各种插件（下文）  
+    满足条件的还需要两个js配置文件，请拉倒最下面附录！
+</code></pre><ul>
+<li><p><code>npm init</code>按默认要求敲击enter键</p>
+<pre><code>- name[可修改]  
+- version [可修改]  
+- description[可不写]  
+- entry point[可不写]  
+- text command[暂时不写]  
+- git repository[git仓库地址]  
+- keywords[可不写]  
+- author[可不写]  
+- license[默认]
+</code></pre></li>
+</ul>
+<h3 id="安装express包，属于项目依赖"><a href="#安装express包，属于项目依赖" class="headerlink" title="安装express包，属于项目依赖 "></a>安装express包，属于项目依赖 <a id="more"></a></h3><ul>
+<li><code>npm install express --save</code><br>成功标志：出现node_modules文件夹</li>
+</ul>
+<h3 id="安装gulp包，属于开发依赖"><a href="#安装gulp包，属于开发依赖" class="headerlink" title="安装gulp包，属于开发依赖"></a>安装gulp包，属于开发依赖</h3><ul>
+<li><code>npm install gulp -g</code></li>
+</ul>
+<h3 id="取消默认扫描"><a href="#取消默认扫描" class="headerlink" title="取消默认扫描"></a>取消默认扫描</h3><pre><code>此步骤针对webstorm以及类似的编译器：由于上传文件和检查代码过程中编译器会自动检索node_modules包，因为操作量巨大极可能导致编译器卡死甚至电脑死机现象，此步骤必点！
+</code></pre><ul>
+<li>在编译器中右击node_modules文件夹选择Mark Directory As Exclusion（取消自动扫描） </li>
+</ul>
+<h2 id="创建项目详细结构（从原本项目仓库clone者忽略这步骤）"><a href="#创建项目详细结构（从原本项目仓库clone者忽略这步骤）" class="headerlink" title="创建项目详细结构（从原本项目仓库clone者忽略这步骤）"></a>创建项目详细结构（从原本项目仓库clone者忽略这步骤）</h2><ul>
+<li>新建入口文件 server.js</li>
+<li>新建public/ 文件夹，用来存放静态文件css、js、img等</li>
+<li>新建views/ 文件夹，用来存放html文件</li>
+<li>新建routes/ 文件夹，用来存放路由文件[用来接受请求]</li>
+<li>新建 .gitignore文件[忽略不必要的上传]<ul>
+<li>node_modules/</li>
+<li>.project</li>
+<li>.idea/</li>
+<li>*.exe</li>
+<li>logs/</li>
+<li>.vscode/</li>
+<li>*.log</li>
+<li>*.bak</li>
+<li>…</li>
+</ul>
+</li>
+<li>新建stylus/ 文件夹，用来存放styl文件  </li>
+</ul>
+<h1 id="gulp-基本操作"><a href="#gulp-基本操作" class="headerlink" title="gulp 基本操作"></a>gulp 基本操作</h1><h2 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h2><ul>
+<li>gulp.task[创建一个任务]</li>
+<li>gulp.src[获取要处理的文件或目录-待定匹配模式]</li>
+<li>gulp.dest[处理后的文件输出]</li>
+<li>gulp.watch[动态监听文件更改]</li>
+</ul>
+<h2 id="配置文件gulpfile-js-不可改，特定名称"><a href="#配置文件gulpfile-js-不可改，特定名称" class="headerlink" title="配置文件gulpfile.js[不可改，特定名称]"></a>配置文件gulpfile.js[不可改，特定名称]</h2><ul>
+<li>引入gulp等所需模块或插件</li>
+<li>创建任务</li>
+<li>创建编译stylus 文件/压缩文件等等</li>
+<li>监听文件变更</li>
+</ul>
+<h2 id="安装所需插件"><a href="#安装所需插件" class="headerlink" title="安装所需插件"></a>安装所需插件</h2><ul>
+<li><code>npm install gulp-stylus --save-dev</code>安装stylus自动编译  </li>
+<li><code>npm install gulp-minify-css --save-dev</code>安装css压缩插件 </li>
+<li><code>npm install gulp-uglify --save-dev</code>安装js压缩插件  </li>
+<li><code>npm install gulp-nodemon --save-dev</code>启动node插件，不需要每次手动去启动  </li>
+<li><code>npm install browser-sync --save-dev</code>代理，自动刷新页面</li>
+<li><strong>可能用到的git命令如下</strong><ul>
+<li><code>git rm -r --cached&lt;filename&gt;</code>停止git追踪指定文件夹或文件 </li>
+<li><code>git pull origin master</code>获取远程仓库更新</li>
+<li><code>mkdir&lt;name&gt;</code>创建一个目录  </li>
+<li><code>ls</code>查看当前目录下的文件及其目录</li>
+<li><code>ls -a</code>同上，包含隐藏文件</li>
+<li><code>git init</code></li>
+<li><code>git add .</code></li>
+<li><code>git commit -m &#39;message&#39;</code></li>
+<li><code>git config --global user.email &#39;email&#39;</code></li>
+<li><code>git config --global user.name &#39;name&#39;</code></li>
+<li><code>git config --list</code></li>
+<li><code>git status</code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="Stylus"><a href="#Stylus" class="headerlink" title="Stylus"></a>Stylus</h1><blockquote>
+<p>css预处理框架，使用表达式生成css<br>   另外常用两款框架：<br>   sass 最早最成熟的css预处理语言<br>   less 受sass影响很大且使用css语法，易上手</p>
+</blockquote>
+<h2 id="手动编译"><a href="#手动编译" class="headerlink" title="手动编译"></a>手动编译</h2><ul>
+<li>通过cmd控制台进入到项目文件夹（不想吐槽win系统自带的控制台，推荐使用Git）</li>
+<li>执行命令<br><code>stylus --compress styl所在文件夹目录</code><br>compress：生成压缩版的css文件<br><code>stylus --compress styl所在文件夹目录/ --out css文件夹目录</code><br>输出到另一个css目录文件夹下</li>
+</ul>
+<pre><code>css转换成styl文件：
+stylus --css css所在目录/css文佳全称 styl文件目录/styl文件全称
+ps:若输出到同一目录下的相同名称的styl文件，则不需要styl文件目录/styl文件全称
+</code></pre><h2 id="自动编译"><a href="#自动编译" class="headerlink" title="自动编译"></a>自动编译</h2><blockquote>
+<p>以下步骤当项目静态服务器搭建好后应该已经执行完，不用去管</p>
+</blockquote>
+<ul>
+<li>gulp安装<br><code>cnpm install gulp -g</code><br><code>gulp -v</code>查看是否成功</li>
+<li>配置json文件<br>进入项目根目录，新建package.json文件</li>
+<li>本地安装gulp插件<br><code>cnpm install gulp --save-dev</code><br>在根目录下出现node_modules/文件夹则代表安装成功</li>
+<li>安装gulp-stylus插件<br><code>cnpm install gulp-stylus --save-dev</code></li>
+<li>新建gulpfile.js文件</li>
+</ul>
+<h2 id="Stylus语法"><a href="#Stylus语法" class="headerlink" title="Stylus语法"></a>Stylus语法</h2><blockquote>
+<p>单行注释不会被编译到css中，而多行注释会被自动编译到css中</p>
+</blockquote>
+<ul>
+<li>去除原生css中的{}和:和;<br>使用首行文字+换行缩进的格式，嵌套的标签继续前一级缩进</li>
+<li>&amp;符号:代表父级，h标签下的类名为h缩进后&amp;.类名</li>
+<li>可以使用变量<br>scolor = red<br>以下所有需要使用红色的地方可直接使用scolor作为属性样式的颜色</li>
+<li>@符号：可以计算数值<br><code>height 800px</code><br><code>width (@height/2)</code>有运算符时必须加括号<br>@引用会冒泡向上寻找离@最近的，直到父级为止</li>
+<li>当使用css3兼容性样式时，前缀样式可以用一个方法封装起来  <pre><code>border-radius(val)
+使用时，调用border-radius(10px)
+</code></pre></li>
+<li>迭代(循环遍历)<br>for in      <pre><code>包含边界：1..5 &gt;&gt;&gt; 1 2 3 4 5  
+不包含边界：1...5 &gt;&gt;&gt; 1 2 3 4
+</code></pre></li>
+</ul>
+<pre><code><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> row <span class="keyword">in</span> <span class="number">1</span>..<span class="number">5</span></div><div class="line">    <span class="selector-tag">tr</span>:nth-child(&#123;row&#125;)</div><div class="line">      <span class="attribute">height</span> <span class="number">10px</span>*row</div></pre></td></tr></table></figure>
+</code></pre><ul>
+<li>@import 引入外部文件<br>@import’demo.css’写在.styl文档最顶端<br>@import’demo’不加后缀默认为引入.styl文件</li>
+</ul>
+<pre><code>@font-face 引入字体文件
+
+@font-face
+    font-family myFont(自己取名)
+    src url()
+        url()
+        url()                    
+PS:通常字体文件共4个，全部导入，为了满足不同的浏览器
+-------------------------------------------------
+@media 指定媒体类型
+
+@media
+    all 所有类型
+    screen 电脑屏幕
+    print 打印机
+
+max-width  
+min-width
+[max-]device-width/device-height 设备宽度
+
+@media 关键词：  
+and/only 限定关键词/not  
+
+@media only screen and (min-width:800px){}
+当浏览器屏幕大于800px时所表现的样式，这行代码要写在整体样式后，不然会被覆盖
+-------------------------------------------------
+@keyframes myAnimate(自己取名)
+    0%
+        ...
+    50%
+        ...
+    100%
+        ...
+    0%
+        ...
+</code></pre><hr>
+<hr>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><blockquote>
+<p>若你使用的项目和我不同，为了实现自动编译和自动刷新效果，请在两个js文件里做更改</p>
+</blockquote>
+<p><img src="../../../../image/project.png" alt="别走开-图片加载中"></p>
+<h2 id="gulpfile-js"><a href="#gulpfile-js" class="headerlink" title="gulpfile.js"></a>gulpfile.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Created by Administrator on 2017/01/04.</div><div class="line"> */</div><div class="line"><span class="keyword">var</span> gulp = <span class="built_in">require</span>(<span class="string">'gulp'</span>);</div><div class="line"><span class="keyword">var</span> stylus = <span class="built_in">require</span>(<span class="string">'gulp-stylus'</span>);</div><div class="line"><span class="comment">// var minifycss = require('gulp-minify-css');</span></div><div class="line"><span class="keyword">var</span> uglify = <span class="built_in">require</span>(<span class="string">'gulp-uglify'</span>);</div><div class="line"><span class="keyword">var</span> nodemon = <span class="built_in">require</span>(<span class="string">'gulp-nodemon'</span>);</div><div class="line"><span class="keyword">var</span> browserSync = <span class="built_in">require</span>(<span class="string">'browser-sync'</span>).create();</div><div class="line"><span class="keyword">var</span> reload = browserSync.reload;</div><div class="line"><span class="comment">//编写一个编译stylus任务</span></div><div class="line">gulp.task(<span class="string">'stylus'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="comment">//stylus文件及其所有子目录的文件</span></div><div class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'./stylus/**/*.styl'</span>)</div><div class="line">    <span class="comment">//编译stylus文件</span></div><div class="line">        .pipe(stylus())</div><div class="line">        <span class="comment">//输出stylus编译后的文件</span></div><div class="line">        .pipe(gulp.dest(<span class="string">'./public/css/'</span>))</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'minifycss'</span>,[<span class="string">'stylus'</span>],<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'./public/css/**/*.css'</span>)</div><div class="line">        .pipe(minifycss())</div><div class="line">        .pipe(gulp.dest(<span class="string">'./public/mincss/'</span>))</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'uglify'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> gulp.src(<span class="string">'./public/js/**/*.js'</span>)</div><div class="line">        .pipe(uglify())</div><div class="line">        .pipe(gulp.dest(<span class="string">'./public/minjs/'</span>))</div><div class="line">&#125;);</div><div class="line"><span class="comment">/*不用每次都启动app.js，只需要启动watcher任务即可*/</span></div><div class="line">gulp.task(<span class="string">'nodemon'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">nm</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> flag = <span class="literal">false</span>;</div><div class="line">    <span class="keyword">return</span> nodemon(&#123;</div><div class="line">        <span class="attr">script</span>:<span class="string">'./server.js'</span></div><div class="line">    &#125;).on(<span class="string">'start'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span>(!flag)&#123;</div><div class="line">            nm();</div><div class="line">            flag = <span class="literal">true</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;)</div><div class="line">&#125;);</div><div class="line">gulp.task(<span class="string">'browserSync'</span>,[<span class="string">'nodemon'</span>],<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    browserSync.init(&#123;</div><div class="line">        <span class="attr">proxy</span>:&#123;</div><div class="line">            <span class="attr">target</span>:<span class="string">'http://127.0.0.1:16909'</span></div><div class="line">        &#125;,</div><div class="line">        <span class="attr">files</span>:[<span class="string">'*'</span>],</div><div class="line">        <span class="attr">port</span>:<span class="number">9888</span>,</div><div class="line">        <span class="attr">open</span>:<span class="literal">false</span></div><div class="line">    &#125;)</div><div class="line">&#125;);</div><div class="line"><span class="comment">//动态监听</span></div><div class="line">gulp.task(<span class="string">'watcher'</span>,[<span class="string">'browserSync'</span>,<span class="string">'stylus'</span>],<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    gulp.watch(<span class="string">'./stylus/**/*.styl'</span>,[<span class="string">'stylus'</span>]);</div><div class="line">    gulp.watch(<span class="string">'./public/css/**/*.css'</span>).on(<span class="string">'change'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        reload();</div><div class="line">    &#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="server-js"><a href="#server-js" class="headerlink" title="server.js"></a>server.js</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="comment">//引入express依赖模块，用来启动静态服务器</span></div><div class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>);</div><div class="line"><span class="comment">/*console.log(__dirname);*/</span></div><div class="line"><span class="keyword">var</span> proxy = <span class="built_in">require</span>(<span class="string">'http-proxy-middleware'</span>);</div><div class="line"><span class="comment">//实例化express</span></div><div class="line"><span class="keyword">var</span> app = express();</div><div class="line">app.use(<span class="string">'/api'</span>,proxy(&#123;</div><div class="line">    <span class="attr">target</span>:<span class="string">'http://122.10.30.153:9901'</span>,</div><div class="line">    <span class="attr">pathRewrite</span>:&#123;</div><div class="line">        <span class="string">'^/api'</span>:<span class="string">'/'</span></div><div class="line">    &#125;</div><div class="line">&#125;));</div><div class="line"><span class="comment">//指定访问页面路径</span></div><div class="line">app.use(<span class="string">'/'</span>,express.static(path.join(__dirname,<span class="string">'views'</span>)));</div><div class="line">app.use(<span class="string">'/public'</span>,express.static(path.join(__dirname,<span class="string">'public'</span>)));</div><div class="line"><span class="comment">//指定端口号，建议3000以上,回调函数可以不写</span></div><div class="line">app.listen(<span class="number">16909</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'server run at port 16909'</span>)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">//模块导出</span></div><div class="line"><span class="built_in">module</span>.expotrs = app;</div></pre></td></tr></table></figure>
+<h2 id="package-json"><a href="#package-json" class="headerlink" title="package.json"></a>package.json</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="string">"name"</span>: <span class="string">"h5"</span>,</div><div class="line">  <span class="string">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line">  <span class="string">"description"</span>: <span class="string">""</span>,</div><div class="line">  <span class="string">"main"</span>: <span class="string">"gulpfile.js"</span>,</div><div class="line">  <span class="string">"scripts"</span>: &#123;</div><div class="line">    <span class="string">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span>,</div><div class="line">    <span class="string">"start"</span>: <span class="string">"node server.js"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"author"</span>: <span class="string">"yyf"</span>,</div><div class="line">  <span class="string">"license"</span>: <span class="string">"ISC"</span>,</div><div class="line">  <span class="string">"dependencies"</span>: &#123;</div><div class="line">    <span class="string">"express"</span>: <span class="string">"^4.14.0"</span></div><div class="line">  &#125;,</div><div class="line">  <span class="string">"devDependencies"</span>: &#123;</div><div class="line">    <span class="string">"browser-sync"</span>: <span class="string">"^2.18.6"</span>,</div><div class="line">    <span class="string">"gulp"</span>: <span class="string">"^3.9.1"</span>,</div><div class="line">    <span class="string">"gulp-nodemon"</span>: <span class="string">"^2.2.1"</span>,</div><div class="line">    <span class="string">"gulp-stylus"</span>: <span class="string">"^2.6.0"</span>,</div><div class="line">    <span class="string">"gulp-uglify"</span>: <span class="string">"^2.0.0"</span>,</div><div class="line">    <span class="string">"http-proxy-middleware"</span>: <span class="string">"^0.17.3"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;搭建web静态服务器&quot;&gt;&lt;a href=&quot;#搭建web静态服务器&quot; class=&quot;headerlink&quot; title=&quot;搭建web静态服务器&quot;&gt;&lt;/a&gt;搭建web静态服务器&lt;/h1&gt;&lt;h2 id=&quot;创建项目根目录（或者从github仓库clone）并创建node项目&quot;&gt;&lt;a href=&quot;#创建项目根目录（或者从github仓库clone）并创建node项目&quot; class=&quot;headerlink&quot; title=&quot;创建项目根目录（或者从github仓库clone）并创建node项目&quot;&gt;&lt;/a&gt;创建项目根目录（或者从github仓库clone）并创建node项目&lt;/h2&gt;&lt;h3 id=&quot;初始化&quot;&gt;&lt;a href=&quot;#初始化&quot; class=&quot;headerlink&quot; title=&quot;初始化&quot;&gt;&lt;/a&gt;初始化&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;执行此步骤前提条件为：&lt;/strong&gt;&lt;br&gt;①有过项目，但是使用环境更改的，比如更换电脑等&lt;br&gt;②没有项目，但是有package.json文件的 &lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ps:以上条件不满足者从头老老实实搭建项目结构+安装各种插件（下文）  
+    满足条件的还需要两个js配置文件，请拉倒最下面附录！
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;npm init&lt;/code&gt;按默认要求敲击enter键&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;- name[可修改]  
+- version [可修改]  
+- description[可不写]  
+- entry point[可不写]  
+- text command[暂时不写]  
+- git repository[git仓库地址]  
+- keywords[可不写]  
+- author[可不写]  
+- license[默认]
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;安装express包，属于项目依赖&quot;&gt;&lt;a href=&quot;#安装express包，属于项目依赖&quot; class=&quot;headerlink&quot; title=&quot;安装express包，属于项目依赖 &quot;&gt;&lt;/a&gt;安装express包，属于项目依赖
+    
+    </summary>
+    
+      <category term="Node.js静态环境" scheme="http://www.ityyf.me/categories/Node-js%E9%9D%99%E6%80%81%E7%8E%AF%E5%A2%83/"/>
+    
+    
+      <category term="web前端" scheme="http://www.ityyf.me/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo+github博客搭建简易步骤</title>
+    <link href="http://www.ityyf.me/2017/01/06/hexo+github+blog/"/>
+    <id>http://www.ityyf.me/2017/01/06/hexo+github+blog/</id>
+    <published>2017-01-06T05:14:58.000Z</published>
+    <updated>2017-02-28T08:01:01.218Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote>
+<p>1.首先你得有一个自己的github账户<a href="http://wiki.jikexueyuan.com/project/github-basics/sign-up.html" target="_blank" rel="external">教学点击这里</a><br>2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了</p>
+</blockquote>
+<h1 id="Hexo配置"><a href="#Hexo配置" class="headerlink" title="Hexo配置"></a>Hexo配置</h1><ul>
+<li><code>npm install hexo-cli -g</code> <em>安装工具</em></li>
+<li><code>mkdir dirname</code> <em>创建blog目录(不创建的话默认为source中的_posts文件夹)</em></li>
+<li><code>cd dirname</code> <em>进入目录</em></li>
+<li><code>hexo new &#39;file name&#39;</code> <em>新建md文件</em></li>
+<li><code>hexo init</code> <em>初始化hexo</em></li>
+<li><code>npm install</code> <em>安装依赖</em></li>
+<li><code>npm install hexo-deployer-git –save</code> <em>安装git发布插件</em></li>
+<li>创建github仓库，用户名.github.io</li>
+<li><p>配置 _config.yml，添加如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">    type:</span> git</div><div class="line"><span class="attr">    repo:</span> github地址（ssh地址）</div><div class="line"><span class="attr">    branch:</span> master</div></pre></td></tr></table></figure>
+</li>
+<li><p>hexo g 生成页面</p>
+</li>
+<li>hexo s 启动本地预览服务器</li>
+<li>hexo d 发布到github</li>
+<li>hexo n ‘name’ 新建blog</li>
+<li>访问路径 用户名.github.io</li>
+</ul>
+<h1 id="github二级域名访问页面"><a href="#github二级域名访问页面" class="headerlink" title="github二级域名访问页面"></a>github二级域名访问页面<a id="more"></a></h1><ul>
+<li>修改github项目结构，确保主目录下有一个index.html文件（非必要）</li>
+<li>在github里创建一个名叫gh-pages的特定分支</li>
+<li>直接在浏览器中输入&lt;用户名.github.io/项目文件名[/index.html]&gt;</li>
+</ul>
+<blockquote>
+<p>不过通过github访问，怎么看都不是自己想要的结果，试想，要是有一个属于自己的一个域名，www.域名.com直接访问你的博客，那多cool！</p>
+</blockquote>
+<h1 id="打造博客专属域名"><a href="#打造博客专属域名" class="headerlink" title="打造博客专属域名"></a>打造博客专属域名</h1><hr>
+<p>首先你要有个域名，那么就要去申请域名了，这里我们可以通过<strong><a href="https://wanwang.aliyun.com/" target="_blank" rel="external">万网申请</a></strong>查找你想申请域名，如果可以买，购买就可以了</p>
+<hr>
+<h2 id="域名解析"><a href="#域名解析" class="headerlink" title="　　域名解析"></a>　　域名解析</h2><ul>
+<li>购买域名完成，进入万网的管理控制台<br><img src="../../../../image/yuming01.png" alt="别走开-图片加载中"></li>
+<li>找到你已经购买的域名，点击如上箭头解析，进入如下页面<br><img src="../../../../image/yuming02.png" alt="别走开-图片加载中"></li>
+<li>然后点击添加解析，ip可以选择默认<code>192.30.252.154</code>，当然以防发生变化，你可以ping你的url<br><code>ping www.你的github用户名.github.io</code>在cmd控制台拿到ip值  <ul>
+<li>主机记录www对应www.ityyf.com</li>
+<li>主机记录@对应ityyf.com</li>
+</ul>
+</li>
+</ul>
+<h2 id="域名修改"><a href="#域名修改" class="headerlink" title="　　域名修改"></a>　　域名修改</h2><p><img src="../../../../image/yuming03.png" alt="别走开-图片加载中"></p>
+<blockquote>
+<p>我们通过简易手段DNSpod自动修改工具</p>
+</blockquote>
+<ul>
+<li>注册DNSpod，添加域名，添加记录，如下图设置<br><img src="../../../../image/yuming04.png" alt="别走开-图片加载中"></li>
+<li>在source文件夹里创建CNAME文件，不带任何后缀，里面添加你的域名信息，如：ityyf.com（注意前面不添加http://）</li>
+<li>hexo d发布blog试试效果吧！</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;1.首先你得有一个自己的github账户&lt;a href=&quot;http://wiki.jikexueyuan.com/project/github-basics/sign-up.html&quot;&gt;教学点击这里&lt;/a&gt;&lt;br&gt;2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&quot;Hexo配置&quot;&gt;&lt;a href=&quot;#Hexo配置&quot; class=&quot;headerlink&quot; title=&quot;Hexo配置&quot;&gt;&lt;/a&gt;Hexo配置&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;npm install hexo-cli -g&lt;/code&gt; &lt;em&gt;安装工具&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mkdir dirname&lt;/code&gt; &lt;em&gt;创建blog目录(不创建的话默认为source中的_posts文件夹)&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;cd dirname&lt;/code&gt; &lt;em&gt;进入目录&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hexo new &amp;#39;file name&amp;#39;&lt;/code&gt; &lt;em&gt;新建md文件&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;hexo init&lt;/code&gt; &lt;em&gt;初始化hexo&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm install&lt;/code&gt; &lt;em&gt;安装依赖&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;npm install hexo-deployer-git –save&lt;/code&gt; &lt;em&gt;安装git发布插件&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;创建github仓库，用户名.github.io&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;配置 _config.yml，添加如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight yaml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;deploy:&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    type:&lt;/span&gt; git&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    repo:&lt;/span&gt; github地址（ssh地址）&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;attr&quot;&gt;    branch:&lt;/span&gt; master&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;hexo g 生成页面&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;hexo s 启动本地预览服务器&lt;/li&gt;
+&lt;li&gt;hexo d 发布到github&lt;/li&gt;
+&lt;li&gt;hexo n ‘name’ 新建blog&lt;/li&gt;
+&lt;li&gt;访问路径 用户名.github.io&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;github二级域名访问页面&quot;&gt;&lt;a href=&quot;#github二级域名访问页面&quot; class=&quot;headerlink&quot; title=&quot;github二级域名访问页面&quot;&gt;&lt;/a&gt;github二级域名访问页面
+    
+    </summary>
+    
+      <category term="搭建博客" scheme="http://www.ityyf.me/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="web前端" scheme="http://www.ityyf.me/tags/web%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+</feed>
