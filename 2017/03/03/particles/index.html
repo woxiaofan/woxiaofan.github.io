@@ -84,19 +84,19 @@
 
 
 
-<meta name="description" content="逆水行舟，不进则退">
+<meta name="description" content="如上相册所示，背景效果图分别是经典版、泡泡版和下雪版                                      以下介绍经典粒子版本的Hexo博客嵌入方法                                      最终效果如此篇博客背景动态（跟随鼠标变换）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="particles.js创造页面整体背景效果图">
 <meta property="og:url" content="http://www.ityyf.me/2017/03/03/particles/index.html">
 <meta property="og:site_name" content="︶ㄣ真︵">
-<meta property="og:description" content="逆水行舟，不进则退">
+<meta property="og:description" content="如上相册所示，背景效果图分别是经典版、泡泡版和下雪版                                      以下介绍经典粒子版本的Hexo博客嵌入方法                                      最终效果如此篇博客背景动态（跟随鼠标变换）">
 <meta property="og:image" content="http://www.ityyf.me/image/particles01.jpg">
 <meta property="og:image" content="http://www.ityyf.me/image/particles02.jpg">
 <meta property="og:image" content="http://www.ityyf.me/image/particles03.jpg">
-<meta property="og:updated_time" content="2017-03-03T06:11:54.826Z">
+<meta property="og:updated_time" content="2017-03-03T07:47:33.587Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="particles.js创造页面整体背景效果图">
-<meta name="twitter:description" content="逆水行舟，不进则退">
+<meta name="twitter:description" content="如上相册所示，背景效果图分别是经典版、泡泡版和下雪版                                      以下介绍经典粒子版本的Hexo博客嵌入方法                                      最终效果如此篇博客背景动态（跟随鼠标变换）">
 <meta name="twitter:image" content="http://www.ityyf.me/image/particles01.jpg">
 
 
@@ -359,7 +359,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="http://www.ityyf.me/image/particles01.jpg" rel="gallery_ciztfapej000gyog2iw5rists"
+                 href="http://www.ityyf.me/image/particles01.jpg" rel="gallery_ciztfdgsi000dj8g2a98upkas"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://www.ityyf.me/image/particles01.jpg" itemprop="contentUrl"/>
               </a>
@@ -367,7 +367,7 @@
           
             
               <a class="post-gallery-img fancybox"
-                 href="http://www.ityyf.me/image/particles02.jpg" rel="gallery_ciztfapej000gyog2iw5rists"
+                 href="http://www.ityyf.me/image/particles02.jpg" rel="gallery_ciztfdgsi000dj8g2a98upkas"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://www.ityyf.me/image/particles02.jpg" itemprop="contentUrl"/>
               </a>
@@ -375,7 +375,7 @@
           
             
               <a class="post-gallery-img fancybox"
-                 href="http://www.ityyf.me/image/particles03.jpg" rel="gallery_ciztfapej000gyog2iw5rists"
+                 href="http://www.ityyf.me/image/particles03.jpg" rel="gallery_ciztfdgsi000dj8g2a98upkas"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="http://www.ityyf.me/image/particles03.jpg" itemprop="contentUrl"/>
               </a>
@@ -388,7 +388,39 @@
       
 
       
-        
+        <hr>
+<p><blockquote class="blockquote-center">如上相册所示，背景效果图分别是经典版、泡泡版和下雪版<br>                                      以下介绍经典粒子版本的Hexo博客嵌入方法<br>                                      最终效果如此篇博客背景动态（跟随鼠标变换）</blockquote><a id="more"></a></p>
+<hr>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p><br></p>
+<blockquote>
+<p>说明：这个背景图并不是一个单纯的Gif图，而是用Js根据鼠标的移动而计算出来的一个canvas画布技术</p>
+</blockquote>
+<p>为了简单方便考虑，这里暂且不介绍Js的代码含义，仅仅贴出文件供大家参考和使用。这个需要用到如下两个JS文件<br><strong><a href="http://www.ityyf.me/js/src/particles.js">particles.js</a></strong> 和配置文件 <strong><a href="http://www.ityyf.me/js/src/app.js">app.js</a></strong><br>一个CSS文件<br><strong><a href="http://www.ityyf.me/css/style.css">style.css</a></strong>  </p>
+<h1 id="文件部署"><a href="#文件部署" class="headerlink" title="文件部署"></a>文件部署</h1><p><br></p>
+<p>有了这几个核心文件之后，需要了解一下Hexo页面的生成内部机制原理<br><img src="../../../../../image/hexo_next.png" alt="loading..."><br>如上图所示，hexo的主页面index.html自动生成的源文件为_layout.swig，因此可以理解为主页面的源文件为这个，任何操作在里面修改即可（可根据自己博客的主题来进入响应的原文件夹中寻找文件）<br><img src="../../../../../image/hexo_next0.png" alt="loading..."><br>如上图所示：将以上两个JS文件和一个CSS文件分别放入红色框内的对应位置（严格来说只要是source目录下的任何位置都是ok的，只要你路径引入正确即可）  </p>
+<h1 id="页面写入"><a href="#页面写入" class="headerlink" title="页面写入"></a>页面写入</h1><p><br></p>
+<p>打开刚才的首页原文件_layout.swig，引入两个JS文件和一个CSS源码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/style.css&quot;&gt;</div><div class="line">&lt;script src=&quot;js/src/particles.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script src=&quot;js/src/app.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<p>另外由于这个是通过画布技术写的特效，因此页面上需要一块位置来存放画布画出来的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&quot;particles-js&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p><strong>上述一行代码很重要！页面上必须要有这一个div！</strong>  </p>
+<p>至此，已经部署完毕，<code>hexo g</code> + <code>hexo s</code>后打开<code>http://localhost:4000</code>预览效果吧</p>
+<h1 id="效果完善"><a href="#效果完善" class="headerlink" title="效果完善"></a>效果完善</h1><p><br></p>
+<blockquote>
+<p>通过上述步骤之后你会发现index.html能够看得到效果了，但是还是存在一些很严重的问题，常见问题如下</p>
+</blockquote>
+<h2 id="位置显示有误"><a href="#位置显示有误" class="headerlink" title="位置显示有误"></a>位置显示有误</h2><p>位置情况大致分两种，一种是在页面最上边，一种是在页面最底端，归根结底是由于博客的主题包里面的三种模式造成的影响，不过可以通过对其进行强制定位:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="selector-id">#particles-js</span>&#123;</div><div class="line">  <span class="attribute">position</span>: fixed;</div><div class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</div><div class="line">	<span class="attribute">width</span>:<span class="number">100%</span>;</div><div class="line">	<span class="attribute">height</span>:<span class="number">95%</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="页面布局混乱"><a href="#页面布局混乱" class="headerlink" title="页面布局混乱"></a>页面布局混乱</h2><p>此问题主要是由于style.css的初始化对hexo其他页面造成了冲突所造成的，只需要找到此css文件，将里面的初始化内容注释掉或者直接删除即可</p>
+<h2 id="页面部分模块被遮挡"><a href="#页面部分模块被遮挡" class="headerlink" title="页面部分模块被遮挡"></a>页面部分模块被遮挡</h2><p>由于不同主题层级关系，创建的画布div可能位于你所要点击的div上，因此只需调节下层级关系即可</p>
+<p>层级关系有如下方法调节：  </p>
+<p>1、将画布创建到主内容下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;&#123;&#123; container_class &#125;&#125; &#123;% block page_class %&#125;&#123;% endblock %&#125; &quot;&gt;</div><div class="line">&lt;div id=&quot;particles-js&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>2、通过最原始的源码z-index调节层级</p>
+<h2 id="二级甚至三级页面无效"><a href="#二级甚至三级页面无效" class="headerlink" title="二级甚至三级页面无效"></a>二级甚至三级页面无效</h2><p>打开控制台，会发现js和css文件找不到，那是因为路径的问题</p>
+<p>导航模块需要再退一层，文章需要再退一层</p>
+<p>不同情况路径不同，此博客由于最深的路径为文章页，根据情况，需要退5层，因此将路径改为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;../../../../../css/style.css&quot;&gt;</div><div class="line">&lt;script src=&quot;../../../../../js/src/particles.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;script src=&quot;../../../../../js/src/app.js&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p><strong>这里未列出来的问题可至留言区留言，有空回复</strong></p>
+<p>另外配置文件app.js中的样式，可移步至官方技术文档详解<br><a href="https://github.com/VincentGarreau/particles.js" target="_blank" rel="external">https://github.com/VincentGarreau/particles.js</a></p>
+
       
     </div>
 
@@ -585,7 +617,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#准备工作"><span class="nav-number">1.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件部署"><span class="nav-number">2.</span> <span class="nav-text">文件部署</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#页面写入"><span class="nav-number">3.</span> <span class="nav-text">页面写入</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#效果完善"><span class="nav-number">4.</span> <span class="nav-text">效果完善</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#位置显示有误"><span class="nav-number">4.1.</span> <span class="nav-text">位置显示有误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面布局混乱"><span class="nav-number">4.2.</span> <span class="nav-text">页面布局混乱</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#页面部分模块被遮挡"><span class="nav-number">4.3.</span> <span class="nav-text">页面部分模块被遮挡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二级甚至三级页面无效"><span class="nav-number">4.4.</span> <span class="nav-text">二级甚至三级页面无效</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
