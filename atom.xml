@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.ityyf.me/"/>
-  <updated>2017-03-03T04:14:39.583Z</updated>
+  <updated>2017-03-03T06:05:23.752Z</updated>
   <id>http://www.ityyf.me/</id>
   
   <author>
@@ -16,16 +16,20 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>particles</title>
+    <title>particles.js创造页面整体背景效果图</title>
     <link href="http://www.ityyf.me/2017/03/03/particles/"/>
     <id>http://www.ityyf.me/2017/03/03/particles/</id>
     <published>2017-03-03T04:14:39.000Z</published>
-    <updated>2017-03-03T04:14:39.583Z</updated>
+    <updated>2017-03-03T06:05:23.752Z</updated>
     
     <summary type="html">
     
     </summary>
     
+      <category term="Hexo博客" scheme="http://www.ityyf.me/categories/Hexo%E5%8D%9A%E5%AE%A2/"/>
+    
+    
+      <category term="web前端" scheme="http://www.ityyf.me/tags/web%E5%89%8D%E7%AB%AF/"/>
     
   </entry>
   
@@ -1305,7 +1309,7 @@ and/only 限定关键词/not
     <link href="http://www.ityyf.me/2017/01/06/hexo+github+blog/"/>
     <id>http://www.ityyf.me/2017/01/06/hexo+github+blog/</id>
     <published>2017-01-06T05:14:58.000Z</published>
-    <updated>2017-02-28T08:01:01.218Z</updated>
+    <updated>2017-03-03T05:52:46.833Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>1.首先你得有一个自己的github账户<a href="http://wiki.jikexueyuan.com/project/github-basics/sign-up.html" target="_blank" rel="external">教学点击这里</a><br>2.其次你要拥有git和nodejs的环境配置，这里就不详细介绍了</p>
@@ -1388,7 +1392,7 @@ and/only 限定关键词/not
     
     </summary>
     
-      <category term="搭建博客" scheme="http://www.ityyf.me/categories/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/"/>
+      <category term="Hexo博客" scheme="http://www.ityyf.me/categories/Hexo%E5%8D%9A%E5%AE%A2/"/>
     
     
       <category term="web前端" scheme="http://www.ityyf.me/tags/web%E5%89%8D%E7%AB%AF/"/>
