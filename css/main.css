@@ -868,9 +868,7 @@ pre .javascript .function {
 .back-to-top.back-to-top-on {
   bottom: 40px;
 }
-.header {
-  background: url("../image/bg.png");
-}
+
 .header-inner {
   position: relative;
 }
