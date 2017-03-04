@@ -988,6 +988,7 @@ pre .javascript .function {
 .menu .menu-item a:hover,
 .menu-item-active a {
   border-bottom-color: #222;
+  background: none !important;
 }
 .menu .menu-item .fa {
   margin-right: 5px;
@@ -1548,7 +1549,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff031a;
+  background: #623983;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2533,7 +2534,9 @@ body {
     text-align: justify;
   }
 }
-
+body {
+  background: url("/images/bg.jpg") fixed;
+}
 .content-wrap {
   background-color: transparent;
 }
