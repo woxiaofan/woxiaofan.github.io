@@ -868,7 +868,6 @@ pre .javascript .function {
 .back-to-top.back-to-top-on {
   bottom: 40px;
 }
-
 .header-inner {
   position: relative;
 }
@@ -1549,7 +1548,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ecaa59;
+  background: #ff031a;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2545,4 +2544,8 @@ body {
 }
 .sidebar {
   background-color: transparent;
+}
+.time_updated {
+  font-weight: bold;
+  text-align: center;
 }
