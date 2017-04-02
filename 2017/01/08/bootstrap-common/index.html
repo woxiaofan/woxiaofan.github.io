@@ -1,0 +1,1227 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web前端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="文档结构
+需要使用HTML5文档结构 &amp;lt;!DocType html&amp;gt;
+移动设备优先    需要在头部增加&amp;lt;meta&amp;gt;标签
+
+1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0&quot;/&amp;gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BootStrap框架常用语法">
+<meta property="og:url" content="http://www.ityyf.me/2017/01/08/bootstrap-common/index.html">
+<meta property="og:site_name" content="︶ㄣ真︵">
+<meta property="og:description" content="文档结构
+需要使用HTML5文档结构 &amp;lt;!DocType html&amp;gt;
+移动设备优先    需要在头部增加&amp;lt;meta&amp;gt;标签
+
+1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0&quot;/&amp;gt;">
+<meta property="og:updated_time" content="2017-03-31T12:30:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BootStrap框架常用语法">
+<meta name="twitter:description" content="文档结构
+需要使用HTML5文档结构 &amp;lt;!DocType html&amp;gt;
+移动设备优先    需要在头部增加&amp;lt;meta&amp;gt;标签
+
+1&amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0&quot;/&amp;gt;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6391963168293258000,
+      author: '颜氏大人'
+    }
+  };
+</script>
+
+  <title> BootStrap框架常用语法 | ︶ㄣ真︵ </title>
+  <link rel="stylesheet" type="text/css" href="../../../../css/style.css">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?99b8c5645a21a94e9ea5ae3c4eaf0b42";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div id="particles-js"></div>
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">︶ㄣ真︵</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">爱生活，爱前端</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                BootStrap框架常用语法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-01-08T21:09:54+08:00" content="2017-01-08">
+              2017-01-08
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/bootstrap/" itemprop="url" rel="index">
+                    <span itemprop="name">bootstrap</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/01/08/bootstrap-common/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/08/bootstrap-common/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-eye"> 阅读量</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="文档结构"><a href="#文档结构" class="headerlink" title="文档结构"></a>文档结构</h1><ul>
+<li>需要使用HTML5文档结构 <code>&lt;!DocType html&gt;</code></li>
+<li>移动设备优先    需要在头部增加<code>&lt;meta&gt;</code>标签</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1, maximum-scale=1,initial-scale=1.0"</span>/&gt;</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li><p>引入BootStrap</p>
+<ul>
+<li>引入css，当有自己的css文档，应引入bootstrap.css后再引入自己编写额css文件</li>
+<li>引入jQuery.js再引入bootstrap.js</li>
+<li><p>若要兼容IE浏览器，再引入两个js文件，使用IE的条件注释</p>
+<pre><code>&lt;!--[if lt IE 9]&gt;&lt;script&gt;...&lt;/script&gt;&lt;script&gt;...&lt;/script&gt;&lt;![endif]--&gt;  
+[两个js文件自己google]
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap表单样式"><a href="#bootstrap表单样式" class="headerlink" title="bootstrap表单样式"></a>bootstrap表单样式</h1><pre><code>创建表单步骤：
+1.创建form标签并添加role=&quot;form&quot;(语义化，给浏览器和搜索引擎看)
+2.控制分组，把标签和控件放在一个class为formgroup的div中
+3.给表单控件(input,textarea,select)添加类名form-control
+</code></pre><h2 id="内联表单"><a href="#内联表单" class="headerlink" title="内联表单"></a>内联表单</h2><ul>
+<li>给form添加类名form-inline</li>
+</ul>
+<h2 id="水平表单"><a href="#水平表单" class="headerlink" title="水平表单"></a>水平表单</h2><ul>
+<li>给form添加类名form-horizontal</li>
+<li>给标签label添加类名control-label</li>
+<li>配合bootstrap网格系统加入类名col-sm-1</li>
+</ul>
+<h2 id="其它表单控件"><a href="#其它表单控件" class="headerlink" title="其它表单控件"></a>其它表单控件</h2><ul>
+<li>form-control-static：静态表单控件，添加标签和类名，不必用input特定标签</li>
+<li>help-block：表单提示，添加标签和类名（同上）</li>
+<li>提示图标：glyphicon glyphicon-ok（参照API文档） form-control-feedback</li>
+<li><p>按钮：在使用其它类名前均加上基础类名btn</p>
+<pre><code>基础类名：btn
+默认按钮样式：btn-default
+原始按钮样式：btn-primary
+成功按钮样式：btn-success
+链接式按钮：btn-link
+-----------------------
+设置按钮大小
+超大：btn-lg
+默认大小：btn-md
+小号：btn-xs
+btn-block：块级按钮，宽度取决于它父级的宽度的100%
+-----------------------
+设置按钮状态
+激活：active
+禁用：disable
+</code></pre></li>
+</ul>
+<h1 id="bootstrap图片样式"><a href="#bootstrap图片样式" class="headerlink" title="bootstrap图片样式"></a>bootstrap图片样式</h1><h2 id="响应式图片"><a href="#响应式图片" class="headerlink" title="响应式图片"></a>响应式图片</h2><ul>
+<li>img-responsive（max-width:100%）</li>
+</ul>
+<h2 id="圆角图片"><a href="#圆角图片" class="headerlink" title="圆角图片"></a>圆角图片</h2><ul>
+<li>img-rounded</li>
+<li>img-circle 圆形</li>
+</ul>
+<h2 id="缩略图"><a href="#缩略图" class="headerlink" title="缩略图"></a>缩略图</h2><ul>
+<li>img-thumbnail：添加一个内边距padding和边框</li>
+</ul>
+<h1 id="bootstrap辅助类"><a href="#bootstrap辅助类" class="headerlink" title="bootstrap辅助类"></a>bootstrap辅助类</h1><ul>
+<li>左浮动：pull-left</li>
+<li>右浮动：pull-right</li>
+<li>块级并居中：center-block 需要设置宽度，不能设浮动</li>
+<li>强制元素显示/隐藏：show/hide</li>
+<li>隐藏文字：text-hide</li>
+</ul>
+<h1 id="bootstrap表格样式"><a href="#bootstrap表格样式" class="headerlink" title="bootstrap表格样式"></a>bootstrap表格样式</h1><ul>
+<li><p>基础类名：table</p>
+<pre><code>table-striped：斑马线表格
+table-bordered：带边框表格（给td加边框）
+table-hover：鼠标悬停高亮效果
+table-condensed：紧凑型表格（减少单元格padding值）
+table-responsive：响应式表格
+</code></pre></li>
+</ul>
+<h1 id="bootstrap网格系统"><a href="#bootstrap网格系统" class="headerlink" title="bootstrap网格系统"></a>bootstrap网格系统</h1><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ul>
+<li>将容器平分为12份（12列）<br>结合媒体查询做出响应式布局效果</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><ul>
+<li><p>定义一个.row的容器作为行<br>定义一个.col的容器作为列<br>只有col才能作为row的直接子元素</p>
+<pre><code>            屏幕   屏幕尺寸
+.col-lg-*   超大   &gt;1200px
+.col-md-*   中屏   &gt;992px
+.col-sm-*   小屏   &gt;768px 
+.col-xs-*   超小   &lt;768px
+
+*代表1~12，每一个所占空间大小
+</code></pre></li>
+</ul>
+<h2 id="列偏移-amp-列排序"><a href="#列偏移-amp-列排序" class="headerlink" title="列偏移&amp;列排序"></a>列偏移&amp;列排序</h2><ul>
+<li>列偏移：不希望两列靠在一起，使用类名.col-*-offset-*</li>
+<li><p>列排序：设置网格的排列顺序</p>
+<ul>
+<li>.col-*-push-* 往右排</li>
+<li><p>.col-*-pull-* 往左排</p>
+<pre><code>通俗点就是往左移动和往右移动几个网格空间大小
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap下拉菜单"><a href="#bootstrap下拉菜单" class="headerlink" title="bootstrap下拉菜单"></a>bootstrap下拉菜单</h1><ul>
+<li>创建一个类名为dropdown的div容器，用它来包裹整个下拉菜单</li>
+<li><p>在dropdown容器内添加一个按钮button，作为父菜单</p>
+<pre><code>定义类名为dropdown-toggle和自定义属性data-toggle=&quot;dropdown&quot;
+</code></pre></li>
+<li><p>添加按钮里的小三角</p>
+<pre><code>button添加类名为caret的span标签
+</code></pre></li>
+<li><p>创建下拉菜单</p>
+<pre><code>添加一个ul无序列表，定义类名为dropdown-menu
+</code></pre></li>
+<li><p>菜单分割线</p>
+<pre><code>添加一个空列表项li，类名为divider
+</code></pre></li>
+</ul>
+<h1 id="bootstrap按钮组"><a href="#bootstrap按钮组" class="headerlink" title="bootstrap按钮组"></a>bootstrap按钮组</h1><pre><code>将几个按钮放入一个类名为btn-group的div中
+btn-group-vertical ☞ 垂直按钮组
+按钮组大 ☞ 给组别加类名btn-group-lg|md|sm|xs
+</code></pre><ul>
+<li><p>嵌套按钮组</p>
+<pre><code>在按钮组里面嵌套下拉列表
+</code></pre><ul>
+<li>在btn-group里面嵌套一个btn-group，将下拉菜单的父菜单按钮放置在嵌套的btn-group里</li>
+<li>给父菜单按钮添加类名dropdown-toggle和自定义属性data-toggle=”dropdown”</li>
+<li>增加小三角图标<code>&lt;span class=&#39;caret&#39;&gt;&lt;/span&gt;</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="bootstrap导航"><a href="#bootstrap导航" class="headerlink" title="bootstrap导航"></a>bootstrap导航</h1><ul>
+<li>添加无序列表，用来作为导航</li>
+<li><p>给列表添加类名 .nav ☞ 基础类名</p>
+<pre><code>nav-tabs ☞ 表格式导航
+nav-pills ☞ 鼓囊式导航
+</code></pre></li>
+<li><p>给导航菜单项添加样式</p>
+<pre><code>active ☞ 当前选中项
+disabled ☞ 禁用状态  
+</code></pre></li>
+</ul>
+<pre><code>☞ 垂直式导航：给导航添加类名nav-stacked
+    一般用于鼓囊式导航
+
+☞ 导航二级菜单：在导航里添加下拉列表
+    1. 给父级菜单添加类名dropdown
+    2. 在此列表项里添加一个二级菜单列表项 .dropdown-menu
+    3. 给此列表里面的a标签添加类名dropdown-toggle和自定义属性data-toggle=&quot;dropdown&quot;
+
+☞ tab标签页导航（选项卡功能）
+    1. 添加一个表格式导航
+    2. 给导航里面的a标签添加属性data-toggle=&quot;tab&quot;的锚点链接地址
+    3. 添加一个tab-content的div，在里面包含每一个要切换的tab标签页
+    4. 给每一个标签页添加类名tab-pane和fade
+    5. 默认显示项
+        - 给导航列表项添加类名active
+        - 给默认显示标签页添加类名active和in
+
+☞ 导航条
+    导航条头部里面可以放置导航，表单等
+    1. 添加类名为navbar的div，用来制作导航条
+        navbar-default ☞ 默认
+        navbar-inverse ☞ 反色
+    2. 在navbar里面添加页面标题
+        添加一个类名为navbar-head的div，包含navbar-brand的a标签
+    3. 在navbar里添加导航
+        在普通导航基础上添加类名navbar-nav
+    4. 导航里添加表单（搜索框）
+        添加类名navbar-form
+        PS：将搜索框和按钮用类名为input-group的div包起来，将搜索按钮放入类名为input-group-btn的span中，可实现搜索框和按钮连在一起的视觉效果
+    5. 导航条里的浮动
+        navbar-left ☞ 左浮动
+        navbar-right ☞ 右浮动
+    6. 导航条里面单独的按钮和链接
+        按钮 ☞ navbar-btn
+        链接 ☞ navbar-link和navbar-text
+        普通文字 ☞ navbar-text
+    7. 固定导航条
+        navbar-fixed-top|navbar-fixed-bottom
+
+☞ 响应式导航条
+    1. 将nav导航用一个类名为collapse和navbar-collapse的div包起来
+    2. 在navbar-header里添加类名为navbar-toggle和自定义属性为data-toggle=&quot;collapse&quot;与data-target=&quot;#myNav（自己取名）&quot;的按钮，在按标签里再加入汉堡按钮
+        汉堡按钮：三个span标签，每个类名为icon-bar
+</code></pre><h1 id="bootstrap标签-徽章"><a href="#bootstrap标签-徽章" class="headerlink" title="bootstrap标签/徽章"></a>bootstrap标签/徽章</h1><ul>
+<li><p>通过span标签，添加类名label ☞ 基础类名</p>
+<pre><code>label-default
+label-primary
+label-success
+...
+</code></pre></li>
+<li>通过span标签，添加类名bodge</li>
+</ul>
+<h1 id="bootstrap内置组件"><a href="#bootstrap内置组件" class="headerlink" title="bootstrap内置组件"></a>bootstrap内置组件</h1><h2 id="缩略图-1"><a href="#缩略图-1" class="headerlink" title="缩略图"></a>缩略图</h2><ul>
+<li>使用网格系统实现</li>
+</ul>
+<h2 id="警示框"><a href="#警示框" class="headerlink" title="警示框"></a>警示框</h2><pre><code>若在警告框里的文字加链接，则会覆盖原有警示框颜色，应该在a标签里加类名alert-link
+</code></pre><ul>
+<li>给警示框加类名alert-dismissable</li>
+<li>给警示框加类名为close的button标签</li>
+<li>按钮上加自定义属性data-dismiss=”alert”</li>
+</ul>
+<h2 id="进度条"><a href="#进度条" class="headerlink" title="进度条"></a>进度条</h2><ul>
+<li><p>外层div用来写灰色背景，类名progress</p>
+<pre><code>加类名progress-striped为条纹进度条
+再加active类名为动态进度条
+</code></pre></li>
+<li><p>里层div显示进度，类名progress-bar ☞ 基础类名</p>
+<pre><code>progress-bar-success
+...
+</code></pre></li>
+<li>给progress-bar加行内样式width=百分比</li>
+</ul>
+<h1 id="bootstrap多媒体对象"><a href="#bootstrap多媒体对象" class="headerlink" title="bootstrap多媒体对象"></a>bootstrap多媒体对象</h1><ul>
+<li>加一个类名为media的div容器</li>
+<li>在media的div中加一个类名为pull-left的a标签</li>
+<li>在media的div中添加媒体描述，使用类名为media-body的div</li>
+<li>给媒体body中的标题加media-heading类名</li>
+</ul>
+<pre><code>要放置多个媒体列表，则在所有列表外套一个类名为media-list的div
+在media-dody中再写入media的div则为媒体嵌套
+</code></pre><h1 id="bootstrap列表组"><a href="#bootstrap列表组" class="headerlink" title="bootstrap列表组"></a>bootstrap列表组</h1><ul>
+<li><p>基础列表组</p>
+<pre><code>给无序列表或div加类名list-group，给li列表项加类名list-group-item
+</code></pre></li>
+<li>在列表组里加徽章，bodge，自动的右浮动</li>
+<li><p>自定义列表</p>
+<pre><code>li添加标题元素类名为list-group-item-heading放置标题和h标签
+再加入类名为list-group-item-text的p标签来放内容
+</code></pre></li>
+</ul>
+<h1 id="bootstrap面板"><a href="#bootstrap面板" class="headerlink" title="bootstrap面板"></a>bootstrap面板</h1><h2 id="基础面板"><a href="#基础面板" class="headerlink" title="基础面板"></a>基础面板</h2><ul>
+<li>添加类名为panel的div容器，其中panel为基础类名</li>
+<li>在panel里添加类名为panel-heading的div，在其中添加类名为panel-title的标题h1~h6</li>
+<li>在panel里添加一个类名为panel-body的div放主内容，表格，表单等</li>
+<li>在panel-body后添加类名为panel-footer的div，在其中添加普通文字</li>
+</ul>
+<hr>
+<h1 id="bootstrap插件"><a href="#bootstrap插件" class="headerlink" title="bootstrap插件"></a>bootstrap插件</h1><blockquote>
+<p><strong>以下插件若通过js调用的话，均不必添加任何自定义属性</strong></p>
+</blockquote>
+<h2 id="模态弹出框"><a href="#模态弹出框" class="headerlink" title="模态弹出框"></a>模态弹出框</h2><blockquote>
+<p>通俗点就是alert弹出框，只不过样式花哨点</p>
+</blockquote>
+<h3 id="结构分析"><a href="#结构分析" class="headerlink" title="结构分析"></a>结构分析</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.modal</div><div class="line">    .modal-dialog</div><div class="line">        .modal-content</div><div class="line">            .modal-header</div><div class="line">            .modal-body</div><div class="line">            .modal-footer</div></pre></td></tr></table></figure>
+<blockquote>
+<p>模态框默认为隐藏状态</p>
+</blockquote>
+<h3 id="触发方式"><a href="#触发方式" class="headerlink" title="触发方式"></a>触发方式</h3><ul>
+<li>给触发元素（按钮）添加属性data-toggle=”modal”和data-target=”#myModal（自己取名）”</li>
+<li>a标签加href=”#myModal”和data-toggle=”modal”</li>
+<li><p>js触发</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'#myModal'</span>).modal();</div></pre></td></tr></table></figure>
+<pre><code>给模态框添加动画效果：在modal类名上的div中再增加fade类
+当data-backdrop=&quot;static&quot;时，点击modal之外的地方不会使其消失
+</code></pre></li>
+<li><p>其他参数</p>
+<pre><code>通过标签属性和js参数传递，通过js，则去掉data-*属性，只传入后面的名称$(&apos;#myModal&apos;).modal();只传入modal括号内就好
+</code></pre><ul>
+<li>data-backdrop ☞ true|false ☞ 弹出框是否有大背景，默认true</li>
+<li>data-keyboard ☞ true|false ☞ 按下Esc键是否可以关闭模态框<br><strong>需要同时设置属性tabindex=”-1”</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="滚动监听"><a href="#滚动监听" class="headerlink" title="滚动监听"></a>滚动监听</h2><ul>
+<li>创建一个导航，添加id属性</li>
+<li>给导航中的li中的a标签添加href值对应到每一个模块</li>
+<li><p>给body添加属性data-spy=”scroll”和data-target=”#myNavbar（自己取名）”</p>
+<pre><code>固定定位：在需要固定的元素加属性data-spy=&quot;affix&quot;和data-offset-top=&quot;数值&quot;
+</code></pre></li>
+</ul>
+<h2 id="提示框"><a href="#提示框" class="headerlink" title="提示框"></a>提示框</h2><ul>
+<li>给需要提示的标签添加属性data-toggle=”tooltip”，title=”提示”</li>
+<li><p>通过js调用提示框插件  </p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tooltip();</div></pre></td></tr></table></figure>
+</li>
+<li><p>控制提示框的方向：添加属性data-placement=”top|bottom|left|right”</p>
+</li>
+</ul>
+<h2 id="弹出框"><a href="#弹出框" class="headerlink" title="弹出框"></a>弹出框</h2><ul>
+<li>给需要弹出框的元素加属性data-toggle=”popover”和data-content=”弹出框内容”，title=”标题内容”</li>
+</ul>
+<h2 id="警示框-1"><a href="#警示框-1" class="headerlink" title="警示框"></a>警示框</h2><ul>
+<li>创建一个警示框alert</li>
+<li>在其中加入关闭按钮</li>
+<li>用警示框外的按钮来关闭它<ul>
+<li>在外部元素添加属性data-dismiss=”alert”和data-target=”#自己取名”</li>
+</ul>
+</li>
+</ul>
+<h2 id="按钮"><a href="#按钮" class="headerlink" title="按钮"></a>按钮</h2><ul>
+<li>模拟单选按钮<ul>
+<li>在btn-group中添加data-toggle=”buttons”</li>
+</ul>
+</li>
+<li>模拟复选框<ul>
+<li>同上，把input的type类型换成checkbox即可</li>
+</ul>
+</li>
+<li><p>按钮状态切换</p>
+<ul>
+<li>给button添加属性data-toggle=”button”</li>
+<li>通过js调用  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'selector'</span>).button(<span class="string">'toggle'</span>);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>加载状态按钮</p>
+<pre><code>当点击时，按钮状态变为加载中，文本变成data-toggle-text的内容
+</code></pre>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$(<span class="string">'selector'</span>).button(<span class="string">'toggle'</span>);</div><div class="line">$(<span class="string">'selector'</span>).button(<span class="string">'reset'</span>);<span class="comment">//写入setTimeout函数中去</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="手风琴插件使用"><a href="#手风琴插件使用" class="headerlink" title="手风琴插件使用"></a>手风琴插件使用</h2><ul>
+<li>添加一个类名为panel-group的div作为面板组的内容</li>
+<li>在面板组里面添加面板，并且为面板定义头部和主体内容</li>
+<li>在panel-title里添加一个a标签，加属性data-toggle=”collapse”和data-parent=”#面板组id”，href=”#面板内容id”</li>
+<li>将panel-body用类为panel-collapse和collapse的div包起来，并设置id</li>
+<li>给指定面板加类名in，则为默认展开状态</li>
+</ul>
+<h2 id="轮播图插件使用"><a href="#轮播图插件使用" class="headerlink" title="轮播图插件使用"></a>轮播图插件使用</h2><ul>
+<li>添加类名为carousel和slide的div，作为轮播图容器，设置id</li>
+<li>添加计数器，默认样式为圆点，可用无序列表实现，为其添加类名carousel-indicators，为每个li加属性data-target=”#容器id”和data-slide-to=”0~n”，对应每一张图</li>
+<li>添加一个类名为carousel-inner的div容器，用来存放图片，每张图放在类名为item的div中</li>
+<li>给对应的item项和对应的圆点加active为默认显示的状态</li>
+<li>添加两个类名为carousel-control的a链接，分别加类名left|right，在其中加属性data-slide=”prev”或next，并设置href=”#容器id”</li>
+<li><p>给carousel加data-ride=”carousel”使其自动轮播<br>data-interval=”毫秒数” ☞ 控制轮播图自动轮播切换间隔时间<br>data-wrap=”true|false” ☞ 是否循环轮播</p>
+<pre><code>js控制轮播：
+$(&apos;selector&apos;).carousel();参数同上一条的data属性
+$(&apos;selector).carousel(&apos;pause|prev|next&apos;);暂停|上一张|下一张
+
+轮播事件：
+$(&apos;selector&apos;).on({
+    &apos;slide.bs.carousel&apos;:function(){
+        ...     切换前事件
+    },
+    &apos;slid.bs.carousel&apos;:function(){
+        ...     切换后事件
+    }
+    })
+</code></pre></li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web前端/" rel="tag">#web前端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/06/jQuery-common/" rel="next" title="jQuery常用语法">
+                <i class="fa fa-chevron-left"></i> jQuery常用语法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/16/music/" rel="prev" title="百听不厌的经典歌曲">
+                百听不厌的经典歌曲 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/01/08/bootstrap-common/"
+           data-title="BootStrap框架常用语法" data-url="http://www.ityyf.me/2017/01/08/bootstrap-common/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+  <div class="busuanzi">
+    
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 访客量</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>次</span>
+  
+
+  
+  
+</div>
+
+
+
+    
+  </div>
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Ronnie Fan" />
+          <p class="site-author-name" itemprop="name">Ronnie Fan</p>
+          <p class="site-description motion-element" itemprop="description">逆水行舟，不进则退</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/woxiaofan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/13750846797" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文档结构"><span class="nav-number">1.</span> <span class="nav-text">文档结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap表单样式"><span class="nav-number">2.</span> <span class="nav-text">bootstrap表单样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#内联表单"><span class="nav-number">2.1.</span> <span class="nav-text">内联表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#水平表单"><span class="nav-number">2.2.</span> <span class="nav-text">水平表单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它表单控件"><span class="nav-number">2.3.</span> <span class="nav-text">其它表单控件</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap图片样式"><span class="nav-number">3.</span> <span class="nav-text">bootstrap图片样式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#响应式图片"><span class="nav-number">3.1.</span> <span class="nav-text">响应式图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#圆角图片"><span class="nav-number">3.2.</span> <span class="nav-text">圆角图片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略图"><span class="nav-number">3.3.</span> <span class="nav-text">缩略图</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap辅助类"><span class="nav-number">4.</span> <span class="nav-text">bootstrap辅助类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap表格样式"><span class="nav-number">5.</span> <span class="nav-text">bootstrap表格样式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap网格系统"><span class="nav-number">6.</span> <span class="nav-text">bootstrap网格系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">6.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用法"><span class="nav-number">6.2.</span> <span class="nav-text">用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列偏移-amp-列排序"><span class="nav-number">6.3.</span> <span class="nav-text">列偏移&列排序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap下拉菜单"><span class="nav-number">7.</span> <span class="nav-text">bootstrap下拉菜单</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap按钮组"><span class="nav-number">8.</span> <span class="nav-text">bootstrap按钮组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap导航"><span class="nav-number">9.</span> <span class="nav-text">bootstrap导航</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap标签-徽章"><span class="nav-number">10.</span> <span class="nav-text">bootstrap标签/徽章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap内置组件"><span class="nav-number">11.</span> <span class="nav-text">bootstrap内置组件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#缩略图-1"><span class="nav-number">11.1.</span> <span class="nav-text">缩略图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#警示框"><span class="nav-number">11.2.</span> <span class="nav-text">警示框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进度条"><span class="nav-number">11.3.</span> <span class="nav-text">进度条</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap多媒体对象"><span class="nav-number">12.</span> <span class="nav-text">bootstrap多媒体对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap列表组"><span class="nav-number">13.</span> <span class="nav-text">bootstrap列表组</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap面板"><span class="nav-number">14.</span> <span class="nav-text">bootstrap面板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础面板"><span class="nav-number">14.1.</span> <span class="nav-text">基础面板</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bootstrap插件"><span class="nav-number">15.</span> <span class="nav-text">bootstrap插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模态弹出框"><span class="nav-number">15.1.</span> <span class="nav-text">模态弹出框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构分析"><span class="nav-number">15.1.1.</span> <span class="nav-text">结构分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#触发方式"><span class="nav-number">15.1.2.</span> <span class="nav-text">触发方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滚动监听"><span class="nav-number">15.2.</span> <span class="nav-text">滚动监听</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提示框"><span class="nav-number">15.3.</span> <span class="nav-text">提示框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#弹出框"><span class="nav-number">15.4.</span> <span class="nav-text">弹出框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#警示框-1"><span class="nav-number">15.5.</span> <span class="nav-text">警示框</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按钮"><span class="nav-number">15.6.</span> <span class="nav-text">按钮</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手风琴插件使用"><span class="nav-number">15.7.</span> <span class="nav-text">手风琴插件使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轮播图插件使用"><span class="nav-number">15.8.</span> <span class="nav-text">轮播图插件使用</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ronnie Fan</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ityyfduoshuo"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+
+
+  <script src="../../../../js/src/particles.js"></script>
+  <script src="../../../../js/src/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,918 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="web前端," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="Hacker:黑客CSS Hack:据此而来，通过浏览器解析漏洞从而衍生的兼容性调节技术">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Hack技术">
+<meta property="og:url" content="http://www.ityyf.me/2017/03/10/CSS-Hack/index.html">
+<meta property="og:site_name" content="︶ㄣ真︵">
+<meta property="og:description" content="Hacker:黑客CSS Hack:据此而来，通过浏览器解析漏洞从而衍生的兼容性调节技术">
+<meta property="og:image" content="http://www.ityyf.me/../../../../../image/hacker.jpg">
+<meta property="og:updated_time" content="2017-03-31T12:30:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS Hack技术">
+<meta name="twitter:description" content="Hacker:黑客CSS Hack:据此而来，通过浏览器解析漏洞从而衍生的兼容性调节技术">
+<meta name="twitter:image" content="http://www.ityyf.me/../../../../../image/hacker.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 6391963168293258000,
+      author: '颜氏大人'
+    }
+  };
+</script>
+
+  <title> CSS Hack技术 | ︶ㄣ真︵ </title>
+  <link rel="stylesheet" type="text/css" href="../../../../css/style.css">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?99b8c5645a21a94e9ea5ae3c4eaf0b42";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div id="particles-js"></div>
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">︶ㄣ真︵</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">爱生活，爱前端</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="#" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS Hack技术
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-03-10T17:23:14+08:00" content="2017-03-10">
+              2017-03-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/03/10/CSS-Hack/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/10/CSS-Hack/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv"><i class="fa fa-eye"> 阅读量</i>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center">Hacker:黑客<br>CSS Hack:据此而来，通过浏览器解析漏洞从而衍生的兼容性调节技术</blockquote>
+
+<p><img src="../../../../../image/hacker.jpg" alt="hacker..."></p>
+<a id="more"></a>
+<h1 id="Hack概念"><a href="#Hack概念" class="headerlink" title="Hack概念"></a>Hack概念</h1><p>不同的浏览器对CSS的解析结果是不同的，因此会导致相同的CSS输出的页面效果不同，这就需要CSS Hack来解决浏览器局部的兼容性问题。而这个针对不同的浏览器写不同的CSS 代码的过程，就叫CSS Hack。</p>
+<h2 id="CSS属性Hack"><a href="#CSS属性Hack" class="headerlink" title="CSS属性Hack"></a>CSS属性Hack</h2><p>IE6能识别下划线<code>_</code>和星号<code>*</code>，IE7能识别星号<code>*</code>，但不能识别下划线<code>_</code>，而firefox两个都不能认识</p>
+<h2 id="CSS选择符Hack"><a href="#CSS选择符Hack" class="headerlink" title="CSS选择符Hack"></a>CSS选择符Hack</h2><p><strong>IE6</strong> 能识别<code>*html .className{}</code>，IE7能识别<code>*+html .className{}</code>或者<code>*:first-child+html .className{}</code>。</p>
+<h2 id="IE条件注释Hack"><a href="#IE条件注释Hack" class="headerlink" title="IE条件注释Hack"></a>IE条件注释Hack</h2><p>IE条件注释是微软从 <strong>IE5</strong> 开始就提供的一种非标准逻辑语句。比如针对所有IE：<code>&lt;!–[if IE]&gt;&lt;!–您的代码–&gt;&lt;![endif]–&gt;</code>，针对 <strong>IE6</strong> 及以下版本：<code>&lt;!–[if lt IE 7]&gt;&lt;!–您的代码–&gt;&lt;![endif]–&gt;</code>，这类Hack不仅对CSS生效，对写在判断语句里面的所有代码都 会生效。</p>
+<blockquote>
+<p>条件注释只有在IE浏览器下才能执行，这个代码在非IE浏览下被当做注释视而不见。可以通过IE条件注释载入不同的CSS、JS、HTML和服务器代码等。</p>
+</blockquote>
+<hr>
+<h1 id="常用的CSS-Hack"><a href="#常用的CSS-Hack" class="headerlink" title="常用的CSS Hack"></a>常用的CSS Hack</h1><h2 id="CSS属性Hack-1"><a href="#CSS属性Hack-1" class="headerlink" title="CSS属性Hack"></a>CSS属性Hack</h2><ul>
+<li><code>color:red;</code> <strong>IE*</strong></li>
+<li><code>_color:red;</code> <strong>IE6</strong></li>
+<li><code>*color:red;</code> <strong>IE6</strong> + <strong>IE7</strong></li>
+<li><code>+color:red;</code> <strong>IE6</strong> + <strong>IE7</strong></li>
+<li><code>*+color:red;</code> <strong>IE6</strong> + <strong>IE7</strong></li>
+<li><code>color:red\9;</code> <strong>IE6</strong> + <strong>IE7</strong> + <strong>IE8</strong> + <strong>IE9</strong></li>
+<li><code>color:red\0;</code> <strong>IE8</strong> + <strong>IE9</strong></li>
+<li><code>color:red\9\0;</code> <strong>IE9</strong></li>
+<li><code>color:red!important;</code> <strong>!IE6</strong></li>
+</ul>
+<h2 id="CSS选择符Hack-1"><a href="#CSS选择符Hack-1" class="headerlink" title="CSS选择符Hack"></a>CSS选择符Hack</h2><ul>
+<li><code>*html #demo { color:red;}</code> <strong>IE6</strong></li>
+<li><code>*+html #demo { color:red;}</code> <strong>IE7</strong></li>
+<li><code>body:nth-of-type(1) #demo { color:red;}</code> <strong>IE9+、FF3.5+、Chrome、Safari、Opera</strong></li>
+<li><code>head:first-child+body #demo { color:red; }</code> <strong>IE7+、FF、Chrome、Safari、Opera</strong></li>
+<li><code>:root #demo { color:red\9; }</code> <strong>IE9</strong></li>
+</ul>
+<h2 id="IE条件注释Hack-1"><a href="#IE条件注释Hack-1" class="headerlink" title="IE条件注释Hack"></a>IE条件注释Hack</h2><ul>
+<li><code>&lt;!--[if IE]&gt;此处内容只有IE可见&lt;![endif]--&gt;</code> </li>
+<li><code>&lt;!--[if IE 6]&gt;此处内容只有IE6.0可见&lt;![endif]--&gt;</code> </li>
+<li><code>&lt;!--[if IE 7]&gt;此处内容只有IE7.0可见&lt;![endif]--&gt;</code> </li>
+<li><code>&lt;!--[if !IE 7]&gt;此处内容只有IE7不能识别，其他版本都能识别，当然要在IE5以上。&lt;![endif]--&gt;</code></li>
+<li><code>&lt;!--[if gt IE 6]&gt; IE6以上版本可识别,IE6无法识别 &lt;![endif]--&gt;</code></li>
+<li><code>&lt;!--[if gte IE 7]&gt; IE7以及IE7以上版本可识别 &lt;![endif]--&gt;</code></li>
+<li><code>&lt;!--[if lt IE 7]&gt; 低于IE7的版本才能识别，IE7无法识别。 &lt;![endif]--&gt;</code></li>
+<li><code>&lt;!--[if lte IE 7]&gt; IE7以及IE7以下版本可识别&lt;![endif]--&gt;</code></li>
+<li><code>&lt;!--[if !IE]&gt;此处内容只有非IE可见&lt;![endif]--&gt;</code></li>
+</ul>
+<hr>
+<p>以上为常用的CSS Hack用法，详情请移步至 <strong><a href="https://zm10.sm-tc.cn/?src=l4uLj8XQ0JLRlZ3KztGRmovQnIyM0M3NycfHx9GXi5KT&amp;uid=d5b5963465aff2c09555ffa146156bd1&amp;hid=1325689c9f9358cdc4693490c8c5c640&amp;pos=1&amp;cid=9&amp;time=1489115262923&amp;from=click&amp;restype=1&amp;pagetype=0080004002000402&amp;bu=news_natural&amp;query=css+hack%E6%8A%80%E5%B7%A7&amp;mode=&amp;v=1&amp;uc_param_str=dnntnwvepffrgibijbprsvdsei" target="_blank" rel="external">CSS Hack技术介绍及常用的Hack技巧集锦</a></strong></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/web前端/" rel="tag">#web前端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/08/google-search/" rel="next" title="你真的会用Google搜索吗">
+                <i class="fa fa-chevron-left"></i> 你真的会用Google搜索吗
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/12/movingFilm/" rel="prev" title="催泪电影集结号">
+                催泪电影集结号 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/10/CSS-Hack/"
+           data-title="CSS Hack技术" data-url="http://www.ityyf.me/2017/03/10/CSS-Hack/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+  <div class="busuanzi">
+    
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"> 访客量</i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span>次</span>
+  
+
+  
+  
+</div>
+
+
+
+    
+  </div>
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/upload/image/avatar.jpg"
+               alt="Ronnie Fan" />
+          <p class="site-author-name" itemprop="name">Ronnie Fan</p>
+          <p class="site-description motion-element" itemprop="description">逆水行舟，不进则退</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/woxiaofan" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/13750846797" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hack概念"><span class="nav-number">1.</span> <span class="nav-text">Hack概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS属性Hack"><span class="nav-number">1.1.</span> <span class="nav-text">CSS属性Hack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS选择符Hack"><span class="nav-number">1.2.</span> <span class="nav-text">CSS选择符Hack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IE条件注释Hack"><span class="nav-number">1.3.</span> <span class="nav-text">IE条件注释Hack</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用的CSS-Hack"><span class="nav-number">2.</span> <span class="nav-text">常用的CSS Hack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS属性Hack-1"><span class="nav-number">2.1.</span> <span class="nav-text">CSS属性Hack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS选择符Hack-1"><span class="nav-number">2.2.</span> <span class="nav-text">CSS选择符Hack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IE条件注释Hack-1"><span class="nav-number">2.3.</span> <span class="nav-text">IE条件注释Hack</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ronnie Fan</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"ityyfduoshuo"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';                
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = true;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '' && data_content != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title < 0 && index_content < 0 ){
+                                isMatch = false;
+                            } else {
+                                if (index_content < 0) {
+                                    index_content = 0;
+                                }
+                                if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            }
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+                            
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').mousedown(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+  
+
+  
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+
+
+
+  <script src="../../../../js/src/particles.js"></script>
+  <script src="../../../../js/src/app.js"></script>
+</body>
+</html>
